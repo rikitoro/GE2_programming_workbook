@@ -1,0 +1,9 @@
+[book]
+authors = ["Rikitake"]
+language = "jp"
+multilingual = false
+src = "src"
+title = "GE2 プログラミング基礎"
+
+[output.html]
+mathjax-support = true
