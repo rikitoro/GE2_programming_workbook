@@ -151,9 +151,9 @@
 <h2 id="13-コンピュータに仕事をさせるための手順"><a class="header" href="#13-コンピュータに仕事をさせるための手順">1.3 コンピュータに仕事をさせるための手順</a></h2>
 <h3 id="例題-1-1--プログラムの作成コンパイル実行"><a class="header" href="#例題-1-1--プログラムの作成コンパイル実行">例題 1-1 : プログラムの作成・コンパイル・実行</a></h3>
 <p>C 言語でプログラムを作成してコンパイルを行って実行コードを生成し、実行するまでの手順を体験してみましょう。</p>
-<p>初めにソースコードを作成します。エディタ(Emacs, Vim, VSCode など)で、次のプログラムを作成を作成し、ファイル名を <code>main.c</code> として保存します。
-C 言語のソースコードのファイル(ソースファイル)の拡張子は <code>.c</code> とします。</p>
-<p><code>.c</code></p>
+<p>初めにソースコードを作成します。エディタ(Emacs, Vim, VSCode など)で、次のプログラムを作成を作成し、ファイル名を <code>first.c</code> として保存します。
+なお、 C 言語のソースコードのファイル(ソースファイル)の拡張子は <code>.c</code> とする必要があります。</p>
+<p><code>first.c</code></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -162,12 +162,33 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>次に端末を開き、 <code>gcc</code> コマンドでソースファイルを指定してコンパイルを行います。コンパイルを行ってできる実行コードのファイル名は <code>gcc</code> コマンドの <code>-o</code> オプションで指定しましょう。
+次のようにソースファイル <code>main.c</code> をコンパイルすると、プログラムに構文エラー(Syntax error)がなければ、実行コード <code>first</code> が作成されます。</p>
 <p><code>terminal</code></p>
 <pre><code>$ gcc main.c -o main
+$ ls
+first  first.c
 </code></pre>
+<p>実行コード <code>first</code> を実行します。
+プログラムに誤りがなければ、 <code>This is my first C program!</code> と表示され、改行されます。</p>
 <p><code>terminal</code></p>
-<pre><code>$ ls
-main.c main
+<pre><code>$ ./first
+This is my first C program!
+</code></pre>
+<blockquote>
+<p>ソースコードに構文エラー(文法上の誤り)があると、コンパイルに失敗し、コンパイラが次のようなエラーメッセージを表示します。
+エラーメッセージをよく確認し、ソースコードを修正したうえで再度コンパイルを行いましょう。</p>
+</blockquote>
+<p><code>terminal</code></p>
+<pre><code class="language-AST">$ gcc first.c -o first
+first.c: In function ‘main’:
+first.c:4:42: error: expected ‘;’ before ‘return’
+    4 |   printf(&quot;This is my first C program!\n&quot;)
+      |                                          ^
+      |                                          ;
+    5 | 
+    6 |   return 0;
+      |   ~~~~~~      
 </code></pre>
 <hr />
 
