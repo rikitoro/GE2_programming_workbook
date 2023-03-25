@@ -9,7 +9,7 @@ C 言語でプログラムを作成してコンパイルを行って実行コー
 初めにソースコードを作成します。エディタ(Emacs, Vim, VSCode など)で、次のプログラムを作成を作成し、ファイル名を `first.c` として保存します。
 なお、 C 言語のソースコードのファイル(ソースファイル)の拡張子は `.c` とする必要があります。
 
-`first.c`
+***`first.c`***
 ````c
 #include <stdio.h>
 
@@ -23,7 +23,7 @@ int main(void) {
 次に端末を開き、 `gcc` コマンドでソースファイルを指定してコンパイルを行います。コンパイルを行ってできる実行コードのファイル名は `gcc` コマンドの `-o` オプションで指定しましょう。
 次のようにソースファイル `main.c` をコンパイルすると、プログラムに構文エラー(Syntax error)がなければ、実行コード `first` が作成されます。
 
-`terminal`
+***`terminal`***
 ````
 $ gcc main.c -o main
 $ ls
@@ -33,7 +33,7 @@ first  first.c
 実行コード `first` を実行します。
 プログラムに誤りがなければ、標準出力に `This is my first C program!` と表示され、改行されます。
 
-`terminal`
+***`terminal`***
 ````
 $ ./first
 This is my first C program!
@@ -45,7 +45,7 @@ $
 > ソースコードに構文エラー(文法上の誤り)があると、コンパイラはコンパイルに失敗し、次のようなエラーメッセージやヒントを表示します。
 > エラーメッセージをよく確認し、ソースコードを修正したうえで再度コンパイルを行いましょう。
 
-`terminal`
+***`terminal`***
 ````AST
 $ gcc first.c -o first
 first.c: In function ‘main’:
@@ -69,6 +69,7 @@ first.c:4:42: error: expected ‘;’ before ‘return’
 
 まず、次のソースコードを作成し、`second.c` とファイル名を付けて保存しましょう。
 
+***`second.c`***
 ```` c
 #include <stdio.h>
 
@@ -83,7 +84,7 @@ int main(void) {
 `gcc` の `-c` オプションを用います。
 次のようにコンパイルを行うと、オブジェクトコードのファイル `second.o` が作成されます。
 
-`terminal`
+***`terminal`***
 ````
 $ gcc -c second.c
 $ ls
@@ -94,7 +95,7 @@ second.c  second.o
 リンカは複数のオブジェクトコードやライブラリを結合して、コンピュータ上で直接実行できる実行コードを作成するものです。
 リンクは `gcc` の `-o` オプションで、実行コードのファイル名と、リンク対象のオブジェクトコードを指定して行います。
 
-`terminal`
+***`terminal`***
 ````
 $ gcc -o second second.o
 $ ls
@@ -103,7 +104,7 @@ second  second.c  second.o
 
 実行コード `second` を実行すると、標準出力に `Second program!` と表示され改行されます。
 
-`terminal`
+***`terminal`***
 ````
 $ ./second
 Second program!
@@ -115,7 +116,7 @@ $
 > 実行コードやオブジェクトコードはコンピュータが解釈できる 0, 1 の2進数でされる機械語で書かれたプログラム(およびデータ)となっています。
 > (通常の)人間が読んでわかるものではありませんが、`xxd` コマンドや `od` コマンドを使って、次のように実行コードの中身を見ることはできます。
 
-`terminal`
+***`terminal`***
 ````
 $ xxd -b second
 00000000: 01111111 01000101 01001100 01000110 00000010 00000001  .ELF..
