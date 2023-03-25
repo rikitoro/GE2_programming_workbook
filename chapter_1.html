@@ -169,13 +169,15 @@ $ ls
 first  first.c
 </code></pre>
 <p>実行コード <code>first</code> を実行します。
-プログラムに誤りがなければ、 <code>This is my first C program!</code> と表示され、改行されます。</p>
+プログラムに誤りがなければ、標準出力に <code>This is my first C program!</code> と表示され、改行されます。</p>
 <p><code>terminal</code></p>
 <pre><code>$ ./first
 This is my first C program!
+$
 </code></pre>
 <blockquote>
-<p>ソースコードに構文エラー(文法上の誤り)があると、コンパイルに失敗し、コンパイラが次のようなエラーメッセージを表示します。
+<p><strong>tips</strong></p>
+<p>ソースコードに構文エラー(文法上の誤り)があると、コンパイラはコンパイルに失敗し、次のようなエラーメッセージやヒントを表示します。
 エラーメッセージをよく確認し、ソースコードを修正したうえで再度コンパイルを行いましょう。</p>
 </blockquote>
 <p><code>terminal</code></p>
@@ -188,6 +190,59 @@ first.c:4:42: error: expected ‘;’ before ‘return’
     5 | 
     6 |   return 0;
       |   ~~~~~~      
+</code></pre>
+<hr />
+<h3 id="例題-1-2--コンパイルとリンク"><a class="header" href="#例題-1-2--コンパイルとリンク">例題 1-2 : コンパイルとリンク</a></h3>
+<p><code>gcc</code> にはコンパイラとリンカの両方の機能が備わっています。
+プログラミング基礎で扱うような小規模なプログラムの開発では、
+例題 1-1 で行ったように <code>gcc</code> でソースコードから直接実行コードを作成しても問題ありませんが、複数のソースコードを必要とする大規模な開発では、コンパイルとリンクを分けて行うことが多いです。</p>
+<p>参考のために、コンパイルとリンクを分けて実行コードを作成する方法を体験しておきましょう。</p>
+<p>まず、次のソースコードを作成し、<code>second.c</code> とファイル名を付けて保存しましょう。</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  printf(&quot;Second program!\n&quot;);
+
+  return 0;
+}
+</code></pre>
+<p>次にソースコードをコンパイルしオブジェクトコードを作成します。
+<code>gcc</code> の <code>-c</code> オプションを用います。
+次のようにコンパイルを行うと、オブジェクトコードのファイル <code>second.o</code> が作成されます。</p>
+<p><code>terminal</code></p>
+<pre><code>$ gcc -c second.c
+$ ls
+second.c  second.o
+</code></pre>
+<p>最後に、リンカを用いて、オブジェクトコードから実行コードを作成します。
+リンカは複数のオブジェクトコードやライブラリを結合して、コンピュータ上で直接実行できる実行コードを作成するものです。
+リンクは <code>gcc</code> の <code>-o</code> オプションで、実行コードのファイル名と、リンク対象のオブジェクトコードを指定して行います。</p>
+<p><code>terminal</code></p>
+<pre><code>$ gcc -o second second.o
+$ ls
+second  second.c  second.o
+</code></pre>
+<p>実行コード <code>second</code> を実行すると、標準出力に <code>Second program!</code> と表示され改行されます。</p>
+<p><code>terminal</code></p>
+<pre><code>$ ./second
+Second program!
+$
+</code></pre>
+<blockquote>
+<p><strong>tips</strong></p>
+<p>実行コードやオブジェクトコードはコンピュータが解釈できる 0, 1 の2進数でされる機械語で書かれたプログラム(およびデータ)となっています。
+(通常の)人間が読んでわかるものではありませんが、<code>xxd</code> コマンドや <code>od</code> コマンドを使って、次のように実行コードの中身を見ることはできます。</p>
+</blockquote>
+<p><code>terminal</code></p>
+<pre><code>$ xxd -b second
+00000000: 01111111 01000101 01001100 01000110 00000010 00000001  .ELF..
+00000006: 00000001 00000000 00000000 00000000 00000000 00000000  ......
+0000000c: 00000000 00000000 00000000 00000000 00000011 00000000  ......
+00000012: 00111110 00000000 00000001 00000000 00000000 00000000  &gt;.....
+00000018: 01100000 00010000 00000000 00000000 00000000 00000000  `.....
+0000001e: 00000000 00000000 01000000 00000000 00000000 00000000  ..@...
+00000024: 00000000 00000000 00000000 00000000 10011000 00110110  .....6
+(以下略 q で表示終了)
 </code></pre>
 <hr />
 
