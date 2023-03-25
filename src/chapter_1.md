@@ -19,4 +19,3 @@ $ ls
 main.c main
 ````
 
-test
