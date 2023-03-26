@@ -86,7 +86,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 1: 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> 2: C 言語の基礎</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -236,7 +236,7 @@ $
 (通常の)人間が読んでわかるものではありませんが、<code>xxd</code> コマンドや <code>od</code> コマンドを使って、次のように実行コードの中身を見ることはできます。</p>
 </blockquote>
 <p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>$ xxd -b second
+<pre><code>$ xxd -b second | less
 00000000: 01111111 01000101 01001100 01000110 00000010 00000001  .ELF..
 00000006: 00000001 00000000 00000000 00000000 00000000 00000000  ......
 0000000c: 00000000 00000000 00000000 00000000 00000011 00000000  ......
@@ -255,7 +255,7 @@ $
 int main(void) {
   int count;
 
-  for (count = 0; count &lt; 10; count++) {
+  for (count = 1; count &lt;= 10; count++) {
     printf(&quot;%d &quot;, count);
   }
 
