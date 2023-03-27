@@ -149,14 +149,25 @@
                         <h1 id="第-2-章--c-言語の基礎"><a class="header" href="#第-2-章--c-言語の基礎">第 2 章 : C 言語の基礎</a></h1>
 <h2 id="24-c-言語によるプログラミング"><a class="header" href="#24-c-言語によるプログラミング">2.4 C 言語によるプログラミング</a></h2>
 <h3 id="例題-2-1--hello-world"><a class="header" href="#例題-2-1--hello-world">例題 2-1 : Hello, World!</a></h3>
+<p>プログラムは、標準出力(ターミナル)へ <code>Hello, World!</code> 表示するプログラムです。</p>
 <p><em><strong><code>hello.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
 
-int main(void) {
-  printf(&quot;Hello, World\n&quot;);
+int main(void) {    // (2)
+  printf(&quot;Hello, World!\n&quot;);  //(3)
 
-  return 0;
+  return 0; // (4)
 }
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
+</code></pre>
+<pre><code class="language-c">int main(void) {    // (2)
+  ...(中略)
+}
+</code></pre>
+<pre><code class="language-c">  printf(&quot;Hello, World!\n&quot;);  //(3)
+</code></pre>
+<pre><code class="language-c">  return 0; // (4)
 </code></pre>
 <hr />
 <h3 id="演習-2-1"><a class="header" href="#演習-2-1">演習 2-1</a></h3>
