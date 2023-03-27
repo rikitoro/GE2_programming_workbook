@@ -56,7 +56,7 @@ $
 
 ### 演習 2-1 
 
-次のプログラムの `"<your name>"` の部分を自分の名前に変更したプログラムを作成し、コンパイルし実行して、その動作を確認しましょう。
+次のプログラムの `<your name>` の部分を自分の名前に変更したプログラムを作成し、コンパイルし実行して、その動作を確認しましょう。
 
 ***`name.c`***
 ``` c
@@ -65,7 +65,7 @@ $
 int main(void) {
   printf("Hello, ");
   printf("<your name>");
-  printf(" How are you?\n");
+  printf("!\nHow are you?\n");
 
   return 0;
 }
