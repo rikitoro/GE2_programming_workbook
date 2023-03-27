@@ -268,7 +268,7 @@ int main(void) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-2-章--c-言語の基礎"><a class="header" href="#第-2-章--c-言語の基礎">第 2 章 : C 言語の基礎</a></h1>
 <h2 id="24-c-言語によるプログラミング"><a class="header" href="#24-c-言語によるプログラミング">2.4 C 言語によるプログラミング</a></h2>
 <h3 id="例題-2-1--hello-world"><a class="header" href="#例題-2-1--hello-world">例題 2-1 : Hello, World!</a></h3>
-<p>プログラムは、標準出力(ターミナル)へ <code>Hello, World!</code> 表示するプログラムです。</p>
+<p>次のプログラムは、標準出力 (ターミナル) へ <code>Hello, World!</code> と表示するプログラムです。</p>
 <p><em><strong><code>hello.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
 
@@ -284,12 +284,25 @@ int main(void) {    // (2)
   ...(中略)
 }
 </code></pre>
+<p>C 言語で作成したプログラムは、実行するとはじめに <code>main</code> 関数が呼び出されます。
+ここではその <code>main</code> 関数を定義しています。</p>
 <pre><code class="language-c">  printf(&quot;Hello, World!\n&quot;);  //(3)
 </code></pre>
+<p><code>printf</code> は引数で指定した文字列を表示する命令です。
+<code>\n</code> は改行文字です。</p>
 <pre><code class="language-c">  return 0; // (4)
+</code></pre>
+<p><code>main</code> 関数は正常に終了すると整数 <code>0</code> を返します。</p>
+<p>このプログラムをコンパイルし、実行すると次のように <code>Hello, World!</code> と表示し改行されます。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>$ gcc hello.c -o hello
+$ ./hello
+Hello, world!
+$
 </code></pre>
 <hr />
 <h3 id="演習-2-1"><a class="header" href="#演習-2-1">演習 2-1</a></h3>
+<p>次のプログラムの <code>&quot;&lt;your name&gt;&quot;</code> の部分を自分の名前に変更したプログラムを作成し、コンパイルし実行して、その動作を確認しましょう。</p>
 <p><em><strong><code>name.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
