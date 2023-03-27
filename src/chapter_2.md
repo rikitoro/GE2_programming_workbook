@@ -4,15 +4,35 @@
 
 ### 例題 2-1 : Hello, World!
 
+プログラムは、標準出力(ターミナル)へ `Hello, World!` 表示するプログラムです。
+
 ***`hello.c`***
 ``` c
-#include <stdio.h>
+#include <stdio.h>  // (1)
 
-int main(void) {
-  printf("Hello, World\n");
+int main(void) {    // (2)
+  printf("Hello, World!\n");  //(3)
 
-  return 0;
+  return 0; // (4)
 }
+```
+
+```c
+#include <stdio.h>  // (1)
+```
+
+```c
+int main(void) {    // (2)
+  ...(中略)
+}
+```
+
+```c
+  printf("Hello, World!\n");  //(3)
+```
+
+```c
+  return 0; // (4)
 ```
 ---
 
