@@ -6,16 +6,15 @@
 
 次のプログラムは、標準出力 (ターミナル) へ `Hello, World!` と表示するプログラムです。
 
-
 ***`hello.c`***
 ``` c
 #include <stdio.h>  // (1)
 
-int main(void) {    // (2)
+int main(void) {    // (2-1)
   printf("Hello, World!\n");  //(3)
 
   return 0; // (4)
-}
+} 
 ```
 
 
@@ -63,7 +62,7 @@ $
 #include <stdio.h>
 
 int main(void) {
-  printf("Hello, ");
+  printf("Hi, ");
   printf("<your name>");
   printf("!\nHow are you?\n");
 
