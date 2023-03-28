@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>C 言語の基礎 - GE2 プログラミング基礎</title>
+        <title>課題 - GE2 プログラミング基礎</title>
 
 
         <!-- Custom HTML head -->
@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html" class="active"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html" class="active"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,68 +146,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="第-2-章--c-言語の基礎"><a class="header" href="#第-2-章--c-言語の基礎">第 2 章 : C 言語の基礎</a></h1>
-<h2 id="24-c-言語によるプログラミング"><a class="header" href="#24-c-言語によるプログラミング">2.4 C 言語によるプログラミング</a></h2>
-<h3 id="例題-2-1--hello-world"><a class="header" href="#例題-2-1--hello-world">例題 2-1 : Hello, World!</a></h3>
-<p>次のプログラムは、標準出力 (ターミナル) へ <code>Hello, World!</code> と表示するプログラムです。</p>
-<p><em><strong><code>hello.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
-
-int main(void) {    // (2-1)
-  printf(&quot;Hello, World!\n&quot;);  //(3)
-
-  return 0; // (4)
-} 
-</code></pre>
-<pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
-</code></pre>
-<pre><code class="language-c">int main(void) {    // (2)
-  ...(中略)
-}
-</code></pre>
-<p>C 言語で作成したプログラムは、実行するとはじめに <code>main</code> 関数が呼び出されます。
-ここではその <code>main</code> 関数を定義しています。</p>
-<pre><code class="language-c">  printf(&quot;Hello, World!\n&quot;);  //(3)
-</code></pre>
-<p><code>printf</code> は引数で指定した文字列を表示する命令です。
-<code>\n</code> は改行文字です。</p>
-<pre><code class="language-c">  return 0; // (4)
-</code></pre>
-<p><code>main</code> 関数は正常に終了すると整数 <code>0</code> を返します。</p>
-<p>このプログラムをコンパイルし、実行すると次のように <code>Hello, World!</code> と表示し改行されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>$ gcc hello.c -o hello
-$ ./hello
-Hello, world!
-$
-</code></pre>
-<hr />
-<h3 id="演習-2-1"><a class="header" href="#演習-2-1">演習 2-1</a></h3>
-<p>次のプログラムの <code>&lt;your name&gt;</code> の部分を自分の名前に変更したプログラムを作成し、コンパイルし実行して、その動作を確認しましょう。</p>
-<p><em><strong><code>name.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main(void) {
-  printf(&quot;Hi, &quot;);
-  printf(&quot;&lt;your name&gt;&quot;);
-  printf(&quot;!\nHow are you?\n&quot;);
-
-  return 0;
-}
-</code></pre>
-<hr />
+                        <h1 id="課題"><a class="header" href="#課題">課題</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chapter_7.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="chapter_3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -215,13 +163,10 @@ int main(void) {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chapter_7.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="chapter_3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
