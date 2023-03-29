@@ -143,4 +143,20 @@ i_x = -12
 ```
 ---
 
+### 演習 4-1 
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  double radius, area;
+
+  radius = 3.0; // この値を変更する。
+
+  area = 3.14 * radius * radius / 2;
+
+  printf("The area of semicircle of ");
+  printf("radius %lf is %lf.\n", radius, area);
+}
+```
 
