@@ -147,7 +147,54 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="第-4-章--標準入出力"><a class="header" href="#第-4-章--標準入出力">第 4 章 : 標準入出力</a></h1>
-<p>「作成中」</p>
+<h2 id="41--標準出力"><a class="header" href="#41--標準出力">4.1 : 標準出力</a></h2>
+<h3 id="例題-4-1-"><a class="header" href="#例題-4-1-">例題 4-1 :</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  char atmark = '@';
+  int score = 42;
+  double temperature = 12.34;
+
+  printf(&quot;Hello, World\n&quot;);     // (1) 文字列の出力
+  printf(&quot;%c\n&quot;, atmark);       // (2) 文字の出力
+  printf(&quot;%d\n&quot;, score);        // (3) 数値( int 型)の出力
+  printf(&quot;%lf\n&quot;, temperature); // (4) 数値( double 型)の出力
+  // (5) 組合せ
+  printf(&quot;score : %d, temperature : %lf\n&quot;, score, temperature); 
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>Hello, World
+@
+42
+12.340000
+score : 42, temperature : 12.340000
+</code></pre>
+<hr />
+<h3 id="例題-4-2-"><a class="header" href="#例題-4-2-">例題 4-2 :</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int score = 84;
+  double value = 123.45678;
+
+  printf(&quot;1234567890\n&quot;);
+  printf(&quot;%4d\n&quot;, score);     // 整数 4 桁で表示
+  printf(&quot;%6.2lf\n&quot;, value);  // 実数 全体で 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf(&quot;%e\n&quot;, value);      // 実数 指数形式で表示
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>12345678901234567890
+  84
+123.46
+1.234568e+02
+</code></pre>
+<hr />
 
                     </main>
 
