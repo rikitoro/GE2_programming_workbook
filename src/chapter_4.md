@@ -60,3 +60,55 @@ int main(void) {
 ```
 
 ---
+
+### 例題 4-3 :
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  char character;
+  
+  scanf("%c", &character);
+
+  printf("The character you entered : %c\n", character);
+
+  return 0;
+}
+```
+
+***`terminal`***
+```
+Q
+The character you entered : Q
+```
+
+---
+
+### 例題 4-3 :
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  double width, height;
+  double area;
+
+  printf("Enter width height : \n");
+
+  scanf("%lf %lf", &width, &height);
+
+  area = width * height;
+  printf("Area of the rectagle : %lf\n", area);
+
+  return 0;
+}
+```
+
+***`terminal`***
+```
+Enter width height : 
+2.3 10.0
+Area of the rectagle : 23.000000
+```
+
