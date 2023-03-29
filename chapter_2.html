@@ -149,7 +149,9 @@
                         <h1 id="第-2-章--c-言語の基礎"><a class="header" href="#第-2-章--c-言語の基礎">第 2 章 : C 言語の基礎</a></h1>
 <h2 id="24-c-言語によるプログラミング"><a class="header" href="#24-c-言語によるプログラミング">2.4 C 言語によるプログラミング</a></h2>
 <h3 id="例題-2-1--hello-world"><a class="header" href="#例題-2-1--hello-world">例題 2-1 : Hello, World!</a></h3>
-<p>次のプログラムは、標準出力 (ターミナル) へ <code>Hello, World!</code> と表示するプログラムです。</p>
+<p>次のプログラムは、標準出力 (ターミナル) へ <code>Hello, World!</code> と表示するプログラムです。
+ソースコード中の　<code>//</code> は単一行コメントの開始を表す記号で、<code>//</code> から右側行末まではコメントとして扱われます。コンパイラはコメント部分は無視してコンパイルを行います。</p>
+<p>プログラムを作成し、コンパイルを行って実行してみましょう。</p>
 <p><em><strong><code>hello.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
 
@@ -157,29 +159,64 @@ int main(void) {    // (2-1)
   printf(&quot;Hello, World!\n&quot;);  //(3)
 
   return 0; // (4)
-} 
+} // (2-2)
 </code></pre>
+<p><code>hello.c</code> の各部分について説明します。</p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;  // (1)
 </code></pre>
-<pre><code class="language-c">int main(void) {    // (2)
+<p><code>#include</code> はプリプロセッサディレクティブと呼ばれるもののひとつで、指定したファイルをソースコードに組み込むときに使用します。
+ここでは、 <code>stdio.h</code> というファイル(ヘッダファイル)が指定されています。
+<code>stdio.h</code> はシステムで提供されている標準入出力を処理する関数を宣言しています。</p>
+<pre><code class="language-c">int main(void) {    // (2-1)
   ...(中略)
-}
+} // (2-2)
 </code></pre>
-<p>C 言語で作成したプログラムは、実行するとはじめに <code>main</code> 関数が呼び出されます。
+<p>C 言語で作成したプログラムは、実行すると(通常)はじめに <code>main</code> 関数が呼び出されます。
 ここではその <code>main</code> 関数を定義しています。</p>
+<p>関数の定義ではまず、関数名と関数に渡す値(引数)の型、関数が返す値(返り値)の型を指定します。
+このプログラムでは、関数名として <code>main</code> 、引数の型として <code>void</code> 型(空であること示す型)、返り値の型として <code>int</code> 型(整数型)が指定されています。
+なお、<code>main</code> 関数の返り値の方は <code>int</code> 型となります。
+(<code>main</code> 関数に引数を渡すこともできますが、詳細は 10 章で説明します。)</p>
+<p>関数の本体で行う処理を <code>{</code> と <code>}</code> で囲まれた部分に記述します。</p>
 <pre><code class="language-c">  printf(&quot;Hello, World!\n&quot;);  //(3)
 </code></pre>
-<p><code>printf</code> は引数で指定した文字列を表示する命令です。
-<code>\n</code> は改行文字です。</p>
+<p><code>printf</code> は引数で指定した文字列を標準出力へ出力する命令です。
+引数で渡された <code>&quot;</code> (ダブルクォート)で囲まれた文字列を出力します。
+なお、文字列中の <code>\n</code> は改行文字を表し、出力時はこの部分で改行が行われます。</p>
 <pre><code class="language-c">  return 0; // (4)
 </code></pre>
-<p><code>main</code> 関数は正常に終了すると整数 <code>0</code> を返します。</p>
+<p><code>return</code> 文は関数(ここでは <code>main</code> 関数)の実行を終了し、関数の呼び出し元に返す値を設定する命令です。</p>
+<p><code>main</code> 関数は正常に終了すると整数値 <code>0</code> を返します。</p>
 <p>このプログラムをコンパイルし、実行すると次のように <code>Hello, World!</code> と表示し改行されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>$ gcc hello.c -o hello
 $ ./hello
 Hello, world!
 $
+</code></pre>
+<hr />
+<blockquote>
+<p><strong>tips</strong>
+<code>man</code> コマンドを使うとシステムで提供されている C 言語の関数や、ファイルなどに関する情報が得られます。
+<code>stdio</code> や <code>printf</code> などについて <code>man</code> コマンドを使って調べてみましょう。</p>
+</blockquote>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>$ man stdio
+STDIO(3)          Linux Programmer's Manual          STDIO(3)
+
+NAME
+       stdio - standard input/output library functions
+
+SYNOPSIS
+       #include &lt;stdio.h&gt;
+
+       FILE *stdin;
+       FILE *stdout;
+       FILE *stderr;
+
+DESCRIPTION
+       The  standard  I/O library provides a simple and effi‐
+       cient buffered stream I/O interface. (以下略)
 </code></pre>
 <hr />
 <h3 id="演習-2-1"><a class="header" href="#演習-2-1">演習 2-1</a></h3>
