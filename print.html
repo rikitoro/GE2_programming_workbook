@@ -353,7 +353,127 @@ int main(void) {
 </code></pre>
 <hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-3-章--変数とデータ型"><a class="header" href="#第-3-章--変数とデータ型">第 3 章 : 変数とデータ型</a></h1>
-<p>「作成中」</p>
+<h3 id="例題-3-1--変数の宣言と値の代入"><a class="header" href="#例題-3-1--変数の宣言と値の代入">例題 3-1 : 変数の宣言と値の代入</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  // (1) 変数の宣言
+  char character;
+  int i, num;
+  double temperature;
+
+  // (2) 変数への値の代入
+  character = 'z';
+  i = 42;
+  num = i + 10;
+  temperature = -3.4;
+
+  // (3) 変数の値の表示
+  printf(&quot;%c\n&quot;, character);  
+  printf(&quot;%d\n&quot;, i);
+  printf(&quot;%d\n&quot;, num);
+  printf(&quot;%lf\n&quot;, temperature);
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>z
+42
+52
+-3.400000
+</code></pre>
+<hr />
+<h3 id="例題-3-2--変数の宣言時の初期化"><a class="header" href="#例題-3-2--変数の宣言時の初期化">例題 3-2 : 変数の宣言時の初期化</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  // 変数の宣言時に値を設定
+  char character = 'P';
+  int num = -57;
+  double temperature = 12.34;
+
+  printf(&quot;%c\n&quot;, character);  
+  printf(&quot;%d\n&quot;, num);
+  printf(&quot;%lf\n&quot;, temperature);
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>P
+-57
+12.340000
+</code></pre>
+<hr />
+<h3 id="例題-3-3--代入による変数の上書き"><a class="header" href="#例題-3-3--代入による変数の上書き">例題 3-3 : 代入による変数の上書き</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  // (1) 初期化
+  int i = 10;
+  int j = 20;
+  printf(&quot;(1)\n&quot;);
+  printf(&quot;i = %d\n&quot;, i);  
+  printf(&quot;j = %d\n&quot;, j);
+
+  // (2) 代入
+  i = 30; 
+  j = i; 
+  printf(&quot;(2)\n&quot;);
+  printf(&quot;i = %d\n&quot;, i);  
+  printf(&quot;j = %d\n&quot;, j);
+
+  // (3) さらなる代入
+  i = i + 2;
+  printf(&quot;(3)\n&quot;)
+  printf(&quot;i = %d\n&quot;, i);  
+  printf(&quot;j = %d\n&quot;, j);
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>(1)
+i = 10
+j = 20
+(2)
+i = 30
+j = 30
+(3)
+i = 32
+j = 30
+</code></pre>
+<hr />
+<h3 id="例題-3-4--キャストによる型の変換"><a class="header" href="#例題-3-4--キャストによる型の変換">例題 3-4 : キャストによる型の変換</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int i = 256;
+  double x = -12.34;
+  double d_i;
+  int i_x;
+
+  // (1) int 型の値を double 型に変換
+  d_i = (double)i;
+  printf(&quot;i   = %d\n&quot;, i);
+  printf(&quot;d_i = %lf\n&quot;, d_i);
+
+  // (2) double 型の値を int 型に変換
+  i_x = (int)x;
+  printf(&quot;x   = %lf\n&quot;, x);
+  printf(&quot;i_x = %d\n&quot;, i_x);
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>i   = 256
+d_i = 256.000000
+x   = -12.340000
+i_x = -12
+</code></pre>
+<hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-4-章--標準入出力"><a class="header" href="#第-4-章--標準入出力">第 4 章 : 標準入出力</a></h1>
 <p>「作成中」</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-5-章--演算子"><a class="header" href="#第-5-章--演算子">第 5 章 : 演算子</a></h1>
