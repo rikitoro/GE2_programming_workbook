@@ -356,6 +356,8 @@ int main(void) {
 <hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-3-章--変数とデータ型"><a class="header" href="#第-3-章--変数とデータ型">第 3 章 : 変数とデータ型</a></h1>
 <h3 id="例題-3-1--変数の宣言と値の代入"><a class="header" href="#例題-3-1--変数の宣言と値の代入">例題 3-1 : 変数の宣言と値の代入</a></h3>
+<p>次のプログラムは変数を用いたデモプログラムです。</p>
+<p><em><strong><code>variables1.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -379,6 +381,39 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラムの説明をしていきます。</p>
+<p>変数を用いる際には、まず変数の型(データ型)と変数名を示して宣言する必要があります。</p>
+<pre><code class="language-c">  // (1) 変数の宣言
+  char character;
+  int i, num;
+  double temperature;
+</code></pre>
+<p>これにより、 <code>char</code> 型の変数 <code>character</code> と、<code>int</code> 型の変数 <code>i</code> および <code>num</code>、
+<code>double</code> 型の変数 <code>temperature</code> が使えるようになりました。
+なお、変数を宣言しただけではその変数の値は不定となります。</p>
+<p>変数へ値を代入するときは代入演算子 <code>=</code> を使います。</p>
+<pre><code class="language-c">  // (2) 変数への値の代入
+  character = 'z';
+  i = 42;
+  num = i + 10;
+  temperature = -3.4;
+</code></pre>
+<p>代入演算子 <code>=</code> の左辺には、代入先となる変数を置き、
+右辺には代入する値を持ってきます。</p>
+<p><code>character = 'z';</code> が実行されると、<code>char</code> 型の変数 <code>character</code> に 1 文字の値 <code>'z'</code> が代入されます。
+同様に <code>i = 42;</code> が実行されると、<code>int</code> 型の変数 <code>i</code> に整数 <code>42</code> が代入されます。</p>
+<p>代入演算子の右辺に式を持ってくることもできます。
+<code>num = i + 10;</code> が実行されると右辺が計算され、その計算結果である <code>52</code> が <code>int</code> 型の変数 <code>num</code> に代入されます。
+(今、 <code>i</code> の値が <code>42</code> であったことに注意)</p>
+<p>変数の値を表示するには <code>printf</code> を用いるとよいです。
+<code>printf</code> 関数の詳しい使い方については 4 章で説明します。</p>
+<pre><code class="language-c">  // (3) 変数の値の表示
+  printf(&quot;%c\n&quot;, character);  
+  printf(&quot;%d\n&quot;, i);
+  printf(&quot;%d\n&quot;, num);
+  printf(&quot;%lf\n&quot;, temperature);
+</code></pre>
+<p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>z
 42
@@ -387,6 +422,11 @@ int main(void) {
 </code></pre>
 <hr />
 <h3 id="例題-3-2--変数の宣言時の初期化"><a class="header" href="#例題-3-2--変数の宣言時の初期化">例題 3-2 : 変数の宣言時の初期化</a></h3>
+<p>変数の宣言時と同時に変数の値を代入することもできます。
+これを変数の初期化といいます。
+変数の初期値が決まっている変数に対しては、変数の初期化を行うとよいでしょう。</p>
+<p>変数の初期化を用いたプログラムを示します。</p>
+<p><em><strong><code>variables2.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -402,6 +442,7 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>P
 -57
@@ -579,6 +620,20 @@ int main(void) {
 <pre><code>Enter width height : 
 2.3 10.0
 Area of the rectagle : 23.000000
+</code></pre>
+<hr />
+<h2 id="演習-3"><a class="header" href="#演習-3">演習</a></h2>
+<h3 id="演習-4-1-1"><a class="header" href="#演習-4-1-1">演習 4-1</a></h3>
+<p>標準入力から文字( char 型の値)を 3 つ受け取ったら、
+受け取った 3 つの文字を横に逆順に横に並べて出力するプログラムを作成し、
+動作を確かめてください。</p>
+<p>実行例を以下に示します。
+1 ~ 3 行目はユーザーからの入力で、4 行目はプログラムの出力です。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>a
+b
+c
+cba
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-5-章--演算子"><a class="header" href="#第-5-章--演算子">第 5 章 : 演算子</a></h1>
 <p>「作成中」</p>
