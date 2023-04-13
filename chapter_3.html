@@ -242,6 +242,14 @@ int main(void) {
 </code></pre>
 <hr />
 <h3 id="例題-3-3--代入による変数の上書き"><a class="header" href="#例題-3-3--代入による変数の上書き">例題 3-3 : 代入による変数の上書き</a></h3>
+<p>変数への代入は 1 度だけでなく複数回行うことができます。</p>
+<p>次のプログラムでは、<code>int</code> 型の変数 <code>i</code> と <code>j</code> に対して、
+変数宣言時に初期化を行った後、
+それぞれの変数に対して 2 回代入を行っています。
+初期化、1 回目の代入、2 回目の代入それぞれが行われた直後で
+変数 <code>i</code> と <code>j</code> の値がどのように変化しているか、
+プログラムを実行して確かめてください。</p>
+<p><em><strong><code>variables3.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -261,6 +269,7 @@ int main(void) {
 
   // (3) さらなる代入
   i = i + 2;
+  j = 3 * j;
   printf(&quot;(3)\n&quot;)
   printf(&quot;i = %d\n&quot;, i);  
   printf(&quot;j = %d\n&quot;, j);
@@ -268,6 +277,7 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>(1)
 i = 10
@@ -277,10 +287,27 @@ i = 30
 j = 30
 (3)
 i = 32
-j = 30
+j = 90
 </code></pre>
+<p>さて、2 回目の代入では代入演算子 <code>=</code> の左辺と右辺に同じ変数が現れています。</p>
+<pre><code class="language-c">  // (3) さらなる代入
+  i = i + 2;
+  j = 3 * j;
+</code></pre>
+<p>このような場合は、代入が行われる前の変数の値を使って右辺の式が評価され、
+その値が、左辺の変数に代入されることになります。
+例えば、<code>i = i + 2;</code> が行われる前では、<code>i</code> には値 <code>30</code> が格納されていますが、
+<code>i = i + 2;</code> が実行されると <code>i</code> の値は <code>32</code> となります。</p>
+<p>なお、このプログラムの処理の流れをフローチャートで示すと、
+以下のようになります。</p>
+<p><img src="./assets/flowchart_chap03.png" alt="flowchart" /></p>
 <hr />
 <h3 id="例題-3-4--キャストによる型の変換"><a class="header" href="#例題-3-4--キャストによる型の変換">例題 3-4 : キャストによる型の変換</a></h3>
+<p><code>int</code> 型や <code>double</code> 型などの数値を表す型の値や変数は、
+キャストと呼ばれる機能を使って一時的に型を変換することができます。
+次のプログラムは、キャストによって、<code>int</code> 型の値を <code>double</code> 型に変換したり、
+その逆を行っています。</p>
+<p><em><strong><code>cast.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -302,15 +329,20 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>実行例を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>i   = 256
 d_i = 256.000000
 x   = -12.340000
 i_x = -12
 </code></pre>
+<p><code>double</code> 型の値をキャストによって <code>int</code> 型に変換したときは、
+小数点以下が切り捨てとなります。</p>
 <hr />
 <h2 id="演習"><a class="header" href="#演習">演習</a></h2>
 <h3 id="演習-4-1"><a class="header" href="#演習-4-1">演習 4-1</a></h3>
+<p>次のプログラムは半径 <code>radius</code> の半円の面積を求めて表示するプログラムです。
+プログラム中、変数 <code>radius</code> の値を変更して、プログラムを実行し、動作結果を確認してください。</p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -322,6 +354,8 @@ int main(void) {
 
   printf(&quot;The area of semicircle of &quot;);
   printf(&quot;radius %lf is %lf.\n&quot;, radius, area);
+
+  return 0;
 }
 </code></pre>
 
