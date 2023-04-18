@@ -139,6 +139,7 @@ $ xxd -b second | less
 
 ***`count10.c`***
 ```` c
+// IS2 99 愛子花子
 #include <stdio.h>
 
 int main(void) {
@@ -154,4 +155,13 @@ int main(void) {
 }
 ````
 
----
+プログラムの実行結果については、次のように `script` コマンドを用いて、
+ターミナルへの入出力をファイル `count10.log` に保存してください。
+
+***`terminal`***
+```
+$ script count10.log
+$ ./count10
+1 2 3 4 5 6 7 8 9 10 end!
+$ exit
+```
