@@ -21,11 +21,11 @@ int main(void) {
 ```
 
 次に端末を開き、 `gcc` コマンドでソースファイルを指定してコンパイルを行います。コンパイルを行ってできる実行コードのファイル名は `gcc` コマンドの `-o` オプションで指定しましょう。
-次のようにソースファイル `main.c` をコンパイルすると、プログラムに構文エラー(Syntax error)がなければ、実行コード `first` が作成されます。
+次のようにソースファイル `first.c` をコンパイルすると、プログラムに構文エラー(Syntax error)がなければ、実行コード `first` が作成されます。
 
 ***`terminal`***
 ```
-$ gcc main.c -o main
+$ gcc first.c -o first
 $ ls
 first  first.c
 ```
