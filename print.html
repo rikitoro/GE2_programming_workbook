@@ -251,7 +251,8 @@ $
 <h3 id="演習-1-1"><a class="header" href="#演習-1-1">演習 1-1</a></h3>
 <p>以下のソースコードをコンパイルし、実行してプログラムの動作を確認してください。</p>
 <p><em><strong><code>count10.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre><code class="language-c">// IS2 99 愛子花子
+#include &lt;stdio.h&gt;
 
 int main(void) {
   int count;
@@ -265,7 +266,14 @@ int main(void) {
   return 0;
 }
 </code></pre>
-<hr />
+<p>プログラムの実行結果については、次のように <code>script</code> コマンドを用いて、
+ターミナルへの入出力をファイル <code>count10.log</code> に保存してください。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>$ script count10.log
+$ ./count10
+1 2 3 4 5 6 7 8 9 10 end!
+$ exit
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-2-章--c-言語の基礎"><a class="header" href="#第-2-章--c-言語の基礎">第 2 章 : C 言語の基礎</a></h1>
 <h2 id="24-c-言語によるプログラミング"><a class="header" href="#24-c-言語によるプログラミング">2.4 C 言語によるプログラミング</a></h2>
 <h3 id="例題-2-1--hello-world"><a class="header" href="#例題-2-1--hello-world">例題 2-1 : Hello, World!</a></h3>
