@@ -104,6 +104,7 @@ DESCRIPTION
 
 ***`name.c`***
 ``` c
+// IS 99 愛子花子
 #include <stdio.h>
 
 int main(void) {
@@ -115,3 +116,33 @@ int main(void) {
 }
 ```
 ---
+
+### 演習 2-2 
+
+次のプログラムを作成し、実行してみましょう。
+
+***`fizzbuzz.c`***
+```c
+#include <stdio.h>
+
+#define MAX_COUNT 42
+
+int main(void) {
+  int count = 1;
+
+  while (count <= MAX_COUNT) {
+    if (count % 15 == 0) {
+      printf("FizzBuzz\n");
+    } else if (count % 3 == 0) {
+      printf("Fizz\n");
+    } else if (count % 5 == 0) {
+      printf("Buzz\n");
+    } else {
+      printf("%d\n", count);
+    }
+    count = count + 1;
+  }
+
+  return 0;
+}
+```
