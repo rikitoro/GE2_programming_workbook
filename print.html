@@ -351,7 +351,8 @@ DESCRIPTION
 <h3 id="演習-2-1"><a class="header" href="#演習-2-1">演習 2-1</a></h3>
 <p>次のプログラムの <code>&lt;your name&gt;</code> の部分を自分の名前に変更したプログラムを作成し、コンパイルし実行して、その動作を確認しましょう。</p>
 <p><em><strong><code>name.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre><code class="language-c">// IS 99 愛子花子
+#include &lt;stdio.h&gt;
 
 int main(void) {
   printf(&quot;Hi, &quot;);
@@ -362,6 +363,32 @@ int main(void) {
 }
 </code></pre>
 <hr />
+<h3 id="演習-2-2"><a class="header" href="#演習-2-2">演習 2-2</a></h3>
+<p>次のプログラムを作成し、実行してみましょう。</p>
+<p><em><strong><code>fizzbuzz.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define MAX_COUNT 42
+
+int main(void) {
+  int count = 1;
+
+  while (count &lt;= MAX_COUNT) {
+    if (count % 15 == 0) {
+      printf(&quot;FizzBuzz\n&quot;);
+    } else if (count % 3 == 0) {
+      printf(&quot;Fizz\n&quot;);
+    } else if (count % 5 == 0) {
+      printf(&quot;Buzz\n&quot;);
+    } else {
+      printf(&quot;%d\n&quot;, count);
+    }
+    count = count + 1;
+  }
+
+  return 0;
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-3-章--変数とデータ型"><a class="header" href="#第-3-章--変数とデータ型">第 3 章 : 変数とデータ型</a></h1>
 <h3 id="例題-3-1--変数の宣言と値の代入"><a class="header" href="#例題-3-1--変数の宣言と値の代入">例題 3-1 : 変数の宣言と値の代入</a></h3>
 <p>次のプログラムは変数を用いたデモプログラムです。</p>
