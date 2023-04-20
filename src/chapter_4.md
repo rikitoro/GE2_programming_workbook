@@ -126,6 +126,8 @@ int main(void) {
 }
 ```
 
+![flowchart](./assets/flowchart_chap04_rectangle.png)
+
 ***`terminal`***
 ```
 Enter width height : 
