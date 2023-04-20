@@ -613,37 +613,54 @@ int main(void) {
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  char atmark = '@';
-  int score = 42;
-  double temperature = 12.34;
-
-  printf(&quot;Hello, World\n&quot;);     // (1) 文字列の出力
-  printf(&quot;%c\n&quot;, atmark);       // (2) 文字の出力
-  printf(&quot;%d\n&quot;, score);        // (3) 数値( int 型)の出力
-  printf(&quot;%lf\n&quot;, temperature); // (4) 数値( double 型)の出力
-  // (5) 組合せ
-  printf(&quot;score : %d, temperature : %lf\n&quot;, score, temperature); 
+  printf(&quot;Hello, World!\n&quot;);
+  printf(&quot;THE ANSWER is %d!!!\n&quot;, 42);
+  printf(&quot;%d plus %d equals %d\n&quot;, -2, 10, -2 + 10);
+  printf(&quot;PI = %lf\n&quot;, 3.141);
+  printf(&quot;%c is my favorite character.\n&quot;, 'G');
+  
   return 0;
 }
 </code></pre>
 <p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>Hello, World
-@
-42
-12.340000
-score : 42, temperature : 12.340000
+<pre><code>Hello, World!
+THE ANSWER is 42!!!
+-2 plus 10 equals 8
+PI = 3.141000
+A is my favolite character.
 </code></pre>
-<hr />
-<h3 id="例題-4-2-"><a class="header" href="#例題-4-2-">例題 4-2 :</a></h3>
+<h3 id="例題-4-2"><a class="header" href="#例題-4-2">例題 4-2</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  int score = 84;
+  char atmark = '@';
+  int score = 42;
+  double temperature = 12.34;
+
+  printf(&quot;%c is my favorite character.\n&quot;, atmark);
+  printf(&quot;Your socre : %d\n&quot;, score);
+  printf(&quot;Todays temperature : %lf\n&quot;, temperature);
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>@ is my favorite character.
+Your socre : 42
+Todays temperature : 12.340000
+</code></pre>
+<hr />
+<h3 id="例題-4-3-"><a class="header" href="#例題-4-3-">例題 4-3 :</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int score = 91;
   double value = 123.45678;
 
-  printf(&quot;1234567890\n&quot;);
+  printf(&quot;12345678901234567890\n&quot;);
   printf(&quot;%4d\n&quot;, score);     // 整数 4 桁で表示
-  printf(&quot;%6.2lf\n&quot;, value);  // 実数 全体で 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf(&quot;%6.2lf\n&quot;, value);  // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf(&quot;%x\n&quot;, score);      // 整数 16進法で表示
   printf(&quot;%e\n&quot;, value);      // 実数 指数形式で表示
 
   return 0;
@@ -651,12 +668,13 @@ int main(void) {
 </code></pre>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>12345678901234567890
-  84
+  91
 123.46
+5b
 1.234568e+02
 </code></pre>
 <hr />
-<h3 id="例題-4-3-"><a class="header" href="#例題-4-3-">例題 4-3 :</a></h3>
+<h3 id="例題-4-3--1"><a class="header" href="#例題-4-3--1">例題 4-3 :</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -674,7 +692,7 @@ int main(void) {
 The character you entered : Q
 </code></pre>
 <hr />
-<h3 id="例題-4-3--1"><a class="header" href="#例題-4-3--1">例題 4-3 :</a></h3>
+<h3 id="例題-4-3--2"><a class="header" href="#例題-4-3--2">例題 4-3 :</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -710,10 +728,25 @@ b
 c
 cba
 </code></pre>
+<h3 id="演習-4-2"><a class="header" href="#演習-4-2">演習 4-2</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  for (int i = 1; i &lt;= 9; i++) {
+    for (int j = 1; j &lt;= 9; j++) {
+      printf(&quot;%3d&quot;, i * j);
+    }
+    printf(&quot;\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-5-章--演算子"><a class="header" href="#第-5-章--演算子">第 5 章 : 演算子</a></h1>
 <p>「作成中」</p>
 <hr />
 <h2 id="演習-4"><a class="header" href="#演習-4">演習</a></h2>
+<h3 id="演習-5-1"><a class="header" href="#演習-5-1">演習 5-1</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-6-章--分岐処理"><a class="header" href="#第-6-章--分岐処理">第 6 章 : 分岐処理</a></h1>
 <p>「作成中」</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-7-章--繰り返し処理"><a class="header" href="#第-7-章--繰り返し処理">第 7 章 : 繰り返し処理</a></h1>
