@@ -148,27 +148,64 @@
                     <main>
                         <h1 id="第-4-章--標準入出力"><a class="header" href="#第-4-章--標準入出力">第 4 章 : 標準入出力</a></h1>
 <h2 id="41--標準出力"><a class="header" href="#41--標準出力">4.1 : 標準出力</a></h2>
-<h3 id="例題-4-1-"><a class="header" href="#例題-4-1-">例題 4-1 :</a></h3>
+<h3 id="例題-4-1--printf-の使い方"><a class="header" href="#例題-4-1--printf-の使い方">例題 4-1 : <code>printf</code> の使い方</a></h3>
+<p>コンソールなどの標準出力へ文字列を出力するときは <code>printf</code> 関数を使います。
+また文字列の中に書式を指定して、数値や文字を表示することもできます。</p>
+<p>次のプログラムは <code>printf</code> を用いたデモプログラムです。</p>
+<p><em><strong><code>print01.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
   printf(&quot;Hello, World!\n&quot;);
   printf(&quot;THE ANSWER is %d!!!\n&quot;, 42);
   printf(&quot;%d plus %d equals %d\n&quot;, -2, 10, -2 + 10);
-  printf(&quot;PI = %lf\n&quot;, 3.141);
+  printf(&quot;PI = %f\n&quot;, 3.141);
   printf(&quot;%c is my favorite character.\n&quot;, 'G');
   
   return 0;
 }
 </code></pre>
+<p>実行結果は次の通りです。
+プログラム中の <code>printf</code> を用いているところと
+表示された内容との対応を確認してしてください。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>Hello, World!
 THE ANSWER is 42!!!
 -2 plus 10 equals 8
 PI = 3.141000
-A is my favolite character.
+G is my favolite character.
 </code></pre>
-<h3 id="例題-4-2"><a class="header" href="#例題-4-2">例題 4-2</a></h3>
+<p>プログラムの説明を行います。
+次のように記述すると、<code>printf</code> の第 1 引数で指定された文字列(書式文字列)
+<code>&quot;THE ANSWER is %d!!!\n&quot;</code> の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
+埋め込まれて、ターミナルに表示されます。
+<code>%d</code> は出力変換指定子と呼ばれるもののひとつで、
+符号付き整数値を 10 進表示で表示したいときに <code>%d</code> を用います。</p>
+<pre><code class="language-c">  printf(&quot;THE ANSWER is %d!!!\n&quot;, 42);
+</code></pre>
+<p>次のように複数の値を指定して表示することもできます。</p>
+<pre><code class="language-c">  printf(&quot;%d plus %d equals %d\n&quot;, -2, 10, -2 + 10);
+</code></pre>
+<p>書式文字列 <code>&quot;%d plus %d equals %d\n&quot;</code> 中には 3 個の <code>%d</code> がありますが、
+左から 1 番目と 2 番目の <code>%d</code> のところにはそれぞれ、第 2 引数の <code>-2</code>、
+第 3 引数の <code>10</code> が埋め込まれます。
+また、3 番目の <code>%d</code> のところには、
+第 4 引数に指定した <code>-2 + 10</code> が計算された結果の <code>8</code> が埋め込まれます。</p>
+<p><code>Double</code> 型や <code>float</code> 型などの実数値(浮動小数点数)を表示するときは、
+出力変換子として <code>%f</code> を用います。</p>
+<pre><code class="language-c">  printf(&quot;PI = %f\n&quot;, 3.141);
+</code></pre>
+<p>また、文字(1バイト文字)を表示するときは、出力変換子として <code>%c</code> を用います。</p>
+<pre><code class="language-c">  printf(&quot;%c is my favorite character.\n&quot;, 'G');
+</code></pre>
+<p>書式文字列の <code>%c</code> のところに文字 <code>'G'</code> が埋め込まれて、
+<code>G is my favorite character.</code> と表示されます。
+なお、C 言語では文字(1バイト文字)は <code>'a'</code> のようにシングルクォート <code>'</code> で囲んで表現します。</p>
+<hr />
+<h3 id="例題-4-2-変数に格納された値の表示"><a class="header" href="#例題-4-2-変数に格納された値の表示">例題 4-2 変数に格納された値の表示</a></h3>
+<p><code>printf</code> では次のプログラムのように、
+変数に格納された値を書式文字列に埋め込んで表示することもできます。</p>
+<p><em><strong><code>print02.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -178,18 +215,25 @@ int main(void) {
 
   printf(&quot;%c is my favorite character.\n&quot;, atmark);
   printf(&quot;Your socre : %d\n&quot;, score);
-  printf(&quot;Todays temperature : %lf\n&quot;, temperature);
+  printf(&quot;Todays temperature : %f\n&quot;, temperature);
 
   return 0;
 }
 </code></pre>
+<p>プログラムの実行結果です。
+変数 <code>atmark</code> や <code>score</code>、<code>temperature</code> に代入された値(文字、数値)が
+表示されていることがわかります。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>@ is my favorite character.
 Your socre : 42
 Todays temperature : 12.340000
 </code></pre>
 <hr />
-<h3 id="例題-4-3-"><a class="header" href="#例題-4-3-">例題 4-3 :</a></h3>
+<h3 id="例題-4-3--表示桁数の指定"><a class="header" href="#例題-4-3--表示桁数の指定">例題 4-3 : 表示桁数の指定</a></h3>
+<p>出力変換指定子で、表示する数値の桁数などを指定することができます。
+また、16進法や指数形式での表示を指定することもできます。</p>
+<p>次のプログラムを実行して、プログラム中のコメントを参考に実行結果を確認してください。</p>
+<p><em><strong><code>print03.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -197,10 +241,10 @@ int main(void) {
   double value = 123.45678;
 
   printf(&quot;12345678901234567890\n&quot;);
-  printf(&quot;%4d\n&quot;, score);     // 整数 4 桁で表示
-  printf(&quot;%6.2lf\n&quot;, value);  // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
-  printf(&quot;%x\n&quot;, score);      // 整数 16進法で表示
-  printf(&quot;%e\n&quot;, value);      // 実数 指数形式で表示
+  printf(&quot;%4d\n&quot;, score);   // 整数 4 桁で表示
+  printf(&quot;%6.2f\n&quot;, value); // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf(&quot;%x\n&quot;, score);    // 整数 16進法で表示
+  printf(&quot;%e\n&quot;, value);    // 実数 指数形式で表示
 
   return 0;
 }
@@ -213,7 +257,18 @@ int main(void) {
 1.234568e+02
 </code></pre>
 <hr />
-<h3 id="例題-4-3--1"><a class="header" href="#例題-4-3--1">例題 4-3 :</a></h3>
+<p>ここで紹介したもの以外にも出力変換指定子は存在します。
+それらや、出力変換指定子の詳細な使い方については
+以下のリンク先などを参照するとよいでしょう。</p>
+<ul>
+<li><a href="https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=msvc-170">Microsoft Build / 書式指定構文: printf および wprintf 関数</a></li>
+</ul>
+<hr />
+<h2 id="42-標準入力"><a class="header" href="#42-標準入力">4.2 標準入力</a></h2>
+<h3 id="例題-4-4--scanf-の使い方"><a class="header" href="#例題-4-4--scanf-の使い方">例題 4-4 : <code>scanf</code> の使い方</a></h3>
+<p>コンソールなどの標準入力から入力された値を受け取り、
+変数に格納したい場合、 <code>scanf</code> 関数を用います。</p>
+<p><em><strong><code>scan01.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -231,7 +286,7 @@ int main(void) {
 The character you entered : Q
 </code></pre>
 <hr />
-<h3 id="例題-4-3--2"><a class="header" href="#例題-4-3--2">例題 4-3 :</a></h3>
+<h3 id="例題-4-3-"><a class="header" href="#例題-4-3-">例題 4-3 :</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -243,7 +298,7 @@ int main(void) {
   scanf(&quot;%lf %lf&quot;, &amp;width, &amp;height);
 
   area = width * height;
-  printf(&quot;Area of the rectagle : %lf\n&quot;, area);
+  printf(&quot;Area of the rectagle : %f\n&quot;, area);
 
   return 0;
 }
@@ -251,7 +306,8 @@ int main(void) {
 <p><img src="./assets/flowchart_chap04_rectangle.png" alt="flowchart" /></p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>Enter width height : 
-2.3 10.0
+2.3
+10.0
 Area of the rectagle : 23.000000
 </code></pre>
 <hr />

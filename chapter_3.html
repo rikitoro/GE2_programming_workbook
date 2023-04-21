@@ -168,7 +168,7 @@ int main(void) {
   printf(&quot;%c\n&quot;, character);  
   printf(&quot;%d\n&quot;, i);
   printf(&quot;%d\n&quot;, num);
-  printf(&quot;%lf\n&quot;, temperature);
+  printf(&quot;%f\n&quot;, temperature);
 
   return 0;
 }
@@ -203,7 +203,7 @@ int main(void) {
   printf(&quot;%c\n&quot;, character);  
   printf(&quot;%d\n&quot;, i);
   printf(&quot;%d\n&quot;, num);
-  printf(&quot;%lf\n&quot;, temperature);
+  printf(&quot;%f\n&quot;, temperature);
 </code></pre>
 <p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
@@ -229,7 +229,7 @@ int main(void) {
 
   printf(&quot;%c\n&quot;, character);  
   printf(&quot;%d\n&quot;, num);
-  printf(&quot;%lf\n&quot;, temperature);
+  printf(&quot;%f\n&quot;, temperature);
 
   return 0;
 }
@@ -321,11 +321,11 @@ int main(void) {
   // (1) int 型の値を double 型に変換
   d_i = (double)i;
   printf(&quot;i   = %d\n&quot;, i);
-  printf(&quot;d_i = %lf\n&quot;, d_i);
+  printf(&quot;d_i = %f\n&quot;, d_i);
 
   // (2) double 型の値を int 型に変換
   i_x = (int)x;
-  printf(&quot;x   = %lf\n&quot;, x);
+  printf(&quot;x   = %f\n&quot;, x);
   printf(&quot;i_x = %d\n&quot;, i_x);
 
   return 0;
@@ -359,7 +359,7 @@ int main(void) {
   area = 3.14 * radius * radius / 2;
 
   printf(&quot;The area of semicircle of &quot;);
-  printf(&quot;radius %lf is %lf.\n&quot;, radius, area);
+  printf(&quot;radius %f is %f.\n&quot;, radius, area);
 
   return 0;
 }
