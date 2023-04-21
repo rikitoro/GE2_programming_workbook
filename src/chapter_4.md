@@ -2,7 +2,14 @@
 
 ## 4.1 : 標準出力
 
-### 例題 4-1 : 
+### 例題 4-1 : `printf` の使い方
+
+コンソールなどの標準出力へ文字列を出力するときは `printf` 関数を使います。
+また文字列の中に書式を指定して、数値や文字を表示することもできます。
+
+次のプログラムは `printf` を用いたデモプログラムです。
+
+***`print01.c`***
 ```c
 #include <stdio.h>
 
@@ -10,12 +17,16 @@ int main(void) {
   printf("Hello, World!\n");
   printf("THE ANSWER is %d!!!\n", 42);
   printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
-  printf("PI = %lf\n", 3.141);
+  printf("PI = %f\n", 3.141);
   printf("%c is my favorite character.\n", 'G');
   
   return 0;
 }
 ```
+
+実行結果は次の通りです。
+プログラム中の `printf` を用いているところと
+表示された内容との対応を確認してしてください。
 
 ***`terminal`***
 ```
@@ -23,10 +34,50 @@ Hello, World!
 THE ANSWER is 42!!!
 -2 plus 10 equals 8
 PI = 3.141000
-A is my favolite character.
+G is my favolite character.
 ```
 
-### 例題 4-2
+プログラムの説明を行います。
+次のように記述すると、`printf` の第 1 引数で指定された文字列(書式文字列)
+ `"THE ANSWER is %d!!!\n"` の `%d` のところに、第 2 引数で指定された整数値 `42` が
+ 埋め込まれて、ターミナルに表示されます。
+ `%d` は出力変換指定子と呼ばれるもののひとつで、
+ 符号付き整数値を 10 進表示で表示したいときに `%d` を用います。
+```c
+  printf("THE ANSWER is %d!!!\n", 42);
+```
+
+次のように複数の値を指定して表示することもできます。
+```c
+  printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
+```
+書式文字列 `"%d plus %d equals %d\n"` 中には 3 個の `%d` がありますが、
+左から 1 番目と 2 番目の `%d` のところにはそれぞれ、第 2 引数の `-2`、
+第 3 引数の `10` が埋め込まれます。
+また、3 番目の `%d` のところには、
+第 4 引数に指定した `-2 + 10` が計算された結果の `8` が埋め込まれます。
+
+`Double` 型や `float` 型などの実数値(浮動小数点数)を表示するときは、
+出力変換子として `%f` を用います。
+```c
+  printf("PI = %f\n", 3.141);
+```
+
+また、文字(1バイト文字)を表示するときは、出力変換子として `%c` を用います。
+```c
+  printf("%c is my favorite character.\n", 'G');
+```
+書式文字列の `%c` のところに文字 `'G'` が埋め込まれて、
+`G is my favorite character.` と表示されます。
+なお、C 言語では文字(1バイト文字)は `'a'` のようにシングルクォート `'` で囲んで表現します。
+
+---
+### 例題 4-2 変数に格納された値の表示
+
+`printf` では次のプログラムのように、
+変数に格納された値を書式文字列に埋め込んで表示することもできます。
+
+***`print02.c`***
 ```c
 #include <stdio.h>
 
@@ -37,11 +88,15 @@ int main(void) {
 
   printf("%c is my favorite character.\n", atmark);
   printf("Your socre : %d\n", score);
-  printf("Todays temperature : %lf\n", temperature);
+  printf("Todays temperature : %f\n", temperature);
 
   return 0;
 }
 ```
+
+プログラムの実行結果です。
+変数 `atmark` や `score`、`temperature` に代入された値(文字、数値)が
+表示されていることがわかります。
 
 ***`terminal`***
 ```
@@ -51,9 +106,14 @@ Todays temperature : 12.340000
 ```
 
 ---
+### 例題 4-3 : 表示桁数の指定
 
-### 例題 4-3 :
+出力変換指定子で、表示する数値の桁数などを指定することができます。
+また、16進法や指数形式での表示を指定することもできます。
 
+次のプログラムを実行して、プログラム中のコメントを参考に実行結果を確認してください。
+
+***`print03.c`***
 ```c
 #include <stdio.h>
 
@@ -62,10 +122,10 @@ int main(void) {
   double value = 123.45678;
 
   printf("12345678901234567890\n");
-  printf("%4d\n", score);     // 整数 4 桁で表示
-  printf("%6.2lf\n", value);  // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
-  printf("%x\n", score);      // 整数 16進法で表示
-  printf("%e\n", value);      // 実数 指数形式で表示
+  printf("%4d\n", score);   // 整数 4 桁で表示
+  printf("%6.2f\n", value); // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf("%x\n", score);    // 整数 16進法で表示
+  printf("%e\n", value);    // 実数 指数形式で表示
 
   return 0;
 }
@@ -82,8 +142,22 @@ int main(void) {
 
 ---
 
-### 例題 4-3 :
+ここで紹介したもの以外にも出力変換指定子は存在します。
+それらや、出力変換指定子の詳細な使い方については
+以下のリンク先などを参照するとよいでしょう。
+- [Microsoft Build / 書式指定構文: printf および wprintf 関数](https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=msvc-170)
 
+
+---
+
+## 4.2 標準入力
+
+### 例題 4-4 : `scanf` の使い方
+
+コンソールなどの標準入力から入力された値を受け取り、
+変数に格納したい場合、 `scanf` 関数を用います。
+
+***`scan01.c`***
 ```c
 #include <stdio.h>
 
@@ -120,7 +194,7 @@ int main(void) {
   scanf("%lf %lf", &width, &height);
 
   area = width * height;
-  printf("Area of the rectagle : %lf\n", area);
+  printf("Area of the rectagle : %f\n", area);
 
   return 0;
 }
@@ -131,7 +205,8 @@ int main(void) {
 ***`terminal`***
 ```
 Enter width height : 
-2.3 10.0
+2.3
+10.0
 Area of the rectagle : 23.000000
 ```
 

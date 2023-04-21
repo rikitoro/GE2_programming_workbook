@@ -24,7 +24,7 @@ int main(void) {
   printf("%c\n", character);  
   printf("%d\n", i);
   printf("%d\n", num);
-  printf("%lf\n", temperature);
+  printf("%f\n", temperature);
 
   return 0;
 }
@@ -69,7 +69,7 @@ int main(void) {
   printf("%c\n", character);  
   printf("%d\n", i);
   printf("%d\n", num);
-  printf("%lf\n", temperature);
+  printf("%f\n", temperature);
 ```
 
 プログラムの実行結果を示します。
@@ -103,7 +103,7 @@ int main(void) {
 
   printf("%c\n", character);  
   printf("%d\n", num);
-  printf("%lf\n", temperature);
+  printf("%f\n", temperature);
 
   return 0;
 }
@@ -216,11 +216,11 @@ int main(void) {
   // (1) int 型の値を double 型に変換
   d_i = (double)i;
   printf("i   = %d\n", i);
-  printf("d_i = %lf\n", d_i);
+  printf("d_i = %f\n", d_i);
 
   // (2) double 型の値を int 型に変換
   i_x = (int)x;
-  printf("x   = %lf\n", x);
+  printf("x   = %f\n", x);
   printf("i_x = %d\n", i_x);
 
   return 0;
@@ -267,7 +267,7 @@ int main(void) {
   area = 3.14 * radius * radius / 2;
 
   printf("The area of semicircle of ");
-  printf("radius %lf is %lf.\n", radius, area);
+  printf("radius %f is %f.\n", radius, area);
 
   return 0;
 }
