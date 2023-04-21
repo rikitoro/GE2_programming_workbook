@@ -268,6 +268,9 @@ int main(void) {
 <h3 id="例題-4-4--scanf-の使い方"><a class="header" href="#例題-4-4--scanf-の使い方">例題 4-4 : <code>scanf</code> の使い方</a></h3>
 <p>コンソールなどの標準入力から入力された値を受け取り、
 変数に格納したい場合、 <code>scanf</code> 関数を用います。</p>
+<p>次のプログラムは、標準入力から入力された 1 文字(1バイト文字)を
+受け取り、その文字を <code>&quot;The character you entered : &quot;</code> に続けて
+表示するものです。</p>
 <p><em><strong><code>scan01.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -281,10 +284,28 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラムの実行結果です。
+1 行目はユーザーからの入力です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>Q
 The character you entered : Q
 </code></pre>
+<p><code>scanf</code> は次のように書式文字列と変数のポインタを渡して用います。
+この文が実行されると、入力された文字が <code>char</code> 型の変数 <code>character</code> に格納されます。
+(変数 <code>character</code> は事前に <code>char character;</code> と宣言されていることに注意してください。)</p>
+<pre><code class="language-c">  scanf(&quot;%c&quot;, &amp;character);
+</code></pre>
+<p>第 1 引数の書式文字列には入力する値の形式を入力変換指定子で指定します。
+文字(1バイト文字)の場合、入力変換指定子は <code>%c</code> となります。
+入力変換子と出力変換しはほぼ同じものとなります。</p>
+<p>第 2 引数には、入力された値を格納する変数のポインタを渡します。
+ポインタとは、その変数が主記憶装置 (メモリー) 上のどこに割り当てられているか
+その場所(アドレス)を示す値のことです (詳しくは 3 学年で学びます)。
+変数名の前に <code>&amp;</code> をつけるとその変数のポインタが得られます。
+ここでは、<code>char</code> 型の変数 <code>character</code> に入力された文字を格納したいので、
+変数 <code>character</code> のポインタ <code>&amp;character</code> を <code>scanf</code> の第 2 引数に渡しています。</p>
+<p><code>scanf</code> では入力された値を格納したい変数に <code>&amp;</code> をつけて
+ポインタを渡すことを忘れないようにしましょう。</p>
 <hr />
 <h3 id="例題-4-3-"><a class="header" href="#例題-4-3-">例題 4-3 :</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
