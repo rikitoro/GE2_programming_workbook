@@ -607,6 +607,33 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<hr />
+<h3 id="演習-3-2"><a class="header" href="#演習-3-2">演習 3-2</a></h3>
+<p>プログラム <code>numerical_sequence.c</code> は、
+初項 $a_1 = 1$、漸化式 $a_{n+1} = 2 a_n + 1$ で定まる数列 $a_n$ を
+初項から第 10 項まで計算して表示するプログラムです。
+プログラムを実行して、動作結果を確認してください。</p>
+<p><em><strong><code>numerical_sequence.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define N_MAX 10
+
+int main(void) {
+
+  int n = 1;
+  int a = 1;
+
+  do {
+    printf(&quot;n = %d : %d\n&quot;, n, a);
+    a = 2 * a + 1;
+    n++;
+  } while (n &lt;= N_MAX);
+
+  return 0;
+}
+</code></pre>
+<p>参考として、処理の流れを表したフローチャートを以下に示します。</p>
+<p><img src="./assets/flowchart_chap03_sequence.png" alt="flowchart" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-4-章--標準入出力"><a class="header" href="#第-4-章--標準入出力">第 4 章 : 標準入出力</a></h1>
 <h2 id="41--標準出力"><a class="header" href="#41--標準出力">4.1 : 標準出力</a></h2>
 <h3 id="例題-4-1--printf-の使い方"><a class="header" href="#例題-4-1--printf-の使い方">例題 4-1 : <code>printf</code> の使い方</a></h3>
