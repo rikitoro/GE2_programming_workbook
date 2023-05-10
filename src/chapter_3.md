@@ -251,7 +251,7 @@ i_x = -12
 表示するプログラムです。
 このプログラムは次のフローチャートをもとに作成しました。
 
-![flowchart](./assets/flowchart_chap03_semicircle.png)
+![flowchart](./assets/flowchart_chap03_semicircle.drawio.png)
 
 プログラム中、変数 `radius` の値を変更して、プログラムを実行し、動作結果を確認してください。
 
