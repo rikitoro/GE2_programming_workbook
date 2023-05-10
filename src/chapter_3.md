@@ -272,4 +272,35 @@ int main(void) {
   return 0;
 }
 ```
+---
+### 演習 3-2 
 
+プログラム `numerical_sequence.c` は、
+初項 $a_1 = 1$、漸化式 $a_{n+1} = 2 a_n + 1$ で定まる数列 $a_n$ を
+初項から第 10 項まで計算して表示するプログラムです。
+プログラムを実行して、動作結果を確認してください。
+
+***`numerical_sequence.c`***
+```c
+#include <stdio.h>
+
+#define N_MAX 10
+
+int main(void) {
+
+  int n = 1;
+  int a = 1;
+
+  do {
+    printf("n = %d : %d\n", n, a);
+    a = 2 * a + 1;
+    n++;
+  } while (n <= N_MAX);
+
+  return 0;
+}
+```
+
+参考として、処理の流れを表したフローチャートを以下に示します。
+
+![flowchart](./assets/flowchart_chap03_sequence.png)
