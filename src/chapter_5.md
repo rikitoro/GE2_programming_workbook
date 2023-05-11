@@ -99,11 +99,27 @@ a ^ b = 35
 ```
 
 ---
-## 比較演算子
+## 5.3 比較演算子
 
 ### 例題 5-4 : 比較演算
 
+***`comparisionOp.c`***
+```c
+#include <stdio.h>
 
+int main(void) {
+  int three = 3;
+
+  printf("three == 3 : %d\n", three == 3); // -> 1 (true)
+  printf("three != 3 : %d\n", three != 3); // -> 0 (false)
+  printf("three > 3  : %d\n", three > 3);  // -> 0 (false)
+  printf("three >= 3 : %d\n", three >= 3); // -> 1 (true)
+  printf("three < 3  : %d\n", three < 3);  // -> 0 (false)
+  printf("three <= 3 : %d\n", three <= 3); // -> 1 (true)
+
+  return 0;
+}
+```
 
 
 ***`terminal`***
@@ -144,9 +160,57 @@ int main(void) {
  (three == 3) || (three > 3) : 1
  !(three == 3)               : 0
 ```
+---
 
-## 5.3 比較演算子
+## 5.4 増減演算子
 
+### 例題 5-6 : インクリメント・デクリメント
+
+***`incdec.c`***
+```c
+#include <stdio.h>
+
+int main(void) {
+  int a = 57;
+
+  printf("a = %d\n", a); // -> 57
+  a++; // a = a + 1 と同等　(++a も可)
+  printf("a = %d\n", a); // -> 58
+  a--; // a = a - 1 と同等　(--a も可)
+  a--;
+  printf("a = %d\n", a); // -> 56
+
+  return 0;
+}
+```
+
+***`terminal`***
+```
+a = 57
+a = 58
+a = 56
+```
+---
+
+### 例題 5-7 : 前置・後置の違い
+
+---
+
+## 5.5 シフト演算子
+
+### 例題 5-8 : シフト演算
+
+---
+
+## 5.6 代入演算子
+
+### 例題 5-9 : 代入演算
+---
+
+## 5.7 条件演算子
+
+### 例題 5-10 : 条件演算
+---
 
 ## 演習
 
