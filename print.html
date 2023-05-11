@@ -961,8 +961,24 @@ a ^ b = 35
 ~b    = C5
 </code></pre>
 <hr />
-<h2 id="比較演算子"><a class="header" href="#比較演算子">比較演算子</a></h2>
+<h2 id="53-比較演算子"><a class="header" href="#53-比較演算子">5.3 比較演算子</a></h2>
 <h3 id="例題-5-4--比較演算"><a class="header" href="#例題-5-4--比較演算">例題 5-4 : 比較演算</a></h3>
+<p><em><strong><code>comparisionOp.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int three = 3;
+
+  printf(&quot;three == 3 : %d\n&quot;, three == 3); // -&gt; 1 (true)
+  printf(&quot;three != 3 : %d\n&quot;, three != 3); // -&gt; 0 (false)
+  printf(&quot;three &gt; 3  : %d\n&quot;, three &gt; 3);  // -&gt; 0 (false)
+  printf(&quot;three &gt;= 3 : %d\n&quot;, three &gt;= 3); // -&gt; 1 (true)
+  printf(&quot;three &lt; 3  : %d\n&quot;, three &lt; 3);  // -&gt; 0 (false)
+  printf(&quot;three &lt;= 3 : %d\n&quot;, three &lt;= 3); // -&gt; 1 (true)
+
+  return 0;
+}
+</code></pre>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>three == 3 : 1
 three != 3 : 0
@@ -995,7 +1011,42 @@ int main(void) {
  (three == 3) || (three &gt; 3) : 1
  !(three == 3)               : 0
 </code></pre>
-<h2 id="53-比較演算子"><a class="header" href="#53-比較演算子">5.3 比較演算子</a></h2>
+<hr />
+<h2 id="54-増減演算子"><a class="header" href="#54-増減演算子">5.4 増減演算子</a></h2>
+<h3 id="例題-5-6--インクリメントデクリメント"><a class="header" href="#例題-5-6--インクリメントデクリメント">例題 5-6 : インクリメント・デクリメント</a></h3>
+<p><em><strong><code>incdec.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int a = 57;
+
+  printf(&quot;a = %d\n&quot;, a); // -&gt; 57
+  a++; // a = a + 1 と同等　(++a も可)
+  printf(&quot;a = %d\n&quot;, a); // -&gt; 58
+  a--; // a = a - 1 と同等　(--a も可)
+  a--;
+  printf(&quot;a = %d\n&quot;, a); // -&gt; 56
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>a = 57
+a = 58
+a = 56
+</code></pre>
+<hr />
+<h3 id="例題-5-7--前置後置の違い"><a class="header" href="#例題-5-7--前置後置の違い">例題 5-7 : 前置・後置の違い</a></h3>
+<hr />
+<h2 id="55-シフト演算子"><a class="header" href="#55-シフト演算子">5.5 シフト演算子</a></h2>
+<h3 id="例題-5-8--シフト演算"><a class="header" href="#例題-5-8--シフト演算">例題 5-8 : シフト演算</a></h3>
+<hr />
+<h2 id="56-代入演算子"><a class="header" href="#56-代入演算子">5.6 代入演算子</a></h2>
+<h3 id="例題-5-9--代入演算"><a class="header" href="#例題-5-9--代入演算">例題 5-9 : 代入演算</a></h3>
+<hr />
+<h2 id="57-条件演算子"><a class="header" href="#57-条件演算子">5.7 条件演算子</a></h2>
+<h3 id="例題-5-10--条件演算"><a class="header" href="#例題-5-10--条件演算">例題 5-10 : 条件演算</a></h3>
+<hr />
 <h2 id="演習-4"><a class="header" href="#演習-4">演習</a></h2>
 <h3 id="演習-5-1"><a class="header" href="#演習-5-1">演習 5-1</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-6-章--分岐処理"><a class="header" href="#第-6-章--分岐処理">第 6 章 : 分岐処理</a></h1>
