@@ -147,8 +147,122 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="第-5-章--演算子"><a class="header" href="#第-5-章--演算子">第 5 章 : 演算子</a></h1>
-<p>「作成中」</p>
+<h2 id="51-算術演算子"><a class="header" href="#51-算術演算子">5.1 算術演算子</a></h2>
+<h3 id="例題-5-1--算術演算"><a class="header" href="#例題-5-1--算術演算">例題 5-1 : 算術演算</a></h3>
+<p><em><strong><code>arithmetic.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int a = 8, b = -2, c = 3;
+  printf(&quot;a + b = %d\n&quot;, a + b);  // -&gt; 6
+  printf(&quot;(a - b) * c + 12 = %d\n&quot;, (a - b)  * c + 12); // -&gt; 42
+  printf(&quot;a mod c = %d\n&quot;, a % c);  // -&gt; 2 (a を c で割った余り)
+
+  double pi = 3.14, e = 2.71;
+  printf(&quot;pi + e = %f\n&quot;, pi + e);  // -&gt; 5.850000
+  printf(&quot;pi / e = %f\n&quot;, pi / e);  // -&gt; 1.168672
+  printf(&quot;pi / a = %f\n&quot;, pi / a);  // -&gt; 0.392500
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>a + b = 6
+(a - b) * c + 12 = 42
+a mod c = 2
+pi + e = 5.850000
+pi / e = 1.158672
+pi / a = 0.392500
+</code></pre>
 <hr />
+<h3 id="例題-5-2-整数同士の割り算"><a class="header" href="#例題-5-2-整数同士の割り算">例題 5-2 整数同士の割り算</a></h3>
+<p><em><strong><code>division.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int a = 8, b = 3;
+
+  int x1 = a / b; // -&gt; 2
+  double x2 = (double) (a / b); // -&gt; 2.000000
+  double x3 = (double) a / b;   // -&gt; 2.666667
+
+  printf(&quot;x1 = %d\n&quot;, x1);
+  printf(&quot;x2 = %f\n&quot;, x2);
+  printf(&quot;x3 = %f\n&quot;, x3);
+  
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>x1 = 2
+x2 = 2.000000
+x3 = 2.666667
+</code></pre>
+<hr />
+<h2 id="52-論理演算子"><a class="header" href="#52-論理演算子">5.2 論理演算子</a></h2>
+<h3 id="例題-5-3--ビット単位の論理演算"><a class="header" href="#例題-5-3--ビット単位の論理演算">例題 5-3 : ビット単位の論理演算</a></h3>
+<p><em><strong><code>bitwiseOp.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  unsigned char a = 0x0F; // 00001111
+  unsigned char b = 0x3A; // 00111010
+
+  unsigned char a_and_b = a &amp; b;  // -&gt; 00001010 = 0A
+  unsigned char a_or_b  = a | b;  // -&gt; 00111111 = 3F
+  unsigned char a_xor_b = a ^ b;  // -&gt; 00110101 = 35
+  unsigned char not_b   = ~b;     // -&gt; 11000101 = C5
+
+  printf(&quot;a &amp; b = %02X\n&quot;, a_and_b);
+  printf(&quot;a | b = %02X\n&quot;, a_or_b);
+  printf(&quot;a ^ b = %02X\n&quot;, a_xor_b);
+  printf(&quot;~b    = %02X\n&quot;, not_b);
+  
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>a &amp; b = 0A
+a | b = 3F
+a ^ b = 35
+~b    = C5
+</code></pre>
+<hr />
+<h2 id="比較演算子"><a class="header" href="#比較演算子">比較演算子</a></h2>
+<h3 id="例題-5-4--比較演算"><a class="header" href="#例題-5-4--比較演算">例題 5-4 : 比較演算</a></h3>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>three == 3 : 1
+three != 3 : 0
+three &gt; 3  : 0
+three &gt;= 3 : 1
+three &lt; 3  : 0
+three &lt;= 3 : 1
+</code></pre>
+<h3 id="例題-5-5--論理演算"><a class="header" href="#例題-5-5--論理演算">例題 5-5 : 論理演算　</a></h3>
+<p><em><strong><code>logicOp.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int three = 3;
+
+  printf(&quot; three == 3 : %d\n&quot;, three == 3); // -&gt; 1 (true)
+  printf(&quot; three &gt; 3  : %d\n&quot;, three &gt; 3);  // -&gt; 0 (false)
+
+  printf(&quot; (three == 3) &amp;&amp; (three &gt; 3) : %d\n&quot;, (three == 3) &amp;&amp; (three &gt; 3)); // -&gt; 0 (false)
+  printf(&quot; (three == 3) || (three &gt; 3) : %d\n&quot;, (three == 3) || (three &gt; 3)); // -&gt; 1 (true)
+  printf(&quot; !(three == 3)               : %d\n&quot;, !(three == 3));               // -&gt; 0 (false)
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code> three == 3 : 1
+ three &gt; 3  : 0
+ (three == 3) &amp;&amp; (three &gt; 3) : 0
+ (three == 3) || (three &gt; 3) : 1
+ !(three == 3)               : 0
+</code></pre>
+<h2 id="53-比較演算子"><a class="header" href="#53-比較演算子">5.3 比較演算子</a></h2>
 <h2 id="演習"><a class="header" href="#演習">演習</a></h2>
 <h3 id="演習-5-1"><a class="header" href="#演習-5-1">演習 5-1</a></h3>
 
