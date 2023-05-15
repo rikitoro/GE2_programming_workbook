@@ -194,22 +194,121 @@ a = 56
 
 ### 例題 5-7 : 前置・後置の違い
 
+```c
+#include <stdio.h>
+
+int main(void) {
+  int n, m;
+
+  n = 42;
+  printf("n = %d\n", n);
+  m = n++; // m = n; n = n + 1; と同等 -> m = 42, n = 43
+  printf("m = %d, n = %d\n", m, n);
+
+  n = 42;
+  printf("n = %d\n", n); // -> 42
+  m = ++n;  // n = n + 1; m = n; と同等 -> m = 43, n = 43
+  printf("m = %d, n = %d\n", m, n);
+
+  return 0;
+
+}
+```
+
+```
+n = 42
+m = 42, n = 43
+n = 42
+m = 43, n = 43
+```
 ---
 
 ## 5.5 シフト演算子
 
 ### 例題 5-8 : シフト演算
 
+***`shiftOp.c`***
+```c
+#include <stdio.h>
+
+int main(void) {
+  unsigned char a = 0xAF; // -> 10101111
+
+  unsigned char a_shifted_left  = a << 2; // -> 10111100 = BC
+  unsigned char a_shifted_right = a >> 2; // -> 00101011 = 2B
+
+  printf("a      = %02X\n", a);
+  printf("a << 2 = %02X\n", a_shifted_left);
+  printf("a >> 2 = %02X\n", a_shifted_right);
+
+  return 0;
+}
+```
+
+***`terminal`***
+```
+a      = AF
+a << 2 = BC
+a >> 2 = 2B
+```
+
 ---
 
 ## 5.6 代入演算子
 
 ### 例題 5-9 : 代入演算
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  int num = 57;
+  printf("num = %d\n", num); // -> 57
+
+  num += 3; // num = num + 3 と同じ
+  printf("num = %d\n", num); // -> 60
+
+  num *= 2; // num = num * 2 と同じ
+  printf("num = %d\n", num); // -> 120
+
+  return 0;
+}
+```
+
 ---
 
 ## 5.7 条件演算子
 
 ### 例題 5-10 : 条件演算
+
+***`relu.c`***
+```c
+#include <stdio.h>
+
+int main(void) {
+  double val_input, val_output;
+
+  scanf("%lf", &val_input);
+  val_output = (val_input > 0L) ? val_input : 0L;
+  printf("val_output = %f\n", val_output);
+  
+  return 0;
+}
+```
+
+***`terminal`***
+```
+3.14
+val_output = 3.140000
+```
+
+***`terminal`***
+```
+-1.414
+val_output = 0.000000
+```
+
+
 ---
 
 ## 演習
