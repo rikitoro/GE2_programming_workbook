@@ -143,10 +143,8 @@ int main(void) {
 ---
 
 ここで紹介したもの以外にも出力変換指定子は存在します。
-それらや、出力変換指定子の詳細な使い方については
-以下のリンク先などを参照するとよいでしょう。
-- [Microsoft Build / 書式指定構文: printf および wprintf 関数](https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=msvc-170)
-
+`printf` および出力変換指定子の詳細な使い方については以下のリンク先などを参照するとよいでしょう。
+- [gnu c library manual, 12.12 Formatted Output](https://www.gnu.org/software/libc/manual/html_mono/libc.html#Formatted-Output)
 
 ---
 
@@ -207,14 +205,17 @@ The character you entered : Q
 
 ---
 
+
+
 ### 例題 4-3 : 実数値の入力
 
 `scanf` を使って、`double` 型の変数へ入力された値を格納する場合、
 入力変換子は `%lf` を使います。(`%f` ではないことに注意)
 
 次のプログラムは、2 つの実数値が入力されると、
-それらの積を計算して出力するプログラムです。
+それらを底辺と高さとする長方形の面積を計算して出力するプログラムです。
 
+***`rectangle.c`***
 ```c
 #include <stdio.h>
 
@@ -254,11 +255,14 @@ Enter width height :
 Area of the rectagle : 23.000000
 ```
 
-参考までに、プログラムの処理の流れを表したフローチャートを示します。
-(出力の処理を一部省略しています)
+参考に、プログラムの処理の流れを表したフローチャートを示します。
 
 ![flowchart](./assets/flowchart_chap04_rectangle.png)
 
+---
+
+`scanf` や入力変換指定子の詳細な使い方については以下のリンク先などを参照するとよいでしょう。
+- [gnu c library manual, 12.14 Formatted Input](https://www.gnu.org/software/libc/manual/html_mono/libc.html#Formatted-Input)
 
 ---
 
