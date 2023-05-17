@@ -258,10 +258,9 @@ int main(void) {
 </code></pre>
 <hr />
 <p>ここで紹介したもの以外にも出力変換指定子は存在します。
-それらや、出力変換指定子の詳細な使い方については
-以下のリンク先などを参照するとよいでしょう。</p>
+<code>printf</code> および出力変換指定子の詳細な使い方については以下のリンク先などを参照するとよいでしょう。</p>
 <ul>
-<li><a href="https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions?view=msvc-170">Microsoft Build / 書式指定構文: printf および wprintf 関数</a></li>
+<li><a href="https://www.gnu.org/software/libc/manual/html_mono/libc.html#Formatted-Output">gnu c library manual, 12.12 Formatted Output</a></li>
 </ul>
 <hr />
 <h2 id="42-標準入力"><a class="header" href="#42-標準入力">4.2 標準入力</a></h2>
@@ -311,7 +310,8 @@ The character you entered : Q
 <p><code>scanf</code> を使って、<code>double</code> 型の変数へ入力された値を格納する場合、
 入力変換子は <code>%lf</code> を使います。(<code>%f</code> ではないことに注意)</p>
 <p>次のプログラムは、2 つの実数値が入力されると、
-それらの積を計算して出力するプログラムです。</p>
+それらを底辺と高さとする長方形の面積を計算して出力するプログラムです。</p>
+<p><em><strong><code>rectangle.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -344,9 +344,13 @@ int main(void) {
 10.0
 Area of the rectagle : 23.000000
 </code></pre>
-<p>参考までに、プログラムの処理の流れを表したフローチャートを示します。
-(出力の処理を一部省略しています)</p>
+<p>参考に、プログラムの処理の流れを表したフローチャートを示します。</p>
 <p><img src="./assets/flowchart_chap04_rectangle.png" alt="flowchart" /></p>
+<hr />
+<p><code>scanf</code> や入力変換指定子の詳細な使い方については以下のリンク先などを参照するとよいでしょう。</p>
+<ul>
+<li><a href="https://www.gnu.org/software/libc/manual/html_mono/libc.html#Formatted-Input">gnu c library manual, 12.14 Formatted Input</a></li>
+</ul>
 <hr />
 <h2 id="演習"><a class="header" href="#演習">演習</a></h2>
 <h3 id="演習-4-1"><a class="header" href="#演習-4-1">演習 4-1</a></h3>
