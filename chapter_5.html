@@ -149,6 +149,8 @@
                         <h1 id="第-5-章--演算子"><a class="header" href="#第-5-章--演算子">第 5 章 : 演算子</a></h1>
 <h2 id="51-算術演算子"><a class="header" href="#51-算術演算子">5.1 算術演算子</a></h2>
 <h3 id="例題-5-1--算術演算"><a class="header" href="#例題-5-1--算術演算">例題 5-1 : 算術演算</a></h3>
+<p>算術演算として加算 <code>+</code> 、減算 <code>-</code> 、乗算 <code>*</code> 、除算 <code>/</code> 、剰余 <code>%</code> などが使えます。
+これらを用いたでもプログラムを次に示します。</p>
 <p><em><strong><code>arithmetic.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -166,6 +168,11 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>加減算と乗除算が混じった式では、数学での数式と同様に、
+乗算 <code>*</code> と除算 <code>/</code> は加算 <code>+</code> や減算 <code>-</code> よりも優先度が高く先に計算されます。
+また、これらの算術演算は左結合性を持ちます(左から順番に計算されます)。
+括弧 <code>(</code> <code> )</code> を用いて、<code>(a - b)  * c + 12</code> の式のように計算の優先順位を制御することができます。</p>
+<p>実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>a + b = 6
 (a - b) * c + 12 = 42
