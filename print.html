@@ -952,8 +952,10 @@ int main(void) {
 変換され(キャスト)、変数 <code>x2</code> には <code>2.0</code> (<code>double</code>型の値)が代入されます。</p>
 <p>最後に、<code>double x3 = (double) a / b;</code> の部分についてみていきます。
 <code>a</code> は <code>int</code> 型ですが、<code>(double)</code> によって値が <code>double</code> 型に変換されます。
-したがって、<code>a / b</code> の結果は <code>double</code> 型となり、<code>x3</code> には <code>2.666667</code> が代入されます。</p>
-<p>実行結果は次のようになります。</p>
+したがって、<code>a / b</code> の結果は <code>double</code> 型となり、<code>x3</code> には <code>2.666667</code> が代入されます。
+このように、整数同士の割り算を実数として行いたい場合は、
+分子もしくは分母の少なくともどちらかの値を実数型にキャストする必要があります。</p>
+<p>プログラムの実行結果は次のようになります。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>x1 = 2
 x2 = 2.000000
@@ -1188,6 +1190,10 @@ a &gt;&gt; 2 = 2B
 <hr />
 <h2 id="56-代入演算子"><a class="header" href="#56-代入演算子">5.6 代入演算子</a></h2>
 <h3 id="例題-5-9--代入演算"><a class="header" href="#例題-5-9--代入演算">例題 5-9 : 代入演算</a></h3>
+<p>代入演算子 <code>=</code> は左辺の変数へ右辺の値を代入するものですが、
+代入演算と算術演算を組み合わせて同時に行うこともできます。</p>
+<p>次のプログラムは加算演算や乗算演算を代入演算子と組み合わせて行うプログラムです。</p>
+<p><em><strong><code>assignmentOp.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -1203,9 +1209,24 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラム中の <code>num += 3;</code> は <code>num = num + 3;</code> と同じ動作です。
+同様に、<code>num *= 2;</code> は <code>num = num * 2;</code> と同じ動作となります。</p>
+<p>プログラムの処理の流れを示すフローチャートを示します。
+変数 <code>num</code> の値がどのように変化するかを実行結果と合わせて確認してください。</p>
+<p><img src="./assets/flowchart_chap05_assignmentOp.png" alt="flowchart" /></p>
+<p>プログラムの実行結果です。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>num = 57
+num = 60
+num = 120
+</code></pre>
+<p>他の算術論理演算も代入演算と組み合わせて使うことができます。
+どのようなものがあるかについては、テキスト資料を参照してください。</p>
 <hr />
 <h2 id="57-条件演算子"><a class="header" href="#57-条件演算子">5.7 条件演算子</a></h2>
 <h3 id="例題-5-10--条件演算"><a class="header" href="#例題-5-10--条件演算">例題 5-10 : 条件演算</a></h3>
+<p>条件演算子 <code>?:</code> を用いると、条件によって値を選択することができます。
+次のプログラムは条件演算子を用いたプログラムです。</p>
 <p><em><strong><code>relu.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1219,6 +1240,11 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p><code>val_output = (val_input &gt; 0L) ? val_input : 0L;</code> の部分で
+条件演算子 <code>?:</code> を用いています。
+<code>(val_input &gt; 0L) ? val_input : 0L</code> は、
+条件 <code>val_input &gt; 0L</code> が真 ( True ) であれば、
+<code>val_input</code> を返し、偽 ( False ) であれば <code>0L</code> が返されます。</p>
 <p>プログラムの実行例を示します。
 まずは、<code>val_input</code> に正の値 <code>3.14</code> を入力したときの実行結果です。
 1行目はプログラムへの入力です。</p>
