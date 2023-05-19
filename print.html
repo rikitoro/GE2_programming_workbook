@@ -1026,7 +1026,25 @@ int main(void) {
   return 0;
 }
 </code></pre>
-<p>実行結果を示します。</p>
+<p>このプログラムでは <code>int</code> 型の変数 <code>three</code> には <code>3</code> が代入されています。
+比較演算子 <code>==</code> を使った <code>three == 3</code> の比較では、
+右辺と左辺の値が等しいかどうかが評価されます。
+もちろん両者の値は等しいので、この比較の結果は真 ( True ) を表す整数値 <code>1</code> となります。
+(<code>==</code> ではなく <code>=</code> と書くと、代入演算となりますので注意してください。)</p>
+<p>一方で、<code>!=</code> は右辺と左辺が等しくないときに真 ( True ) を返す比較演算となります。
+<code>three != 3</code> の比較では、今、右辺と左辺の値が等しくなっているので、
+この比較の結果は偽 ( False ) を表す整数値 <code>0</code> となります。</p>
+<p>プログラム中で用いた比較演算子の一覧を示します。</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">比較演算子(C言語)</th><th style="text-align: center">意味(数学表記)</th></tr></thead><tbody>
+<tr><td style="text-align: center"><code>==</code></td><td style="text-align: center">\( = \)</td></tr>
+<tr><td style="text-align: center"><code>!=</code></td><td style="text-align: center">\( \neq \)</td></tr>
+<tr><td style="text-align: center"><code>&gt;</code></td><td style="text-align: center">\( &gt; \)</td></tr>
+<tr><td style="text-align: center"><code>&gt;=</code></td><td style="text-align: center">\( \geq \)</td></tr>
+<tr><td style="text-align: center"><code>&lt;</code></td><td style="text-align: center">\( &lt; \)</td></tr>
+<tr><td style="text-align: center"><code>&lt;=</code></td><td style="text-align: center">\( \leq \)</td></tr>
+</tbody></table>
+</div>
+<p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>three == 3 : 1
 three != 3 : 0
@@ -1036,6 +1054,10 @@ three &lt; 3  : 0
 three &lt;= 3 : 1
 </code></pre>
 <h3 id="例題-5-5--論理演算"><a class="header" href="#例題-5-5--論理演算">例題 5-5 : 論理演算　</a></h3>
+<p>論理演算子を用いると、複数の比較演算を組み合わせて複雑な条件を表現することができます。
+変数や数値に対して論理演算を行うときは、整数値 <code>0</code> を偽 ( False ) とし、
+それ以外の値を真 ( True ) として扱います。</p>
+<p>次のプログラムは論理演算子を用いたプログラムです。</p>
 <p><em><strong><code>logicOp.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1052,6 +1074,12 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p><code>&amp;&amp;</code> は論理積( AND )、<code>||</code> は論理和(OR)、<code>!</code> は論理否定(NOT)を表します。
+<code>&amp;&amp;</code> は左辺と右辺の両方が真 ( True ) のときに真 ( True ) を返します。
+<code>||</code> は左辺と右辺のどちらかが真 ( True ) のときに真 ( True ) を返します。
+<code>!</code> は右辺の真偽を反転します。</p>
+<p>ビット単位の論理演算子と論理演算子の違いに注意してください。</p>
+<p>このプログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code> three == 3 : 1
  three &gt; 3  : 0
@@ -1062,6 +1090,11 @@ int main(void) {
 <hr />
 <h2 id="54-増減演算子"><a class="header" href="#54-増減演算子">5.4 増減演算子</a></h2>
 <h3 id="例題-5-6--インクリメントデクリメント"><a class="header" href="#例題-5-6--インクリメントデクリメント">例題 5-6 : インクリメント・デクリメント</a></h3>
+<p>整数型の変数の値を 1 だけ増減させるには、
+増分演算子(インクリメント) <code>++</code> 減分演算子(デクリメント) <code>--</code> を用います。</p>
+<p>次のプログラムを実行し、
+インクリメントやデクリメントが行われるたびに
+変数 <code>a</code> の値がどのように変化するか確認してください。</p>
 <p><em><strong><code>incdec.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1078,6 +1111,10 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p><code>a++</code> が実行されると変数 <code>a</code> の値が 1 増えます。
+すなわち、代入 <code>a = a + 1</code> と同じです。
+デクリメント <code>a--</code> も同様です。</p>
+<p>プログラムの実行結果を示します。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>a = 57
 a = 58
