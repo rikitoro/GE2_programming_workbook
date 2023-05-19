@@ -183,6 +183,12 @@ pi / a = 0.392500
 </code></pre>
 <hr />
 <h3 id="例題-5-2-整数同士の割り算"><a class="header" href="#例題-5-2-整数同士の割り算">例題 5-2 整数同士の割り算</a></h3>
+<p>算術演算では、整数型の値同士の演算を行った結果の値は整数型となります。
+それ以外の組み合わせでは演算結果の値は実数型となります。
+例えば <code>int</code> 型の値と <code>double</code> 型の値の演算結果は <code>double</code> 型となります。</p>
+<p>特に、整数同士の割り算については注意が必要です。
+整数同士の割り算の結果は整数となり、小数点以下の値は切り捨てられます。</p>
+<p>次のプログラムを実行して動作を確かめましょう。</p>
 <p><em><strong><code>division.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -200,6 +206,17 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>まず、<code>int x1 = a / b;</code> の部分についてみていきます。 
+<code>a = 8</code> と <code>b = 3</code> は共に<code>int</code>型の整数ですので、その割り算 <code>a / b</code> は
+<code>2.666667</code> となりますが、小数点以下が切り捨てられて <code>2</code> となります。
+したがって、<code>x1</code> には <code>2</code> が代入されます。</p>
+<p>次に、<code>double x2 = (double) (a / b);</code> の部分についてみていきます。
+<code>a / b</code> は <code>2</code> となりますが、<code>(double)</code> によって値が <code>double</code> 型に 
+変換され(キャスト)、変数 <code>x2</code> には <code>2.0</code> (<code>double</code>型の値)が代入されます。</p>
+<p>最後に、<code>double x3 = (double) a / b;</code> の部分についてみていきます。
+<code>a</code> は <code>int</code> 型ですが、<code>(double)</code> によって値が <code>double</code> 型に変換されます。
+したがって、<code>a / b</code> の結果は <code>double</code> 型となり、<code>x3</code> には <code>2.666667</code> が代入されます。</p>
+<p>実行結果は次のようになります。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>x1 = 2
 x2 = 2.000000
