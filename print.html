@@ -1053,6 +1053,7 @@ three &gt;= 3 : 1
 three &lt; 3  : 0
 three &lt;= 3 : 1
 </code></pre>
+<hr />
 <h3 id="例題-5-5--論理演算"><a class="header" href="#例題-5-5--論理演算">例題 5-5 : 論理演算　</a></h3>
 <p>論理演算子を用いると、複数の比較演算を組み合わせて複雑な条件を表現することができます。
 変数や数値に対して論理演算を行うときは、整数値 <code>0</code> を偽 ( False ) とし、
@@ -1122,6 +1123,11 @@ a = 56
 </code></pre>
 <hr />
 <h3 id="例題-5-7--前置後置の違い"><a class="header" href="#例題-5-7--前置後置の違い">例題 5-7 : 前置・後置の違い</a></h3>
+<p>増減演算子は、変数の前に置くことも後ろに置くこともできます。
+どちらも、変数の値を 1 増減させるという働きは同じですが、
+その処理には違いがあります。</p>
+<p>次のプログラムは、その違いを確認するプログラムです。</p>
+<p><em><strong><code>pre_post.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -1141,6 +1147,15 @@ int main(void) {
 
 }
 </code></pre>
+<p>まず、増減演算子を変数の後に置いた場合をみていきます。
+変数 <code>m</code> への代入 <code>m = n++;</code> では、
+はじめに変数 <code>m</code> に変数 <code>n</code> の値が代入されます(<code>m = n</code>)。
+その後、変数 <code>n</code> の値が 1 増えます(<code>n = n + 1</code>)。</p>
+<p>次に、増減演算子を変数の前に置いた場合をみていきます。
+変数 <code>m</code> への代入 <code>m = ++n;</code> では、
+はじめに変数 <code>n</code> の値が 1 増えます(<code>n = n + 1</code>)。
+その後、変数 <code>m</code> に変数 <code>n</code> の値が代入されます(<code>m = n</code>)。</p>
+<p>プログラムの実行結果は次の通りです。</p>
 <pre><code>n = 42
 m = 42, n = 43
 n = 42
@@ -1204,10 +1219,14 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>プログラムの実行例を示します。
+まずは、<code>val_input</code> に正の値 <code>3.14</code> を入力したときの実行結果です。
+1行目はプログラムへの入力です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>3.14
 val_output = 3.140000
 </code></pre>
+<p><code>val_input</code> に負の値 <code>-1.414</code> を入力したときの実行結果です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>-1.414
 val_output = 0.000000
