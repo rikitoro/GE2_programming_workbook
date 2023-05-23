@@ -1340,6 +1340,75 @@ Average age : 12.5
  10: 0
 </code></pre>
 <hr />
+<h2 id="発展課題-1"><a class="header" href="#発展課題-1">発展課題 1</a></h2>
+<p>以下に示す、ゲーム Nim をプレイするプログラムを作成してください。</p>
+<h3 id="nim-のルール"><a class="header" href="#nim-のルール">Nim のルール</a></h3>
+<p>Nim は 2 人のプレイヤーが交互に石を取り合うゲームです。
+ゲームの開始時には、石の山が 3 つあり、それぞれの山には 3, 4, 5 個の石が置かれています。
+(山の数と石の数は任意の値に変更しても構いません。)
+プレイヤーは 1 回に一つの選び、そこから 1 つ以上の石を取る必要があります。
+プレイヤーは交互に石を取り合い、最後の石を取ったプレイヤーが勝ちとなります。</p>
+<h3 id="ゲームの進行例"><a class="header" href="#ゲームの進行例">ゲームの進行例</a></h3>
+<p>2 人のプレイヤーをそれぞれ、プレイヤー A と プレイヤー B として、
+ゲームの進行例を示します。</p>
+<p>プレイヤー A が先番です。
+初期配置では、各山の石の数は以下のようになっています。
+(山には番号が付けられています。)
+また、プレイヤー A に石を取り除く山の番号と取り除く石の数を入力するように促します。</p>
+<pre><code>1 :***
+2 :****
+3 :*****
+player A : Enter the pile number and the number of stones to remove.
+</code></pre>
+<p>プレイヤー A は、山の番号と取り除く石の数を入力します。
+ここでは、2 番の山から 3 個の石を取り除くとしして、<code>2 3</code> と入力します。
+そうすると、山の石の数は以下のように変化します。
+(1 行目は、プレイヤー A の入力)</p>
+<pre><code>2 3
+1 :***
+2 :*
+3 :*****
+player B : Enter the pile number and the number of stones to remove.
+</code></pre>
+<p>次は、プレイヤー B の番です。
+3 番目の山の石を 5 個すべて取り除くとして、<code>3 5</code> と入力したとします。
+山の石の数は次のようになります。</p>
+<pre><code>3 5
+1 :***
+2 :*
+3 :
+player A : Enter the pile number and the number of stones to remove.
+</code></pre>
+<p>次にプレイヤー A は、1 番目の山から 2 個の石を取り除くとして、
+<code>1 2</code> と入力すると、山の石の数は次のようになります。</p>
+<pre><code>1 2
+1 :*
+2 :*
+3 :
+player B : Enter the pile number and the number of stones to remove.
+</code></pre>
+<p>今度はプレイヤー B が 2 番目の山から 1 個の石を取り除くとして、
+<code>2 1</code> と入力すると、山の石の数は以下のようになります。</p>
+<pre><code>2 1
+1 :*
+2 :
+3 :
+player A : Enter the pile number and the number of stones to remove.
+</code></pre>
+<p>最後にプレイヤー A が 1 番目の山から 1 個の石を取り除くとして、
+<code>1 1</code> と入力すると、すべての石が取り除かれますので、
+プレイヤー A が勝ちとなります。</p>
+<pre><code>1 2
+1 :
+2 :
+3 :
+player A, you won!
+</code></pre>
+<h3 id="注意点"><a class="header" href="#注意点">注意点</a></h3>
+<p>プレイヤーの入力は、山の番号と取り除く石の数を空白(もしくは改行)で区切って入力するものとします。
+プレイヤーからの入力の値が不適切な場合、
+例えば、山の番号が存在しない場合や、山の石の数より多くの石を取り除こうとした場合などでは、
+プログラムは再度入力を促すようにしてください。</p>
 
                     </main>
 
