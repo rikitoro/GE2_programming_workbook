@@ -152,6 +152,9 @@ player A : Enter the pile number and the number of stones to remove.
 player A, you won!
 ```
 
+このようにプレイヤー A が勝ったことを示すメッセージを出力して、
+ゲームは終了となります。
+
 ### 注意点
 
 プレイヤーの入力は、山の番号と取り除く石の数を空白(もしくは改行)で区切って入力するものとします。
