@@ -145,7 +145,7 @@ player A : Enter the pile number and the number of stones to remove.
 プレイヤー A が勝ちとなります。
 
 ```
-1 2
+1 1
 1 :
 2 :
 3 :
