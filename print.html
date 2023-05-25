@@ -1289,7 +1289,268 @@ Average age : 12.5
 </code></pre>
 <hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-6-章--分岐処理"><a class="header" href="#第-6-章--分岐処理">第 6 章 : 分岐処理</a></h1>
-<p>「作成中」</p>
+<h2 id="61--if-文"><a class="header" href="#61--if-文">6.1 : if 文</a></h2>
+<h3 id="例題-6-1--if-文"><a class="header" href="#例題-6-1--if-文">例題 6-1 : if 文</a></h3>
+<p><em><strong><code>positive.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int number;
+
+  scanf(&quot;%d&quot;, &amp;number);
+
+  if (number &gt; 0) {
+    printf(&quot;positive number\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p><code>if</code> 文の後に続く条件式が真のとき、
+<code>{</code> と <code>}</code> で囲まれたブロック内の文が実行されます。
+条件式が偽のときは、ブロック内の文は実行されません。</p>
+<p>このプログラムの実行結果を示します。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>42
+positive number
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>-1
+</code></pre>
+<hr />
+<h3 id="例題-6-2--else-文"><a class="header" href="#例題-6-2--else-文">例題 6-2 : else 文</a></h3>
+<p><em><strong><code>positive_negative.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int number;
+
+  scanf(&quot;%d&quot;, &amp;number);
+
+  if (number &gt; 0) {
+    printf(&quot;positive number\n&quot;);
+  } else {
+    printf(&quot;zero or negative number\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p>このプログラムの実行結果を示します。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>42
+positive number
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>-1
+zero or negative number
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>0
+zero or negative number
+</code></pre>
+<hr />
+<h3 id="例題-6-3--else-if-文"><a class="header" href="#例題-6-3--else-if-文">例題 6-3 : else if 文</a></h3>
+<p><em><strong><code>positive_negative_zero.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int number;
+
+  scanf(&quot;%d&quot;, &amp;number);
+
+  if (number &gt; 0) {
+    printf(&quot;positive number\n&quot;);
+  } else if (number &lt; 0) {
+    printf(&quot;negative number\n&quot;);
+  } else {
+    printf(&quot;zero\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>42
+positive number
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>-1
+negative number
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>0
+zero
+</code></pre>
+<h3 id="例題-6-4--複雑な条件式"><a class="header" href="#例題-6-4--複雑な条件式">例題 6-4 : 複雑な条件式</a></h3>
+<p><em><strong><code>room_temperature.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  double temperature;
+  
+  printf(&quot;temperature? &quot;);
+  scanf(&quot;%lf&quot;, &amp;temperature);
+  
+  if (15.0 &lt;= temperature &amp;&amp; temperature &lt;= 25.0) {
+    printf(&quot;comfortable\n&quot;);
+  } else {
+    printf(&quot;uncomfortable\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>temperature? 21.5
+comfortable
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>temperature? 30.0
+uncomfortable
+</code></pre>
+<hr />
+<h2 id="62--switch-文"><a class="header" href="#62--switch-文">6.2 : switch 文</a></h2>
+<h3 id="例題-6-5--switch-文"><a class="header" href="#例題-6-5--switch-文">例題 6-5 : switch 文</a></h3>
+<p><em><strong><code>weekday.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  char weekday_initial;
+
+  scanf(&quot;%c&quot;, &amp;weekday_initial);
+
+  switch (weekday_initial) {
+    case 'M':
+      printf(&quot;Monday\n&quot;);
+      break;
+    case 'T':
+      printf(&quot;Tuesday or Thursday\n&quot;);
+      break;
+    case 'W':
+      printf(&quot;Wednesday\n&quot;);
+      break;
+    case 'F':
+      printf(&quot;Friday\n&quot;);
+      break;
+    case 'S':
+      printf(&quot;Saturday or Sunday\n&quot;);
+      break;
+    default:
+      printf(&quot;invalid\n&quot;);
+      break;
+  }
+
+  return 0;
+}
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>M
+Monday
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>T
+Tuesday or Thursday
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>m
+invalid
+</code></pre>
+<hr />
+<h3 id="例題-6-6--複雑な制御式"><a class="header" href="#例題-6-6--複雑な制御式">例題 6-6 : 複雑な制御式</a></h3>
+<p><em><strong><code>sando.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int number;
+
+  printf(&quot;What's your favorite number? &quot;);
+  scanf(&quot;%d&quot;, &amp;number);
+
+  switch (number % 3) {
+    case 0:
+      printf(&quot;Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n&quot;);
+      break;
+    case 1:
+      printf(&quot;That's a decently good number.\n&quot;);
+      break;
+    case 2:
+      printf(&quot;That's not such a bad number.\n&quot;);
+      break;
+    default:
+      printf(&quot;That's not a positive number.\n&quot;);
+      break;
+  }
+
+  return 0;
+}
+</code></pre>
+<hr />
+<h3 id="例題-6-7--switch-文の-fall-through"><a class="header" href="#例題-6-7--switch-文の-fall-through">例題 6-7 : switch 文の fall-through</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  char weekday_initial;
+
+  scanf(&quot;%c&quot;, &amp;weekday_initial);
+
+  switch (weekday_initial) {
+    case 'M':
+    case 'm':
+      printf(&quot;Monday\n&quot;);
+      break;
+    case 'T':
+    case 't':
+      printf(&quot;Tuesday or Thursday\n&quot;);
+      break;
+    case 'W':
+    case 'w':
+      printf(&quot;Wednesday\n&quot;);
+      break;
+    case 'F':
+    case 'f':
+      printf(&quot;Friday\n&quot;);
+      break;
+    case 'S':
+    case 's':
+      printf(&quot;Saturday or Sunday\n&quot;);
+      break;
+    default:
+      printf(&quot;invalid\n&quot;);
+      break;
+  }
+
+  return 0;
+}
+</code></pre>
+<hr />
+<h2 id="演習-5"><a class="header" href="#演習-5">演習</a></h2>
+<h3 id="演習-6-1"><a class="header" href="#演習-6-1">演習 6-1</a></h3>
+<h3 id="演習-6-2"><a class="header" href="#演習-6-2">演習 6-2</a></h3>
+<p><em><strong><code>fizzbuzz.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int max_count;
+
+  printf(&quot;Enter the maximum count: &quot;);
+  scanf(&quot;%d&quot;, &amp;max_count);
+  
+  for (int count = 1; count &lt;= max_count; count++) {
+    if ((count % 3 == 0) &amp;&amp; (count % 5 == 0)) {
+      printf(&quot;FizzBuzz\n&quot;);
+    } else if (count % 3 == 0) {
+      printf(&quot;Fizz\n&quot;);
+    } else if (count % 5 == 0) {
+      printf(&quot;Buzz\n&quot;);
+    } else {
+      printf(&quot;%d\n&quot;, count);
+    }
+  }
+
+  return 0;
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-7-章--繰り返し処理"><a class="header" href="#第-7-章--繰り返し処理">第 7 章 : 繰り返し処理</a></h1>
 <p>「作成中」</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="課題"><a class="header" href="#課題">課題</a></h1>
