@@ -25,6 +25,9 @@ int main(void) {
 `{` と `}` で囲まれたブロック内の文が実行されます。
 条件式が偽のときは、ブロック内の文は実行されません。
 
+![flowchart](./assets/flowchart_chap06_positive.drawio.png)
+
+
 このプログラムの実行結果を示します。
 
 ***`terminal`***
@@ -60,6 +63,9 @@ int main(void) {
   return 0;
 }
 ```
+
+![flowchart](./assets/flowchart_chap06_posneg.drawio.png)
+
 
 このプログラムの実行結果を示します。
 
@@ -105,6 +111,9 @@ int main(void) {
   return 0;
 }
 ```
+
+![flowchart](./assets/flowchart_chap06_posnegzero.drawio.png)
+
 
 ***`terminal`***
 ```
@@ -197,6 +206,8 @@ int main(void) {
   return 0;
 }
 ```
+
+![flowchart](./assets/flowchart_chap06_weekday.drawio.png)
 
 ***`terminal`***
 ```
