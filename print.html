@@ -1676,7 +1676,36 @@ player A, you won!
 プレイヤーからの入力の値が不適切な場合、
 例えば、山の番号が存在しない場合や、山の石の数より多くの石を取り除こうとした場合などでは、
 プログラムは再度入力を促すようにしてください。</p>
+<hr />
+<!--
+## 発展課題 2
 
+$$
+\frac{d x(t)}{dt} = (a - b\ y(t) )\ x(t) \tag{1} \label{eq1} 
+$$
+$$
+\frac{d y(t)}{dt} = - (c - d\ x(t))\ y(t) \tag{2} \label{eq2}
+$$
+
+\\( t_n = n\ \Delta t \\)
+\\( x_n = x(t_n), y_n = y(t_n) \\)
+
+式\eqref{eq1}より、
+
+\\( d x(t) / dt \simeq (x(t+\Delta t) - x(t)) / \Delta t \\) 
+\\( d y(t) / dt \simeq (y(t+\Delta t) - y(t)) / \Delta t \\)
+
+$$ \frac{x_{n+1} - x_n}{\Delta t} = (a - b\ y_n)\ x_n $$
+
+$$ x_{n+1} = (1 + A - B\ y_n)\ x_n $$
+
+\\( A = \Delta t \ a, B = \Delta t \ b \\)
+
+\\( C = \Delta t \ c, D = \Delta t \ d \\)
+$$ y_{n+1} = (1 - C + D\ x_n)\ y_n $$
+
+
+-->
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
