@@ -1395,7 +1395,7 @@ int main(void) {
   printf(&quot;temperature? &quot;);
   scanf(&quot;%lf&quot;, &amp;temperature);
   
-  if (15.0 &lt;= temperature &amp;&amp; temperature &lt;= 25.0) {
+  if (15.0 &lt;= temperature &amp;&amp; temperature &lt; 25.0) {
     printf(&quot;comfortable\n&quot;);
   } else {
     printf(&quot;uncomfortable\n&quot;);
@@ -1461,36 +1461,7 @@ Tuesday or Thursday
 invalid
 </code></pre>
 <hr />
-<h3 id="例題-6-6--複雑な制御式"><a class="header" href="#例題-6-6--複雑な制御式">例題 6-6 : 複雑な制御式</a></h3>
-<p><em><strong><code>sando.c</code></strong></em></p>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main(void) {
-  int number;
-
-  printf(&quot;What's your favorite number? &quot;);
-  scanf(&quot;%d&quot;, &amp;number);
-
-  switch (number % 3) {
-    case 0:
-      printf(&quot;Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n&quot;);
-      break;
-    case 1:
-      printf(&quot;That's a decently good number.\n&quot;);
-      break;
-    case 2:
-      printf(&quot;That's not such a bad number.\n&quot;);
-      break;
-    default:
-      printf(&quot;That's not a positive number.\n&quot;);
-      break;
-  }
-
-  return 0;
-}
-</code></pre>
-<hr />
-<h3 id="例題-6-7--switch-文の-fall-through"><a class="header" href="#例題-6-7--switch-文の-fall-through">例題 6-7 : switch 文の fall-through</a></h3>
+<h3 id="例題-6-6--switch-文の-fall-through"><a class="header" href="#例題-6-6--switch-文の-fall-through">例題 6-6 : switch 文の fall-through</a></h3>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -1527,9 +1498,79 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>T
+Tuesday or Thursday
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>t
+Tuesday or Thursday
+</code></pre>
+<hr />
+<h3 id="例題-6-7--if-文と-switch-文の混在"><a class="header" href="#例題-6-7--if-文と-switch-文の混在">例題 6-7 : if 文と switch 文の混在</a></h3>
+<p><em><strong><code>if_switch.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int n;
+
+  printf(&quot;What's your favorite number? &quot;);
+  scanf(&quot;%d&quot;, &amp;n);
+
+  if (n &gt;= 0) {
+    switch (n % 3) {
+      case 0:
+        printf(&quot;Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n&quot;);
+        break;
+      case 1:
+        printf(&quot;Oh. That's a decently good number.\n&quot;);
+        break;
+      case 2:
+        printf(&quot;Hmm. That's not such a bad number.\n&quot;);
+        break;
+    }
+  } else {
+    printf(&quot;Negative number.\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p><img src="./assets/flowchart_chap06_ifswitch.drawio.png" alt="flowchart" /></p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>What's your favorite number? 42
+Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done!
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>What's your favorite number? 43
+Oh. That's a decently good number.
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>What's your favorite number? -1
+That's a negative number.
+</code></pre>
 <hr />
 <h2 id="演習-5"><a class="header" href="#演習-5">演習</a></h2>
 <h3 id="演習-6-1"><a class="header" href="#演習-6-1">演習 6-1</a></h3>
+<p>架空のS水族館は、入場者の年齢によって入場料が決まります。
+年齢と入場料の対応は以下の表のとおりです。</p>
+<div class="table-wrapper"><table><thead><tr><th>券種</th><th>年齢</th><th>入場料(円)</th></tr></thead><tbody>
+<tr><td>大人</td><td>13歳以上65歳未満</td><td>2400</td></tr>
+<tr><td>子供</td><td>13歳未満</td><td>1200</td></tr>
+<tr><td>シニア</td><td>65歳以上</td><td>1800</td></tr>
+</tbody></table>
+</div>
+<p>年齢を入力すると、入場料を出力するプログラムを作成してください。
+なお、年齢は0以上の整数で入力されるものとします。</p>
+<p>期待される実行結果は以下の通りです。</p>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>13
+2400 yen
+</code></pre>
+<p><em><strong><code>terminal</code></strong></em></p>
+<pre><code>10
+1200 yen
+</code></pre>
 <h3 id="演習-6-2"><a class="header" href="#演習-6-2">演習 6-2</a></h3>
 <p><em><strong><code>fizzbuzz.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
