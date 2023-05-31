@@ -145,7 +145,7 @@ int main(void) {
   printf("temperature? ");
   scanf("%lf", &temperature);
   
-  if (15.0 <= temperature && temperature <= 25.0) {
+  if (15.0 <= temperature && temperature < 25.0) {
     printf("comfortable\n");
   } else {
     printf("uncomfortable\n");
@@ -229,41 +229,7 @@ invalid
 
 ---
 
-
-### 例題 6-6 : 複雑な制御式
-
-***`sando.c`***
-```c
-#include <stdio.h>
-
-int main(void) {
-  int number;
-
-  printf("What's your favorite number? ");
-  scanf("%d", &number);
-
-  switch (number % 3) {
-    case 0:
-      printf("Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n");
-      break;
-    case 1:
-      printf("That's a decently good number.\n");
-      break;
-    case 2:
-      printf("That's not such a bad number.\n");
-      break;
-    default:
-      printf("That's not a positive number.\n");
-      break;
-  }
-
-  return 0;
-}
-```
-
----
-
-### 例題 6-7 : switch 文の fall-through
+### 例題 6-6 : switch 文の fall-through
 
 ```c
 #include <stdio.h>
@@ -303,11 +269,106 @@ int main(void) {
 }
 ```
 
+***`terminal`***
+```
+T
+Tuesday or Thursday
+```
+
+***`terminal`***
+```
+t
+Tuesday or Thursday
+```
+
+
+---
+
+### 例題 6-7 : if 文と switch 文の混在
+
+***`if_switch.c`***
+```c
+#include <stdio.h>
+
+int main(void) {
+  int n;
+
+  printf("What's your favorite number? ");
+  scanf("%d", &n);
+
+  if (n >= 0) {
+    switch (n % 3) {
+      case 0:
+        printf("Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n");
+        break;
+      case 1:
+        printf("Oh. That's a decently good number.\n");
+        break;
+      case 2:
+        printf("Hmm. That's not such a bad number.\n");
+        break;
+    }
+  } else {
+    printf("Negative number.\n");
+  }
+
+  return 0;
+}
+```
+
+![flowchart](./assets/flowchart_chap06_ifswitch.drawio.png)
+
+
+***`terminal`***
+```
+What's your favorite number? 42
+Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done!
+```
+
+***`terminal`***
+```
+What's your favorite number? 43
+Oh. That's a decently good number.
+```
+
+***`terminal`***
+```
+What's your favorite number? -1
+That's a negative number.
+```
+
 ---
 
 ## 演習
 
 ### 演習 6-1
+
+架空のS水族館は、入場者の年齢によって入場料が決まります。
+年齢と入場料の対応は以下の表のとおりです。
+
+| 券種 | 年齢 | 入場料(円) |
+| --- | --- | --- |
+| 大人 | 13歳以上65歳未満 | 2400 |
+| 子供 | 13歳未満 | 1200 |
+| シニア | 65歳以上 | 1800 |
+
+年齢を入力すると、入場料を出力するプログラムを作成してください。
+なお、年齢は0以上の整数で入力されるものとします。
+
+期待される実行結果は以下の通りです。
+
+***`terminal`***
+```
+13
+2400 yen
+```
+
+***`terminal`***
+```
+10
+1200 yen
+```
+
 
 ### 演習 6-2
 
