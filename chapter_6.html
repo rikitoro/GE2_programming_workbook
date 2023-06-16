@@ -340,6 +340,10 @@ uncomfortable
 <hr />
 <h2 id="62--switch-文"><a class="header" href="#62--switch-文">6.2 : switch 文</a></h2>
 <h3 id="例題-6-5--switch-文"><a class="header" href="#例題-6-5--switch-文">例題 6-5 : switch 文</a></h3>
+<p>条件によって分ける処理の分岐が多い場合、
+switch 文を使うとプログラムを簡潔に書くことができます。</p>
+<p>次のプログラムは、<code>char</code> 型の値を入力して、
+入力された値に応じて曜日を表示するプログラムです。</p>
 <p><em><strong><code>weekday.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -372,6 +376,26 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>switch 文ではまず制御式を指定します。
+このプログラムでは、<code>char</code> 型の変数 <code>weekday_initial</code> を指定しています。
+続く<code>{</code> と <code>}</code> で囲まれたブロック内には、
+switch 文で行う処理を記述しますが、
+このブロック内には処理を分岐させるために、分岐先を示す
+<code>case</code> および <code>default</code> で構成される複数のラベルを記述します。
+このプログラムでは <code>case 'M':</code> から <code>case 'S':</code> までの
+5 つの <code>case</code> を使ったラベルと
+<code>default:</code> がラベルとなっています。</p>
+<p>switch 文では制御式を評価し、
+その値に応じて、<code>case</code> で指定した値と一致するかどうかを上から順に調べます。
+一致する <code>case</code> が見つかったら、そこへ処理がジャンプします。
+なお、制御式で評価される値、および <code>case</code> で指定する値は、
+整数値、文字(<code>char</code> 型の値)である必要があります。</p>
+<p>このプログラムにおいては、例えば、<code>weekday_initial</code> が <code>'T'</code> であれば、
+<code>case 'T':</code> に処理がジャンプし、
+<code>printf(&quot;Tuesday or Thursday\n&quot;);</code> が実行されます。
+続く <code>break</code> は、switch 文を抜けるための命令です。
+(<code>break</code> がないと、次の <code>case</code> の処理が続けて実行されてしまいます。)</p>
+<p>制御式で評価した値と一致する <code>case</code> が見つからない場合は、</p>
 <p><img src="./assets/flowchart_chap06_weekday.drawio.png" alt="flowchart" /></p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>M
