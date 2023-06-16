@@ -4,6 +4,15 @@
 
 ### 例題 6-1 : if 文
 
+ある条件が成り立つか、
+成り立たないかによって行う処理を分岐させるには、
+if 文を使います。
+
+次のプログラムは、if 文を使って、
+入力された数値が正の数かどうかを判定し、
+正の数であれば `positive number` と表示し、
+そうでなければ何も表示しないプログラムです。
+
 ***`positive.c`***
 ```c
 #include <stdio.h>
@@ -21,14 +30,22 @@ int main(void) {
 }
 ```
 
-`if` 文の後に続く条件式が真のとき、
+`if` の後に続く条件式 `number > 0` が真のとき、
 `{` と `}` で囲まれたブロック内の文が実行されます。
-条件式が偽のときは、ブロック内の文は実行されません。
+すなわち、`mumber` が正の数の時は、
+`printf("positive number\n");` が実行され、
+`positive number` と表示されます。
+
+条件式が偽、すなわち、`mumber` がゼロまたは負の数の場合は、
+ブロック内の文は実行されず、なにも表示されません。
+
+このプログラムの処理の流れを示すフローチャートを次に示します。
 
 ![flowchart](./assets/flowchart_chap06_positive.drawio.png)
 
-
-このプログラムの実行結果を示します。
+プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は、`positive number` と表示されます。
 
 ***`terminal`***
 ```
@@ -36,6 +53,7 @@ int main(void) {
 positive number
 ```
 
+負の数を入力した場合は、何も表示されません。
 ***`terminal`***
 ```
 -1
@@ -44,6 +62,13 @@ positive number
 ---
 
 ### 例題 6-2 : else 文
+
+if 文の後に `else` を続けることで、
+条件式が偽の場合に実行する文を指定できます。
+
+次のプログラムは、入力された数値が正の数かどうかを判定し、
+正の数であれば `positive number` と表示し、
+そうでなければ `zero or negative number` と表示するプログラムです。
 
 ***`positive_negative.c`***
 ```c
@@ -64,10 +89,20 @@ int main(void) {
 }
 ```
 
+if 文の条件式 `number > 0` が成り立つときは、
+続くブロック内の文 `printf("positive number\n");` が実行されます。
+条件式が成り立たないとき、すなわち、`number` がゼロまたは負の数のときは、
+`else` の後に続くブロック内の文
+`printf("zero or negative number\n");` が実行されます。
+
+このプログラムの処理の流れを示すフローチャートを次に示します。
+
 ![flowchart](./assets/flowchart_chap06_posneg.drawio.png)
 
 
-このプログラムの実行結果を示します。
+プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は次のように、`positive number` と表示されます。
 
 ***`terminal`***
 ```
@@ -75,11 +110,15 @@ int main(void) {
 positive number
 ```
 
+負の数を入力した場合は、`zero or negative number` と表示されます。
+
 ***`terminal`***
 ```
 -1
 zero or negative number
 ```
+
+ゼロを入力した場合も、`zero or negative number` と表示されます。
 
 ***`terminal`***
 ```
@@ -90,6 +129,15 @@ zero or negative number
 ---
 
 ### 例題 6-3 : else if 文
+
+if 文の後に `else if` を続けることで、
+最初の条件式が偽の場合に、
+さらに別の条件式を指定して処理を分岐させることができます。
+
+次のプログラムは、入力された数値が正の数かどうかを判定し、
+正の数であれば `positive number` 、
+負の数であれば `negative number` 、
+ゼロであれば `zero` と表示するプログラムです。
 
 ***`positive_negative_zero.c`***
 ```c
@@ -112,8 +160,21 @@ int main(void) {
 }
 ```
 
+if 文の最初の条件式 `number > 0` が成り立つときは、
+続くブロック内の文 `printf("positive number\n");` が実行されます。
+条件式が成り立たないときは、`else if` に続く条件式 `number < 0` が評価されます。
+この条件式 `number < 0` が成り立つときは、
+続くブロック内の文 `printf("negative number\n");` が実行されます。
+最初の条件式も、2 番目の条件式も成り立たないときは、
+最後の `else` に続くブロック内の文 `printf("zero\n");` が実行されます。
+
+このプログラムの処理の流れを示すフローチャートを次に示します。
+
 ![flowchart](./assets/flowchart_chap06_posnegzero.drawio.png)
 
+プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は次のように、`positive number` と表示されます。
 
 ***`terminal`***
 ```
@@ -121,11 +182,15 @@ int main(void) {
 positive number
 ```
 
+負の数を入力した場合は、`negative number` と表示されます。
+
 ***`terminal`***
 ```
 -1
 negative number
 ```
+
+ゼロを入力した場合は、`zero` と表示されます。
 
 ***`terminal`***
 ```
@@ -134,6 +199,12 @@ zero
 ```
 
 ### 例題 6-4 : 複雑な条件式
+
+if 文の条件式には、複数の条件を組み合わせることができます。
+次のプログラムは、室温として実数値を入力したときに、
+入力された数値が 15.0 以上 25.0 未満であれば、
+`comfortable` と表示し、
+そうでなければ `uncomfortable` と表示するプログラムです。
 
 ***`room_temperature.c`***
 ```c
@@ -155,11 +226,29 @@ int main(void) {
 }
 ```
 
+if 文の条件式 `15.0 <= temperature && temperature < 25.0` は、
+論理積 `&&` ( AND ) で結合された 2 つの条件式 `15.0 <= temperature` と
+`temperature < 25.0` が両方とも成り立つときに真となります。
+すなわち、`temperature` が 15.0 以上 25.0 未満のときに真となります。
+
+条件式を `15.0 <= temperature < 25.0` のようには記述しないことに注意してください。
+このように記述すると意図した通りには動作しません。
+
+
+プログラムの実行結果を示します。
+1 行目の数値の部分は、入力された数値を表しています。
+
+21.5 を入力した場合は、条件式が真となるので、
+次のように、`comfortable` と表示されます。
+
 ***`terminal`***
 ```
 temperature? 21.5
 comfortable
 ```
+
+30.0 を入力した場合は、条件式が偽となるので、
+次のように、`uncomfortable` と表示されます。
 
 ***`terminal`***
 ```
@@ -172,6 +261,8 @@ uncomfortable
 ## 6.2 : switch 文
 
 ### 例題 6-5 : switch 文
+
+
 
 ***`weekday.c`***
 ```c
