@@ -1291,6 +1291,13 @@ Average age : 12.5
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-6-章--分岐処理"><a class="header" href="#第-6-章--分岐処理">第 6 章 : 分岐処理</a></h1>
 <h2 id="61--if-文"><a class="header" href="#61--if-文">6.1 : if 文</a></h2>
 <h3 id="例題-6-1--if-文"><a class="header" href="#例題-6-1--if-文">例題 6-1 : if 文</a></h3>
+<p>ある条件が成り立つか、
+成り立たないかによって行う処理を分岐させるには、
+if 文を使います。</p>
+<p>次のプログラムは、if 文を使って、
+入力された数値が正の数かどうかを判定し、
+正の数であれば <code>positive number</code> と表示し、
+そうでなければ何も表示しないプログラムです。</p>
 <p><em><strong><code>positive.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1306,20 +1313,33 @@ int main(void) {
   return 0;
 }
 </code></pre>
-<p><code>if</code> 文の後に続く条件式が真のとき、
+<p><code>if</code> の後に続く条件式 <code>number &gt; 0</code> が真のとき、
 <code>{</code> と <code>}</code> で囲まれたブロック内の文が実行されます。
-条件式が偽のときは、ブロック内の文は実行されません。</p>
+すなわち、<code>mumber</code> が正の数の時は、
+<code>printf(&quot;positive number\n&quot;);</code> が実行され、
+<code>positive number</code> と表示されます。</p>
+<p>条件式が偽、すなわち、<code>mumber</code> がゼロまたは負の数の場合は、
+ブロック内の文は実行されず、なにも表示されません。</p>
+<p>このプログラムの処理の流れを示すフローチャートを次に示します。</p>
 <p><img src="./assets/flowchart_chap06_positive.drawio.png" alt="flowchart" /></p>
-<p>このプログラムの実行結果を示します。</p>
+<p>プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は、<code>positive number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>42
 positive number
 </code></pre>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p>負の数を入力した場合は、何も表示されません。
+<em><strong><code>terminal</code></strong></em></p>
 <pre><code>-1
 </code></pre>
 <hr />
 <h3 id="例題-6-2--else-文"><a class="header" href="#例題-6-2--else-文">例題 6-2 : else 文</a></h3>
+<p>if 文の後に <code>else</code> を続けることで、
+条件式が偽の場合に実行する文を指定できます。</p>
+<p>次のプログラムは、入力された数値が正の数かどうかを判定し、
+正の数であれば <code>positive number</code> と表示し、
+そうでなければ <code>zero or negative number</code> と表示するプログラムです。</p>
 <p><em><strong><code>positive_negative.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1337,22 +1357,39 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>if 文の条件式 <code>number &gt; 0</code> が成り立つときは、
+続くブロック内の文 <code>printf(&quot;positive number\n&quot;);</code> が実行されます。
+条件式が成り立たないとき、すなわち、<code>number</code> がゼロまたは負の数のときは、
+<code>else</code> の後に続くブロック内の文
+<code>printf(&quot;zero or negative number\n&quot;);</code> が実行されます。</p>
+<p>このプログラムの処理の流れを示すフローチャートを次に示します。</p>
 <p><img src="./assets/flowchart_chap06_posneg.drawio.png" alt="flowchart" /></p>
-<p>このプログラムの実行結果を示します。</p>
+<p>プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は次のように、<code>positive number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>42
 positive number
 </code></pre>
+<p>負の数を入力した場合は、<code>zero or negative number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>-1
 zero or negative number
 </code></pre>
+<p>ゼロを入力した場合も、<code>zero or negative number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>0
 zero or negative number
 </code></pre>
 <hr />
 <h3 id="例題-6-3--else-if-文"><a class="header" href="#例題-6-3--else-if-文">例題 6-3 : else if 文</a></h3>
+<p>if 文の後に <code>else if</code> を続けることで、
+最初の条件式が偽の場合に、
+さらに別の条件式を指定して処理を分岐させることができます。</p>
+<p>次のプログラムは、入力された数値が正の数かどうかを判定し、
+正の数であれば <code>positive number</code> 、
+負の数であれば <code>negative number</code> 、
+ゼロであれば <code>zero</code> と表示するプログラムです。</p>
 <p><em><strong><code>positive_negative_zero.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1372,20 +1409,38 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>if 文の最初の条件式 <code>number &gt; 0</code> が成り立つときは、
+続くブロック内の文 <code>printf(&quot;positive number\n&quot;);</code> が実行されます。
+条件式が成り立たないときは、<code>else if</code> に続く条件式 <code>number &lt; 0</code> が評価されます。
+この条件式 <code>number &lt; 0</code> が成り立つときは、
+続くブロック内の文 <code>printf(&quot;negative number\n&quot;);</code> が実行されます。
+最初の条件式も、2 番目の条件式も成り立たないときは、
+最後の <code>else</code> に続くブロック内の文 <code>printf(&quot;zero\n&quot;);</code> が実行されます。</p>
+<p>このプログラムの処理の流れを示すフローチャートを次に示します。</p>
 <p><img src="./assets/flowchart_chap06_posnegzero.drawio.png" alt="flowchart" /></p>
+<p>プログラムの実行結果を示します。
+1 行目は、入力された数値を表しています。
+正の数を入力した場合は次のように、<code>positive number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>42
 positive number
 </code></pre>
+<p>負の数を入力した場合は、<code>negative number</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>-1
 negative number
 </code></pre>
+<p>ゼロを入力した場合は、<code>zero</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>0
 zero
 </code></pre>
 <h3 id="例題-6-4--複雑な条件式"><a class="header" href="#例題-6-4--複雑な条件式">例題 6-4 : 複雑な条件式</a></h3>
+<p>if 文の条件式には、複数の条件を組み合わせることができます。
+次のプログラムは、室温として実数値を入力したときに、
+入力された数値が 15.0 以上 25.0 未満であれば、
+<code>comfortable</code> と表示し、
+そうでなければ <code>uncomfortable</code> と表示するプログラムです。</p>
 <p><em><strong><code>room_temperature.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -1404,10 +1459,22 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>if 文の条件式 <code>15.0 &lt;= temperature &amp;&amp; temperature &lt; 25.0</code> は、
+論理積 <code>&amp;&amp;</code> ( AND ) で結合された 2 つの条件式 <code>15.0 &lt;= temperature</code> と
+<code>temperature &lt; 25.0</code> が両方とも成り立つときに真となります。
+すなわち、<code>temperature</code> が 15.0 以上 25.0 未満のときに真となります。</p>
+<p>条件式を <code>15.0 &lt;= temperature &lt; 25.0</code> のようには記述しないことに注意してください。
+このように記述すると意図した通りには動作しません。</p>
+<p>プログラムの実行結果を示します。
+1 行目の数値の部分は、入力された数値を表しています。</p>
+<p>21.5 を入力した場合は、条件式が真となるので、
+次のように、<code>comfortable</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>temperature? 21.5
 comfortable
 </code></pre>
+<p>30.0 を入力した場合は、条件式が偽となるので、
+次のように、<code>uncomfortable</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>temperature? 30.0
 uncomfortable
