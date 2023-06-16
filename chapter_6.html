@@ -343,7 +343,11 @@ uncomfortable
 <p>条件によって分ける処理の分岐が多い場合、
 switch 文を使うとプログラムを簡潔に書くことができます。</p>
 <p>次のプログラムは、<code>char</code> 型の値を入力して、
-入力された値に応じて曜日を表示するプログラムです。</p>
+入力された値に応じて曜日を表示するプログラムです。
+プログラムの動作をより詳しく説明すると、
+各曜日 Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday の
+頭文字の大文字 <code>M</code>, <code>T</code>, <code>W</code>, <code>F</code>, <code>S</code> を入力すると
+該当する曜日を表示し、それ以外の文字を入力すると <code>invalid</code> と表示します。</p>
 <p><em><strong><code>weekday.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -395,16 +399,29 @@ switch 文で行う処理を記述しますが、
 <code>printf(&quot;Tuesday or Thursday\n&quot;);</code> が実行されます。
 続く <code>break</code> は、switch 文を抜けるための命令です。
 (<code>break</code> がないと、次の <code>case</code> の処理が続けて実行されてしまいます。)</p>
-<p>制御式で評価した値と一致する <code>case</code> が見つからない場合は、</p>
+<p>制御式で評価した値と一致する <code>case</code> が見つからない場合は、
+<code>default:</code> に処理がジャンプします。
+プログラムでは、<code>weekday_initial</code> が <code>'m'</code> である場合には、
+<code>case</code> で指定した値と一致するものがないため、
+<code>default:</code> に処理がジャンプし、
+<code>printf(&quot;invalid\n&quot;);</code> が実行されます。</p>
+<p>プログラムの処理の流れをフローチャートに示すと次のようになります。</p>
 <p><img src="./assets/flowchart_chap06_weekday.drawio.png" alt="flowchart" /></p>
+<p>プログラムの実行結果を示します。
+1 行目は、入力された文字を表しています。</p>
+<p><code>M</code> を入力した場合の実行結果です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>M
 Monday
 </code></pre>
+<p><code>T</code> を入力した場合の実行結果です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>T
 Tuesday or Thursday
 </code></pre>
+<p>小文字の <code>m</code> を入力した場合の実行結果です。
+この時はどの <code>case</code> にも当てはまらないので、
+<code>default</code> に処理がジャンプし、<code>invalid</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>m
 invalid
