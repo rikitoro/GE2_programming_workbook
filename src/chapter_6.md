@@ -272,7 +272,7 @@ switch 文を使うとプログラムを簡潔に書くことができます。
 頭文字の大文字 `M`, `T`, `W`, `F`, `S` を入力すると
 該当する曜日を表示し、それ以外の文字を入力すると `invalid` と表示します。
 
-***`weekday.c`***
+***`weekday1.c`***
 ```c
 #include <stdio.h>
 
@@ -320,17 +320,19 @@ switch 文では制御式を評価し、
 その値に応じて、`case` で指定した値と一致するかどうかを上から順に調べます。
 一致する `case` が見つかったら、そこへ処理がジャンプします。
 なお、制御式で評価される値、および `case` で指定する値は、
-整数値、文字(`char` 型の値)である必要があります。
+整数値(`int` 型の値など)や文字(`char` 型の値)である必要があります。
 
 このプログラムにおいては、例えば、`weekday_initial` が `'T'` であれば、
 `case 'T':` に処理がジャンプし、
 `printf("Tuesday or Thursday\n");` が実行されます。
 続く `break` は、switch 文を抜けるための命令です。
+これにより、switch 文のブロックを抜けるので、
+続く `case 'W':` 以降の処理は実行されません。
 (`break` がないと、次の `case` の処理が続けて実行されてしまいます。)
 
 制御式で評価した値と一致する `case` が見つからない場合は、
 `default:` に処理がジャンプします。
-プログラムでは、`weekday_initial` が `'m'` である場合には、
+プログラムでは、`weekday_initial` が `'t'` である場合には、
 `case` で指定した値と一致するものがないため、
 `default:` に処理がジャンプし、
 `printf("invalid\n");` が実行されます。
@@ -359,13 +361,13 @@ T
 Tuesday or Thursday
 ```
 
-小文字の `m` を入力した場合の実行結果です。
+小文字の `t` を入力した場合の実行結果です。
 この時はどの `case` にも当てはまらないので、
 `default` に処理がジャンプし、`invalid` と表示されます。
 
 ***`terminal`***
 ```
-m
+t
 invalid
 ```
 
@@ -373,6 +375,14 @@ invalid
 
 ### 例題 6-6 : switch 文の fall-through
 
+例題 6-5 のプログラムでは、
+各曜日 Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday の
+頭文字の大文字 `M`, `T`, `W`, `F`, `S` を入力すると
+該当する曜日を表示してくれました。
+次のプログラムは、各曜日の頭文字の小文字 `m`, `t`, `w`, `f`, `s` 
+の入力にも対応できるよう拡張したものです。
+
+***`weekday2.c`***
 ```c
 #include <stdio.h>
 
@@ -411,11 +421,38 @@ int main(void) {
 }
 ```
 
+このプログラム中の switch 文では、例題 6-6 と同様に
+char 型の変数 `weekday_initial` を制御式として指定しています。
+
+いま、`weekday_initial` の値が `T` である場合を考えます。  
+このとき、ラベル `case 'T':` の場所に処理がジャンプします。
+`case 'T':` の後には、命令が無く、特に `break` もありません。
+したがって、処理は次の `case 't':` の場所に続きます。
+ここには、`printf("Tuesday or Thursday\n");` という命令があるので、
+`Tuesday or Thursday` と表示されます。
+続いて、`break` があるので、switch 文を抜けます。
+
+仮に `weekday_initial` の値が `t` であった場合には、
+処理が `case 't':` にジャンプするので、
+`Tuesday or Thursday` と表示され、続く `break` により、
+switch 文での処理は終了します。
+
+このように、`case` の後に `break` がない場合では、
+処理は次の `case` に続きます。
+
+
+このプログラムの実行例を示します。
+1 行目は、入力された文字を表しています。
+
+`T` を入力した場合の実行結果です。
+
 ***`terminal`***
 ```
 T
 Tuesday or Thursday
 ```
+
+`t` を入力した場合の実行結果です。
 
 ***`terminal`***
 ```
@@ -423,10 +460,20 @@ t
 Tuesday or Thursday
 ```
 
+大文字の `T` と小文字の `t` のどちらを入力した場合も、
+`Tuesday or Thursday` と表示されているのがわかります。
 
 ---
 
 ### 例題 6-7 : if 文と switch 文の混在
+
+if 文どうしや switch 文どうしを組み合わせたり、
+if 文と switch 文を組み合わせることことで、
+複雑な分岐処理を実現することができます。
+
+次のプログラムは、if 文と switch 文を組み合わせた例です。
+ユーザーから入力された整数値に応じて、
+表示を変えるプログラムです。
 
 ***`if_switch.c`***
 ```c
@@ -439,6 +486,7 @@ int main(void) {
   scanf("%d", &n);
 
   if (n >= 0) {
+    printf("Zero or Positive number.\n");
     switch (n % 3) {
       case 0:
         printf("Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n");
@@ -458,25 +506,69 @@ int main(void) {
 }
 ```
 
+このプログラムでは、まず if 文で、
+`int` 型の変数 `n` の値に対する条件 `n >= 0` 
+が真であるかどうかを判定して、
+次の1. 2. のように分岐が行われます。
+
+1. `n >= 0` が真である場合 :
+  まず `Zero or Positive number.` と表示されます。
+  続いて、switch 文により `n` を 3 で割った余り (`n % 3`) に応じてさらに分岐が行われます。
+    * `n % 3` の値が 0 の場合 :
+      `Wow! ...` と表示されます。
+    * `n % 3` の値が 1 の場合 :
+      `Oh. ...` と表示されます。
+    * `n % 3` の値が 2 の場合 :
+      `Hmm. ...` と表示されます。
+
+2. `n >= 0` が偽である場合 :
+  `Negative number.` と表示されます。
+
+プログラムのフローチャートを示します。
+フローチャートと、
+プログラム中の if 文と switch 文を見比べて、
+構造が一致していることを確認してください。
+
 ![flowchart](./assets/flowchart_chap06_ifswitch.drawio.png)
 
+
+プログラムの実行結果を示します。
+1行目の行末の数値が、入力された数値を表しています。
+
+`n` として 42 を入力した場合の実行結果です。
+42 は 0 以上の数なので、`Zero or Positive number.` と表示されます。
+さらに、42 を 3 で割った余りは 0 なので、
+`Wow! ...` と表示されます。
 
 ***`terminal`***
 ```
 What's your favorite number? 42
+Zero or Positive number.
 Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done!
 ```
+
+
+43 を入力した場合の実行結果です。
+43 は 0 以上の数なので、`Zero or Positive number.` と表示されます。
+43 を 3 で割った余りは 1 なので、
+`Oh. ...` と表示されます。
 
 ***`terminal`***
 ```
 What's your favorite number? 43
+Zero or Positive number.
 Oh. That's a decently good number.
 ```
+
+
+-1 を入力した場合の実行結果です。
+-1 は 0 以上ではないため、
+`Negative number.` とだけ表示されます。
 
 ***`terminal`***
 ```
 What's your favorite number? -1
-That's a negative number.
+Negative number.
 ```
 
 ---
@@ -513,6 +605,8 @@ That's a negative number.
 
 
 ### 演習 6-2
+
+次のプログラムを作成して、実行結果を確認してください。
 
 ***`fizzbuzz.c`***
 ```c
