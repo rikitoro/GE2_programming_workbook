@@ -348,7 +348,7 @@ switch 文を使うとプログラムを簡潔に書くことができます。<
 各曜日 Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday の
 頭文字の大文字 <code>M</code>, <code>T</code>, <code>W</code>, <code>F</code>, <code>S</code> を入力すると
 該当する曜日を表示し、それ以外の文字を入力すると <code>invalid</code> と表示します。</p>
-<p><em><strong><code>weekday.c</code></strong></em></p>
+<p><em><strong><code>weekday1.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -393,15 +393,17 @@ switch 文で行う処理を記述しますが、
 その値に応じて、<code>case</code> で指定した値と一致するかどうかを上から順に調べます。
 一致する <code>case</code> が見つかったら、そこへ処理がジャンプします。
 なお、制御式で評価される値、および <code>case</code> で指定する値は、
-整数値、文字(<code>char</code> 型の値)である必要があります。</p>
+整数値(<code>int</code> 型の値など)や文字(<code>char</code> 型の値)である必要があります。</p>
 <p>このプログラムにおいては、例えば、<code>weekday_initial</code> が <code>'T'</code> であれば、
 <code>case 'T':</code> に処理がジャンプし、
 <code>printf(&quot;Tuesday or Thursday\n&quot;);</code> が実行されます。
 続く <code>break</code> は、switch 文を抜けるための命令です。
+これにより、switch 文のブロックを抜けるので、
+続く <code>case 'W':</code> 以降の処理は実行されません。
 (<code>break</code> がないと、次の <code>case</code> の処理が続けて実行されてしまいます。)</p>
 <p>制御式で評価した値と一致する <code>case</code> が見つからない場合は、
 <code>default:</code> に処理がジャンプします。
-プログラムでは、<code>weekday_initial</code> が <code>'m'</code> である場合には、
+プログラムでは、<code>weekday_initial</code> が <code>'t'</code> である場合には、
 <code>case</code> で指定した値と一致するものがないため、
 <code>default:</code> に処理がジャンプし、
 <code>printf(&quot;invalid\n&quot;);</code> が実行されます。</p>
@@ -419,15 +421,22 @@ Monday
 <pre><code>T
 Tuesday or Thursday
 </code></pre>
-<p>小文字の <code>m</code> を入力した場合の実行結果です。
+<p>小文字の <code>t</code> を入力した場合の実行結果です。
 この時はどの <code>case</code> にも当てはまらないので、
 <code>default</code> に処理がジャンプし、<code>invalid</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>m
+<pre><code>t
 invalid
 </code></pre>
 <hr />
 <h3 id="例題-6-6--switch-文の-fall-through"><a class="header" href="#例題-6-6--switch-文の-fall-through">例題 6-6 : switch 文の fall-through</a></h3>
+<p>例題 6-5 のプログラムでは、
+各曜日 Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday の
+頭文字の大文字 <code>M</code>, <code>T</code>, <code>W</code>, <code>F</code>, <code>S</code> を入力すると
+該当する曜日を表示してくれました。
+次のプログラムは、各曜日の頭文字の小文字 <code>m</code>, <code>t</code>, <code>w</code>, <code>f</code>, <code>s</code> 
+の入力にも対応できるよう拡張したものです。</p>
+<p><em><strong><code>weekday2.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -464,16 +473,43 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>このプログラム中の switch 文では、例題 6-6 と同様に
+char 型の変数 <code>weekday_initial</code> を制御式として指定しています。</p>
+<p>いま、<code>weekday_initial</code> の値が <code>T</code> である場合を考えます。<br />
+このとき、ラベル <code>case 'T':</code> の場所に処理がジャンプします。
+<code>case 'T':</code> の後には、命令が無く、特に <code>break</code> もありません。
+したがって、処理は次の <code>case 't':</code> の場所に続きます。
+ここには、<code>printf(&quot;Tuesday or Thursday\n&quot;);</code> という命令があるので、
+<code>Tuesday or Thursday</code> と表示されます。
+続いて、<code>break</code> があるので、switch 文を抜けます。</p>
+<p>仮に <code>weekday_initial</code> の値が <code>t</code> であった場合には、
+処理が <code>case 't':</code> にジャンプするので、
+<code>Tuesday or Thursday</code> と表示され、続く <code>break</code> により、
+switch 文での処理は終了します。</p>
+<p>このように、<code>case</code> の後に <code>break</code> がない場合では、
+処理は次の <code>case</code> に続きます。</p>
+<p>このプログラムの実行例を示します。
+1 行目は、入力された文字を表しています。</p>
+<p><code>T</code> を入力した場合の実行結果です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>T
 Tuesday or Thursday
 </code></pre>
+<p><code>t</code> を入力した場合の実行結果です。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>t
 Tuesday or Thursday
 </code></pre>
+<p>大文字の <code>T</code> と小文字の <code>t</code> のどちらを入力した場合も、
+<code>Tuesday or Thursday</code> と表示されているのがわかります。</p>
 <hr />
 <h3 id="例題-6-7--if-文と-switch-文の混在"><a class="header" href="#例題-6-7--if-文と-switch-文の混在">例題 6-7 : if 文と switch 文の混在</a></h3>
+<p>if 文どうしや switch 文どうしを組み合わせたり、
+if 文と switch 文を組み合わせることことで、
+複雑な分岐処理を実現することができます。</p>
+<p>次のプログラムは、if 文と switch 文を組み合わせた例です。
+ユーザーから入力された整数値に応じて、
+表示を変えるプログラムです。</p>
 <p><em><strong><code>if_switch.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
@@ -484,6 +520,7 @@ int main(void) {
   scanf(&quot;%d&quot;, &amp;n);
 
   if (n &gt;= 0) {
+    printf(&quot;Zero or Positive number.\n&quot;);
     switch (n % 3) {
       case 0:
         printf(&quot;Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n&quot;);
@@ -502,18 +539,60 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>このプログラムでは、まず if 文で、
+<code>int</code> 型の変数 <code>n</code> の値に対する条件 <code>n &gt;= 0</code> 
+が真であるかどうかを判定して、
+次の1. 2. のように分岐が行われます。</p>
+<ol>
+<li>
+<p><code>n &gt;= 0</code> が真である場合 :
+まず <code>Zero or Positive number.</code> と表示されます。
+続いて、switch 文により <code>n</code> を 3 で割った余り (<code>n % 3</code>) に応じてさらに分岐が行われます。</p>
+<ul>
+<li><code>n % 3</code> の値が 0 の場合 :
+<code>Wow! ...</code> と表示されます。</li>
+<li><code>n % 3</code> の値が 1 の場合 :
+<code>Oh. ...</code> と表示されます。</li>
+<li><code>n % 3</code> の値が 2 の場合 :
+<code>Hmm. ...</code> と表示されます。</li>
+</ul>
+</li>
+<li>
+<p><code>n &gt;= 0</code> が偽である場合 :
+<code>Negative number.</code> と表示されます。</p>
+</li>
+</ol>
+<p>プログラムのフローチャートを示します。
+フローチャートと、
+プログラム中の if 文と switch 文を見比べて、
+構造が一致していることを確認してください。</p>
 <p><img src="./assets/flowchart_chap06_ifswitch.drawio.png" alt="flowchart" /></p>
+<p>プログラムの実行結果を示します。
+1行目の行末の数値が、入力された数値を表しています。</p>
+<p><code>n</code> として 42 を入力した場合の実行結果です。
+42 は 0 以上の数なので、<code>Zero or Positive number.</code> と表示されます。
+さらに、42 を 3 で割った余りは 0 なので、
+<code>Wow! ...</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>What's your favorite number? 42
+Zero or Positive number.
 Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done!
 </code></pre>
+<p>43 を入力した場合の実行結果です。
+43 は 0 以上の数なので、<code>Zero or Positive number.</code> と表示されます。
+43 を 3 で割った余りは 1 なので、
+<code>Oh. ...</code> と表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>What's your favorite number? 43
+Zero or Positive number.
 Oh. That's a decently good number.
 </code></pre>
+<p>-1 を入力した場合の実行結果です。
+-1 は 0 以上ではないため、
+<code>Negative number.</code> とだけ表示されます。</p>
 <p><em><strong><code>terminal</code></strong></em></p>
 <pre><code>What's your favorite number? -1
-That's a negative number.
+Negative number.
 </code></pre>
 <hr />
 <h2 id="演習"><a class="header" href="#演習">演習</a></h2>
@@ -538,6 +617,7 @@ That's a negative number.
 1200 yen
 </code></pre>
 <h3 id="演習-6-2"><a class="header" href="#演習-6-2">演習 6-2</a></h3>
+<p>次のプログラムを作成して、実行結果を確認してください。</p>
 <p><em><strong><code>fizzbuzz.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
