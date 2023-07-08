@@ -1872,8 +1872,53 @@ sum = 55
 次のように表すこともできます。</p>
 <p><img src="./assets/flowchart_chap07_sum_loop.drawio.png" alt="flowchart" /></p>
 <hr />
+<h3 id="例題-7-2--二重ループ"><a class="header" href="#例題-7-2--二重ループ">例題 7-2 : 二重ループ</a></h3>
+<p>for 文の処理の中でさらに for 文を利用することで、
+いわゆる二重ループを実現することができます。</p>
+<p>次のプログラムは、for文による二重ループを利用して、
+正の整数 m, n を入力すると、m 行 n 列の <code>*</code> で作られた
+長方形を表示するプログラムです。</p>
+<p><em><strong><code>rectangle.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int n, m;
+  int i, j;
+
+  scanf(&quot;%d %d&quot;, &amp;m, &amp;n);
+
+  for (i = 0; i &lt; m; i++) {
+    for (j = 0; j &lt; n; j++) {
+      printf(&quot;*&quot;);
+    }
+    printf(&quot;\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<p>プログラムの処理の流れを示したフローチャートは次のようになります。</p>
+<p><img src="./assets/flowchart_chap07_rectangle.drawio.png" alt="flowchart" /></p>
+<p>外側のループ(A) は、<code>m</code> 行の長方形を作るためのループです。
+内側のループ(B) は、各行ごとに <code>n</code> 個の <code>*</code> を描画するためのループです。
+内側のループ(B) が終了すると、改行を出力して、次の行に移ります。</p>
+<p>実行結果は次の通りです。
+1行目は <code>m</code> と <code>n</code> を入力しています。
+ここでは <code>m = 4</code>, <code>n = 7</code> としています。
+2 行目以降に、4 行 7 列の長方形が表示されています。</p>
+<p><em><strong><code>terminal (実行結果)</code></strong></em></p>
+<pre><code>4 7
+*******
+*******
+*******
+*******
+</code></pre>
 <h2 id="72--while-文"><a class="header" href="#72--while-文">7.2 : while 文</a></h2>
 <h3 id="例題-7-3--while-文"><a class="header" href="#例題-7-3--while-文">例題 7-3 : while 文</a></h3>
+<p>while 文は、ある条件が真である間、処理を繰り返し行うときに利用します。</p>
+<p>次のプログラムは、while 文を利用して、キーボードから <code>q</code> が入力されるまで、
+入力された文字を表示するプログラムです。</p>
+<p><em><strong><code>echo.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -1889,16 +1934,47 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>while 文の書式は次の通りです。</p>
+<pre><code class="language-c">while (継続条件式) {
+  処理
+}
+</code></pre>
+<p>while 文では、はじめに継続条件式が評価されます。
+継続条件式が真であれば処理が実行されます。
+その後再び継続条件式が評価されます。
+継続条件式が偽となると、while 文の実行を終了します。</p>
+<p>例題のプログラム <code>echo.c</code> の継続条件式は <code>c != 'q'</code> です。
+ですので、char 型の変数 <code>c</code> が <code>'q'</code> でない限り、処理が繰り返し実行されます。</p>
+<p>プログラム全体の処理の流れを示したフローチャートは次のようになります。</p>
+<p><img src="./assets/flowchart_chap07_echo.drawio.png" alt="flowchart" /></p>
+<p>このフローチャートは、ループ端記号を用いて次のようにも表すことができます。</p>
+<p><img src="./assets/flowchart_chap07_echo_loop.drawio.png" alt="flowchart" /></p>
+<p>プログラムの実行例を示します。
+1, 3, 5 行目は、キーボードからの入力を示しています。
+<code>a</code> や <code>3</code> が入力されたときは、while 文の処理が実行され、
+<code>input character : a</code> や <code>input character : 3</code> が表示されています。
+<code>q</code> が入力されると、while 文の処理が実行されず、プログラムが終了します。</p>
+<p><em><strong><code>terminal (実行結果1)</code></strong></em></p>
 <pre><code>a
 input character : a
 3
 input character : 3
 q
 </code></pre>
+<p>別の実行例を示します。
+1 行目は、キーボードからの入力を示しています。
+はじめに <code>q</code> が入力されると、while 文の処理が実行されず、プログラムが終了します。</p>
+<p><em><strong><code>terminal (実行結果2)</code></strong></em></p>
 <pre><code>q
 </code></pre>
+<hr />
 <h2 id="73--do-while-文"><a class="header" href="#73--do-while-文">7.3 : do-while 文</a></h2>
 <h3 id="例題-7-4--do-while-文"><a class="header" href="#例題-7-4--do-while-文">例題 7-4 : do-while 文</a></h3>
+<p>do-while 文は while 文と同様に、ある条件が真である間、処理を繰り返し行うときに利用します。
+ただし、while 文とは処理の流れが若干異なります。</p>
+<p>次のプログラムは、do-while 文を利用して、キーボードから <code>q</code> が入力されるまで、
+入力された文字を表示するプログラムです。</p>
+<p><em><strong><code>echo_do_while.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
@@ -1912,6 +1988,27 @@ int main(void) {
   return 0;
 }
 </code></pre>
+<p>do-while 文の書式は次の通りです。</p>
+<pre><code class="language-c">do {
+  処理
+} while (継続条件式);
+</code></pre>
+<p>while 文と異なる点は、はじめに処理が実行され、その後継続条件式が評価される点です。
+継続条件式が真であれば処理が再び実行されます。
+継続条件式が偽となると、do-while 文の実行を終了します。</p>
+<p>例題のプログラム <code>echo_do_while.c</code> の継続条件式は <code>c != 'q'</code> です。</p>
+<p>プログラム全体の処理の流れを示したフローチャートは次のようになります。</p>
+<p><img src="./assets/flowchart_chap07_echo_do_while.drawio.png" alt="flowchart" /></p>
+<p>ループ端記号を用いて次のようにも表すことができます。</p>
+<p><img src="./assets/flowchart_chap07_echo_do_while_loop.drawio.png" alt="flowchart" /></p>
+<p>プログラムの実行例を示します。
+1, 3, 5 行目は、キーボードからの入力を示しています。
+<code>a</code> や <code>3</code> が入力されたときは、繰り返しの処理が実行され、
+<code>input character : a</code> や <code>input character : 3</code> が表示されています。
+<code>q</code> が入力された場合でも、繰り返しの処理が実行され
+<code>input character : q</code> が表示されますが、
+その後は継続条件式が偽となり、プログラムが終了します。</p>
+<p><em><strong><code>terminal (実行結果1)</code></strong></em></p>
 <pre><code>a
 input character : a
 3
@@ -1919,36 +2016,30 @@ input character : 3
 q
 input character : q
 </code></pre>
+<p>別の実行例を示します。
+1 行目は、キーボードからの入力を示しています。
+はじめに <code>q</code> を入力した場合でも、do-while 文の処理が実行され、
+<code>input character : q</code> が表示されます。
+もちろん、その後は継続条件式が偽となり、プログラムが終了します。</p>
+<p><em><strong><code>terminal (実行結果2)</code></strong></em></p>
 <pre><code>q
 input character : q
 </code></pre>
 <hr />
-<h3 id="例題-7-2--二重ループ"><a class="header" href="#例題-7-2--二重ループ">例題 7-2 : 二重ループ</a></h3>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main(void) {
-  int i, j;
-
-  for (i = 0; i &lt; 10; i++) {
-    for (j = 0; j &lt;= i; j++) {
-      printf(&quot;*&quot;);
-    }
-    printf(&quot;\n&quot;);
-  }
-
-  return 0;
-}
-</code></pre>
-<pre><code>*
+<h2 id="演習-6"><a class="header" href="#演習-6">演習</a></h2>
+<h3 id="演習-7-1"><a class="header" href="#演習-7-1">演習 7-1</a></h3>
+<p>正の整数値 n を入力すると、以下の実行例のように、
+高さ n 幅 n の直角三角形の領域を文字 <code>*</code> で描画するプログラムを作成してください。</p>
+<p>実行例を示します。
+1 行目は、ユーザーからの n の値の入力を示しています。</p>
+<p><em><strong><code>terminal (実行結果)</code></strong></em></p>
+<pre><code>6
+*
 **
 ***
 ****
 *****
 ******
-*******
-********
-*********
-**********
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="課題"><a class="header" href="#課題">課題</a></h1>
 <h2 id="課題-1"><a class="header" href="#課題-1">課題 1.</a></h2>
