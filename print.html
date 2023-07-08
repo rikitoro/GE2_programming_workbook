@@ -91,11 +91,33 @@
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
@@ -1785,7 +1807,147 @@ int main(void) {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-7-章--繰り返し処理"><a class="header" href="#第-7-章--繰り返し処理">第 7 章 : 繰り返し処理</a></h1>
-<p>「作成中」</p>
+<h2 id="71--for-文"><a class="header" href="#71--for-文">7.1 : for 文</a></h2>
+<h3 id="例題-7-1--for-文"><a class="header" href="#例題-7-1--for-文">例題 7-1 : for 文</a></h3>
+<p>for 文は、繰り返し処理を行うための文です。
+決まった回数の繰り返し処理を行う場合によく利用されます。</p>
+<p>次のプログラムは、for 文を利用して 1 から 10 までの整数の和を
+途中の計算結果を表示しながら求めるプログラムです。</p>
+<p><em><strong><code>sum.c</code></strong></em></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int sum = 0;
+  int i;
+
+  for (i = 1; i &lt;= 10; i++) {
+    sum += i;
+    printf(&quot;i = %d, sum = %d\n&quot;, i, sum);
+  }
+
+  printf(&quot;sum = %d\n&quot;, sum);
+
+  return 0;
+}
+</code></pre>
+<p>for 文の書式は次の通りです。</p>
+<pre><code class="language-c">for (初期設定式; 継続条件式; 再設定式) {
+  処理
+}
+</code></pre>
+<p>for 文の実行の流れは次のフローチャートの通りです。</p>
+<p><img src="./assets/for.drawio.png" alt="flowchart" /></p>
+<p>まず初めに、初期設定式が実行されます。
+次に継続条件式が評価され、真であれば処理と再設定式が実行されます。
+その後再び継続条件式が評価されます。
+継続条件式が真となるあいだは、処理と再設定式が繰り返し実行されます。
+継続条件式が偽となると、for 文の実行を終了します。</p>
+<p>例題のプログラム <code>sum.c</code> では、
+初期設定式、継続条件式、再設定式、処理の部分はそれぞれ次のようになります。</p>
+<ul>
+<li>初期設定式 : <code>i = 1</code></li>
+<li>継続条件式 : <code>i &lt;= 10</code></li>
+<li>再設定式 : <code>i++</code></li>
+<li>処理 : <code>sum += i; printf(&quot;i = %d, sum = %d\n&quot;, i, sum);</code></li>
+</ul>
+<p>プログラム全体の処理の流れを示したフローチャートは次のようになります。
+for 文の初期設定式、継続条件式、再設定式、処理の部分がそれぞれフローチャートの
+どこに対応するかを確認してください。</p>
+<p><img src="./assets/flowchart_chap07_sum.drawio.png" alt="flowchart" /></p>
+<p>実行結果は次の通りです。</p>
+<p><em><strong><code>実行結果</code></strong></em></p>
+<pre><code>i = 1, sum = 1
+i = 2, sum = 3
+i = 3, sum = 6
+i = 4, sum = 10
+i = 5, sum = 15
+i = 6, sum = 21
+i = 7, sum = 28
+i = 8, sum = 36
+i = 9, sum = 45
+i = 10, sum = 55
+sum = 55
+</code></pre>
+<hr />
+<hr />
+<h2 id="72--while-文"><a class="header" href="#72--while-文">7.2 : while 文</a></h2>
+<h3 id="例題-7-3--while-文"><a class="header" href="#例題-7-3--while-文">例題 7-3 : while 文</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  char c;
+
+  scanf(&quot;%c&quot;, &amp;c);
+
+  while (c != 'q') {
+    printf(&quot;input character : %c\n&quot;, c);
+    scanf(&quot;%c&quot;, &amp;c);
+  }
+
+  return 0;
+}
+</code></pre>
+<pre><code>a
+input character : a
+3
+input character : 3
+q
+</code></pre>
+<pre><code>q
+</code></pre>
+<h2 id="73--do-while-文"><a class="header" href="#73--do-while-文">7.3 : do-while 文</a></h2>
+<h3 id="例題-7-4--do-while-文"><a class="header" href="#例題-7-4--do-while-文">例題 7-4 : do-while 文</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  char c;
+
+  do {
+    scanf(&quot;%c&quot;, &amp;c);
+    printf(&quot;input character : %c\n&quot;, c);
+  } while (c != 'q');
+
+  return 0;
+}
+</code></pre>
+<pre><code>a
+input character : a
+3
+input character : 3
+q
+input character : q
+</code></pre>
+<pre><code>q
+input character : q
+</code></pre>
+<hr />
+<h3 id="例題-7-2--二重ループ"><a class="header" href="#例題-7-2--二重ループ">例題 7-2 : 二重ループ</a></h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(void) {
+  int i, j;
+
+  for (i = 0; i &lt; 10; i++) {
+    for (j = 0; j &lt;= i; j++) {
+      printf(&quot;*&quot;);
+    }
+    printf(&quot;\n&quot;);
+  }
+
+  return 0;
+}
+</code></pre>
+<pre><code>*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="課題"><a class="header" href="#課題">課題</a></h1>
 <h2 id="課題-1"><a class="header" href="#課題-1">課題 1.</a></h2>
 <p>正の実数 \(r\) と 0 以上 360 以下の実数 \(\theta\) を入力すると、
