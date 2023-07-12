@@ -1924,11 +1924,11 @@ int main(void) {
 int main(void) {
   char c;
 
-  scanf(&quot;%c&quot;, &amp;c);
+  scanf(&quot; %c&quot;, &amp;c); // &quot; %c&quot; スペースを入れると、空白文字を読み飛ばすことができる
 
   while (c != 'q') {
     printf(&quot;input character : %c\n&quot;, c);
-    scanf(&quot;%c&quot;, &amp;c);
+    scanf(&quot; %c&quot;, &amp;c);
   }
 
   return 0;
@@ -1981,7 +1981,7 @@ int main(void) {
   char c;
 
   do {
-    scanf(&quot;%c&quot;, &amp;c);
+    scanf(&quot; %c&quot;, &amp;c);
     printf(&quot;input character : %c\n&quot;, c);
   } while (c != 'q');
 
