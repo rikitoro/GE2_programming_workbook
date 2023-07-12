@@ -158,11 +158,11 @@ while 文は、ある条件が真である間、処理を繰り返し行うと�
 int main(void) {
   char c;
 
-  scanf("%c", &c);
+  scanf(" %c", &c); // " %c" スペースを入れると、空白文字を読み飛ばすことができる
 
   while (c != 'q') {
     printf("input character : %c\n", c);
-    scanf("%c", &c);
+    scanf(" %c", &c);
   }
 
   return 0;
@@ -237,7 +237,7 @@ int main(void) {
   char c;
 
   do {
-    scanf("%c", &c);
+    scanf(" %c", &c);
     printf("input character : %c\n", c);
   } while (c != 'q');
 
