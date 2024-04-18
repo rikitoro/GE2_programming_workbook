@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="jp" class="sidebar-visible no-js light">
+<html lang="jp" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html" class="active"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -184,10 +191,10 @@ if 文を使います。</p>
 int main(void) {
   int number;
 
-  scanf(&quot;%d&quot;, &amp;number);
+  scanf("%d", &amp;number);
 
   if (number &gt; 0) {
-    printf(&quot;positive number\n&quot;);
+    printf("positive number\n");
   }
 
   return 0;
@@ -196,7 +203,7 @@ int main(void) {
 <p><code>if</code> の後に続く条件式 <code>number &gt; 0</code> が真のとき、
 <code>{</code> と <code>}</code> で囲まれたブロック内の文が実行されます。
 すなわち、<code>mumber</code> が正の数の時は、
-<code>printf(&quot;positive number\n&quot;);</code> が実行され、
+<code>printf("positive number\n");</code> が実行され、
 <code>positive number</code> と表示されます。</p>
 <p>条件式が偽、すなわち、<code>mumber</code> がゼロまたは負の数の場合は、
 ブロック内の文は実行されず、なにも表示されません。</p>
@@ -226,22 +233,22 @@ positive number
 int main(void) {
   int number;
 
-  scanf(&quot;%d&quot;, &amp;number);
+  scanf("%d", &amp;number);
 
   if (number &gt; 0) {
-    printf(&quot;positive number\n&quot;);
+    printf("positive number\n");
   } else {
-    printf(&quot;zero or negative number\n&quot;);
+    printf("zero or negative number\n");
   }
 
   return 0;
 }
 </code></pre>
 <p>if 文の条件式 <code>number &gt; 0</code> が成り立つときは、
-続くブロック内の文 <code>printf(&quot;positive number\n&quot;);</code> が実行されます。
+続くブロック内の文 <code>printf("positive number\n");</code> が実行されます。
 条件式が成り立たないとき、すなわち、<code>number</code> がゼロまたは負の数のときは、
 <code>else</code> の後に続くブロック内の文
-<code>printf(&quot;zero or negative number\n&quot;);</code> が実行されます。</p>
+<code>printf("zero or negative number\n");</code> が実行されます。</p>
 <p>このプログラムの処理の流れを示すフローチャートを次に示します。</p>
 <p><img src="./assets/flowchart_chap06_posneg.drawio.png" alt="flowchart" /></p>
 <p>プログラムの実行結果を示します。
@@ -276,26 +283,26 @@ zero or negative number
 int main(void) {
   int number;
 
-  scanf(&quot;%d&quot;, &amp;number);
+  scanf("%d", &amp;number);
 
   if (number &gt; 0) {
-    printf(&quot;positive number\n&quot;);
+    printf("positive number\n");
   } else if (number &lt; 0) {
-    printf(&quot;negative number\n&quot;);
+    printf("negative number\n");
   } else {
-    printf(&quot;zero\n&quot;);
+    printf("zero\n");
   }
 
   return 0;
 }
 </code></pre>
 <p>if 文の最初の条件式 <code>number &gt; 0</code> が成り立つときは、
-続くブロック内の文 <code>printf(&quot;positive number\n&quot;);</code> が実行されます。
+続くブロック内の文 <code>printf("positive number\n");</code> が実行されます。
 条件式が成り立たないときは、<code>else if</code> に続く条件式 <code>number &lt; 0</code> が評価されます。
 この条件式 <code>number &lt; 0</code> が成り立つときは、
-続くブロック内の文 <code>printf(&quot;negative number\n&quot;);</code> が実行されます。
+続くブロック内の文 <code>printf("negative number\n");</code> が実行されます。
 最初の条件式も、2 番目の条件式も成り立たないときは、
-最後の <code>else</code> に続くブロック内の文 <code>printf(&quot;zero\n&quot;);</code> が実行されます。</p>
+最後の <code>else</code> に続くブロック内の文 <code>printf("zero\n");</code> が実行されます。</p>
 <p>このプログラムの処理の流れを示すフローチャートを次に示します。</p>
 <p><img src="./assets/flowchart_chap06_posnegzero.drawio.png" alt="flowchart" /></p>
 <p>プログラムの実行結果を示します。
@@ -327,13 +334,13 @@ zero
 int main(void) {
   double temperature;
   
-  printf(&quot;temperature? &quot;);
-  scanf(&quot;%lf&quot;, &amp;temperature);
+  printf("temperature? ");
+  scanf("%lf", &amp;temperature);
   
   if (15.0 &lt;= temperature &amp;&amp; temperature &lt; 25.0) {
-    printf(&quot;comfortable\n&quot;);
+    printf("comfortable\n");
   } else {
-    printf(&quot;uncomfortable\n&quot;);
+    printf("uncomfortable\n");
   }
 
   return 0;
@@ -376,26 +383,26 @@ switch 文を使うとプログラムを簡潔に書くことができます。<
 int main(void) {
   char weekday_initial;
 
-  scanf(&quot;%c&quot;, &amp;weekday_initial);
+  scanf("%c", &amp;weekday_initial);
 
   switch (weekday_initial) {
     case 'M':
-      printf(&quot;Monday\n&quot;);
+      printf("Monday\n");
       break;
     case 'T':
-      printf(&quot;Tuesday or Thursday\n&quot;);
+      printf("Tuesday or Thursday\n");
       break;
     case 'W':
-      printf(&quot;Wednesday\n&quot;);
+      printf("Wednesday\n");
       break;
     case 'F':
-      printf(&quot;Friday\n&quot;);
+      printf("Friday\n");
       break;
     case 'S':
-      printf(&quot;Saturday or Sunday\n&quot;);
+      printf("Saturday or Sunday\n");
       break;
     default:
-      printf(&quot;invalid\n&quot;);
+      printf("invalid\n");
       break;
   }
 
@@ -418,7 +425,7 @@ switch 文で行う処理を記述しますが、
 整数値(<code>int</code> 型の値など)や文字(<code>char</code> 型の値)である必要があります。</p>
 <p>このプログラムにおいては、例えば、<code>weekday_initial</code> が <code>'T'</code> であれば、
 <code>case 'T':</code> に処理がジャンプし、
-<code>printf(&quot;Tuesday or Thursday\n&quot;);</code> が実行されます。
+<code>printf("Tuesday or Thursday\n");</code> が実行されます。
 続く <code>break</code> は、switch 文を抜けるための命令です。
 これにより、switch 文のブロックを抜けるので、
 続く <code>case 'W':</code> 以降の処理は実行されません。
@@ -428,7 +435,7 @@ switch 文で行う処理を記述しますが、
 プログラムでは、<code>weekday_initial</code> が <code>'t'</code> である場合には、
 <code>case</code> で指定した値と一致するものがないため、
 <code>default:</code> に処理がジャンプし、
-<code>printf(&quot;invalid\n&quot;);</code> が実行されます。</p>
+<code>printf("invalid\n");</code> が実行されます。</p>
 <p>プログラムの処理の流れをフローチャートに示すと次のようになります。</p>
 <p><img src="./assets/flowchart_chap06_weekday.drawio.png" alt="flowchart" /></p>
 <p>プログラムの実行結果を示します。
@@ -456,7 +463,7 @@ invalid
 各曜日 Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday の
 頭文字の大文字 <code>M</code>, <code>T</code>, <code>W</code>, <code>F</code>, <code>S</code> を入力すると
 該当する曜日を表示してくれました。
-次のプログラムは、各曜日の頭文字の小文字 <code>m</code>, <code>t</code>, <code>w</code>, <code>f</code>, <code>s</code> 
+次のプログラムは、各曜日の頭文字の小文字 <code>m</code>, <code>t</code>, <code>w</code>, <code>f</code>, <code>s</code>
 の入力にも対応できるよう拡張したものです。</p>
 <p><em><strong><code>weekday2.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
@@ -464,31 +471,31 @@ invalid
 int main(void) {
   char weekday_initial;
 
-  scanf(&quot;%c&quot;, &amp;weekday_initial);
+  scanf("%c", &amp;weekday_initial);
 
   switch (weekday_initial) {
     case 'M':
     case 'm':
-      printf(&quot;Monday\n&quot;);
+      printf("Monday\n");
       break;
     case 'T':
     case 't':
-      printf(&quot;Tuesday or Thursday\n&quot;);
+      printf("Tuesday or Thursday\n");
       break;
     case 'W':
     case 'w':
-      printf(&quot;Wednesday\n&quot;);
+      printf("Wednesday\n");
       break;
     case 'F':
     case 'f':
-      printf(&quot;Friday\n&quot;);
+      printf("Friday\n");
       break;
     case 'S':
     case 's':
-      printf(&quot;Saturday or Sunday\n&quot;);
+      printf("Saturday or Sunday\n");
       break;
     default:
-      printf(&quot;invalid\n&quot;);
+      printf("invalid\n");
       break;
   }
 
@@ -501,7 +508,7 @@ char 型の変数 <code>weekday_initial</code> を制御式として指定して
 このとき、ラベル <code>case 'T':</code> の場所に処理がジャンプします。
 <code>case 'T':</code> の後には、命令が無く、特に <code>break</code> もありません。
 したがって、処理は次の <code>case 't':</code> の場所に続きます。
-ここには、<code>printf(&quot;Tuesday or Thursday\n&quot;);</code> という命令があるので、
+ここには、<code>printf("Tuesday or Thursday\n");</code> という命令があるので、
 <code>Tuesday or Thursday</code> と表示されます。
 続いて、<code>break</code> があるので、switch 文を抜けます。</p>
 <p>仮に <code>weekday_initial</code> の値が <code>t</code> であった場合には、
@@ -538,31 +545,31 @@ if 文と switch 文を組み合わせることことで、
 int main(void) {
   int n;
 
-  printf(&quot;What's your favorite number? &quot;);
-  scanf(&quot;%d&quot;, &amp;n);
+  printf("What's your favorite number? ");
+  scanf("%d", &amp;n);
 
   if (n &gt;= 0) {
-    printf(&quot;Zero or Positive number.\n&quot;);
+    printf("Zero or Positive number.\n");
     switch (n % 3) {
       case 0:
-        printf(&quot;Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n&quot;);
+        printf("Wow! You've entered a multiple of 3! That's a shining and magnificent number, indeed! Well done! \n");
         break;
       case 1:
-        printf(&quot;Oh. That's a decently good number.\n&quot;);
+        printf("Oh. That's a decently good number.\n");
         break;
       case 2:
-        printf(&quot;Hmm. That's not such a bad number.\n&quot;);
+        printf("Hmm. That's not such a bad number.\n");
         break;
     }
   } else {
-    printf(&quot;Negative number.\n&quot;);
+    printf("Negative number.\n");
   }
 
   return 0;
 }
 </code></pre>
 <p>このプログラムでは、まず if 文で、
-<code>int</code> 型の変数 <code>n</code> の値に対する条件 <code>n &gt;= 0</code> 
+<code>int</code> 型の変数 <code>n</code> の値に対する条件 <code>n &gt;= 0</code>
 が真であるかどうかを判定して、
 次の1. 2. のように分岐が行われます。</p>
 <ol>
@@ -646,18 +653,18 @@ Negative number.
 int main(void) {
   int max_count;
 
-  printf(&quot;Enter the maximum count: &quot;);
-  scanf(&quot;%d&quot;, &amp;max_count);
+  printf("Enter the maximum count: ");
+  scanf("%d", &amp;max_count);
   
   for (int count = 1; count &lt;= max_count; count++) {
     if ((count % 3 == 0) &amp;&amp; (count % 5 == 0)) {
-      printf(&quot;FizzBuzz\n&quot;);
+      printf("FizzBuzz\n");
     } else if (count % 3 == 0) {
-      printf(&quot;Fizz\n&quot;);
+      printf("Fizz\n");
     } else if (count % 5 == 0) {
-      printf(&quot;Buzz\n&quot;);
+      printf("Buzz\n");
     } else {
-      printf(&quot;%d\n&quot;, count);
+      printf("%d\n", count);
     }
   }
 
@@ -673,7 +680,7 @@ int main(void) {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="chapter_7.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="chapter_7.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -687,7 +694,7 @@ int main(void) {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="chapter_7.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="chapter_7.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="jp" class="sidebar-visible no-js light">
+<html lang="jp" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -178,21 +185,21 @@
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  printf(&quot;This is my first C program!\n&quot;);
+  printf("This is my first C program!\n");
 
   return 0;
 }
 </code></pre>
 <p>次に端末を開き、 <code>gcc</code> コマンドでソースファイルを指定してコンパイルを行います。コンパイルを行ってできる実行コードのファイル名は <code>gcc</code> コマンドの <code>-o</code> オプションで指定しましょう。
 次のようにソースファイル <code>first.c</code> をコンパイルすると、プログラムに構文エラー(Syntax error)がなければ、実行コード <code>first</code> が作成されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>$ gcc first.c -o first
+<p><em><strong><code>端末 (ソースコード first.c のコンパイル)</code></strong></em></p>
+<pre><code>$ gcc -o first first.c
 $ ls
 first  first.c
 </code></pre>
 <p>実行コード <code>first</code> を実行します。
 プログラムに誤りがなければ、標準出力に <code>This is my first C program!</code> と表示され、改行されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (実行コード first の実行結果)</code></strong></em></p>
 <pre><code>$ ./first
 This is my first C program!
 $
@@ -202,11 +209,11 @@ $
 ソースコードに構文エラー(文法上の誤り)があると、コンパイラはコンパイルに失敗し、次のようなエラーメッセージやヒントを表示します。
 エラーメッセージをよく確認し、ソースコードを修正したうえで再度コンパイルを行いましょう。</p>
 </blockquote>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (コンパイル時のエラーメッセージの例)</code></strong></em></p>
 <pre><code>$ gcc first.c -o first
 first.c: In function ‘main’:
 first.c:4:42: error: expected ‘;’ before ‘return’
-    4 |   printf(&quot;This is my first C program!\n&quot;)
+    4 |   printf("This is my first C program!\n")
       |                                          ^
       |                                          ;
     5 | 
@@ -224,7 +231,7 @@ first.c:4:42: error: expected ‘;’ before ‘return’
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  printf(&quot;Second program!\n&quot;);
+  printf("Second program!\n");
 
   return 0;
 }
@@ -232,7 +239,7 @@ int main(void) {
 <p>次にソースコードをコンパイルしオブジェクトコードを作成します。
 <code>gcc</code> の <code>-c</code> オプションを用います。
 次のようにコンパイルを行うと、オブジェクトコードのファイル <code>second.o</code> が作成されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (ソースコードからオブジェクトコードを作成)</code></strong></em></p>
 <pre><code>$ gcc -c second.c
 $ ls
 second.c  second.o
@@ -240,13 +247,13 @@ second.c  second.o
 <p>最後に、リンカを用いて、オブジェクトコードから実行コードを作成します。
 リンカは複数のオブジェクトコードやライブラリを結合して、コンピュータ上で直接実行できる実行コードを作成するものです。
 リンクは <code>gcc</code> の <code>-o</code> オプションで、実行コードのファイル名と、リンク対象のオブジェクトコードを指定して行います。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (リンカでオブジェクトコードから実行コードを作成)</code></strong></em></p>
 <pre><code>$ gcc -o second second.o
 $ ls
 second  second.c  second.o
 </code></pre>
 <p>実行コード <code>second</code> を実行すると、標準出力に <code>Second program!</code> と表示され改行されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (実行結果)</code></strong></em></p>
 <pre><code>$ ./second
 Second program!
 $
@@ -256,7 +263,7 @@ $
 実行コードやオブジェクトコードはコンピュータが解釈できる 0, 1 の2進数でされる機械語で書かれたプログラム(およびデータ)となっています。
 (通常の)人間が読んでわかるものではありませんが、<code>xxd</code> コマンドや <code>od</code> コマンドを使って、次のように実行コードの中身を見ることはできます。</p>
 </blockquote>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末 (実行コードの中身)</code></strong></em></p>
 <pre><code>$ xxd -b second | less
 00000000: 01111111 01000101 01001100 01000110 00000010 00000001  .ELF..
 00000006: 00000001 00000000 00000000 00000000 00000000 00000000  ......
@@ -279,18 +286,18 @@ int main(void) {
   int count;
 
   for (count = 1; count &lt;= 10; count++) {
-    printf(&quot;%d &quot;, count);
+    printf("%d ", count);
   }
 
-  printf(&quot;end!\n&quot;);
+  printf("end!\n");
 
   return 0;
 }
 </code></pre>
 <p>プログラムの実行結果については、次のように <code>script</code> コマンドを用いて、
-ターミナルへの入出力をファイル <code>count10.log</code> に保存してください。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
-<pre><code>$ script count10.log
+ターミナルへの入出力をファイル <code>count10.txt</code> に保存してください。</p>
+<p><em><strong><code>端末 (実行結果を script コマンドで保存)</code></strong></em></p>
+<pre><code>$ script count10.txt
 $ ./count10
 1 2 3 4 5 6 7 8 9 10 end!
 $ exit
@@ -301,7 +308,7 @@ $ exit
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next" href="chapter_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="chapter_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -312,7 +319,7 @@ $ exit
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next" href="chapter_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="chapter_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

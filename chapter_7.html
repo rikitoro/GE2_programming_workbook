@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="jp" class="sidebar-visible no-js light">
+<html lang="jp" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html" class="active"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -184,10 +191,10 @@ int main(void) {
 
   for (i = 1; i &lt;= 10; i++) {
     sum += i;
-    printf(&quot;i = %d, sum = %d\n&quot;, i, sum);
+    printf("i = %d, sum = %d\n", i, sum);
   }
 
-  printf(&quot;sum = %d\n&quot;, sum);
+  printf("sum = %d\n", sum);
 
   return 0;
 }
@@ -210,7 +217,7 @@ int main(void) {
 <li>初期設定式 : <code>i = 1</code></li>
 <li>継続条件式 : <code>i &lt;= 10</code></li>
 <li>再設定式 : <code>i++</code></li>
-<li>処理 : <code>sum += i; printf(&quot;i = %d, sum = %d\n&quot;, i, sum);</code></li>
+<li>処理 : <code>sum += i; printf("i = %d, sum = %d\n", i, sum);</code></li>
 </ul>
 <p>プログラム全体の処理の流れを示したフローチャートは次のようになります。
 for 文の初期設定式、継続条件式、再設定式、処理の部分がそれぞれフローチャートの
@@ -247,13 +254,13 @@ int main(void) {
   int n, m;
   int i, j;
 
-  scanf(&quot;%d %d&quot;, &amp;m, &amp;n);
+  scanf("%d %d", &amp;m, &amp;n);
 
   for (i = 0; i &lt; m; i++) {
     for (j = 0; j &lt; n; j++) {
-      printf(&quot;*&quot;);
+      printf("*");
     }
-    printf(&quot;\n&quot;);
+    printf("\n");
   }
 
   return 0;
@@ -286,11 +293,11 @@ int main(void) {
 int main(void) {
   char c;
 
-  scanf(&quot; %c&quot;, &amp;c); // &quot; %c&quot; スペースを入れると、空白文字を読み飛ばすことができる
+  scanf(" %c", &amp;c); // " %c" スペースを入れると、空白文字を読み飛ばすことができる
 
   while (c != 'q') {
-    printf(&quot;input character : %c\n&quot;, c);
-    scanf(&quot; %c&quot;, &amp;c);
+    printf("input character : %c\n", c);
+    scanf(" %c", &amp;c);
   }
 
   return 0;
@@ -343,8 +350,8 @@ int main(void) {
   char c;
 
   do {
-    scanf(&quot; %c&quot;, &amp;c);
-    printf(&quot;input character : %c\n&quot;, c);
+    scanf(" %c", &amp;c);
+    printf("input character : %c\n", c);
   } while (c != 'q');
 
   return 0;
@@ -412,7 +419,7 @@ input character : q
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="exercises.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="exercises.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -426,7 +433,7 @@ input character : q
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="exercises.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="exercises.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

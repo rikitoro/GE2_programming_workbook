@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="jp" class="sidebar-visible no-js light">
+<html lang="jp" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html" class="active"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -178,14 +185,14 @@
 
 int main(void) {
   int a = 8, b = -2, c = 3;
-  printf(&quot;a + b = %d\n&quot;, a + b);  // -&gt; 6
-  printf(&quot;(a - b) * c + 12 = %d\n&quot;, (a - b)  * c + 12); // -&gt; 42
-  printf(&quot;a mod c = %d\n&quot;, a % c);  // -&gt; 2 (a を c で割った余り)
+  printf("a + b = %d\n", a + b);  // -&gt; 6
+  printf("(a - b) * c + 12 = %d\n", (a - b)  * c + 12); // -&gt; 42
+  printf("a mod c = %d\n", a % c);  // -&gt; 2 (a を c で割った余り)
 
   double pi = 3.14, e = 2.71;
-  printf(&quot;pi + e = %f\n&quot;, pi + e);  // -&gt; 5.850000
-  printf(&quot;pi / e = %f\n&quot;, pi / e);  // -&gt; 1.168672
-  printf(&quot;pi / a = %f\n&quot;, pi / a);  // -&gt; 0.392500
+  printf("pi + e = %f\n", pi + e);  // -&gt; 5.850000
+  printf("pi / e = %f\n", pi / e);  // -&gt; 1.168672
+  printf("pi / a = %f\n", pi / a);  // -&gt; 0.392500
 
   return 0;
 }
@@ -221,19 +228,19 @@ int main(void) {
   double x2 = (double) (a / b); // -&gt; 2.000000
   double x3 = (double) a / b;   // -&gt; 2.666667
 
-  printf(&quot;x1 = %d\n&quot;, x1);
-  printf(&quot;x2 = %f\n&quot;, x2);
-  printf(&quot;x3 = %f\n&quot;, x3);
+  printf("x1 = %d\n", x1);
+  printf("x2 = %f\n", x2);
+  printf("x3 = %f\n", x3);
   
   return 0;
 }
 </code></pre>
-<p>まず、<code>int x1 = a / b;</code> の部分についてみていきます。 
+<p>まず、<code>int x1 = a / b;</code> の部分についてみていきます。
 <code>a = 8</code> と <code>b = 3</code> は共に<code>int</code>型の整数ですので、その割り算 <code>a / b</code> は数学的には
 <code>2.66666...</code> となりますが、小数点以下が切り捨てられて <code>2</code> と評価されますなります。
 したがって、<code>x1</code> には <code>2</code> が代入されます。</p>
 <p>次に、<code>double x2 = (double) (a / b);</code> の部分についてみていきます。
-<code>a / b</code> は <code>2</code> となりますが、<code>(double)</code> によって値が <code>double</code> 型に 
+<code>a / b</code> は <code>2</code> となりますが、<code>(double)</code> によって値が <code>double</code> 型に
 変換され(キャスト)、変数 <code>x2</code> には <code>2.0</code> (<code>double</code>型の値)が代入されます。</p>
 <p>最後に、<code>double x3 = (double) a / b;</code> の部分についてみていきます。
 <code>a</code> は <code>int</code> 型ですが、<code>(double)</code> によって値が <code>double</code> 型に変換されます。
@@ -262,10 +269,10 @@ int main(void) {
   unsigned char a_xor_b = a ^ b;  // -&gt; 00110101 = 35
   unsigned char not_b   = ~b;     // -&gt; 11000101 = C5
 
-  printf(&quot;a &amp; b = %02X\n&quot;, a_and_b);
-  printf(&quot;a | b = %02X\n&quot;, a_or_b);
-  printf(&quot;a ^ b = %02X\n&quot;, a_xor_b);
-  printf(&quot;~b    = %02X\n&quot;, not_b);
+  printf("a &amp; b = %02X\n", a_and_b);
+  printf("a | b = %02X\n", a_or_b);
+  printf("a ^ b = %02X\n", a_xor_b);
+  printf("~b    = %02X\n", not_b);
   
   return 0;
 }
@@ -278,7 +285,7 @@ int main(void) {
 <p><code>a &amp; b</code> は <code>a</code> と <code>b</code> のビット単位の論理積( AND )を表します。
 <code>a = 00001111</code> と <code>b = 00111010</code> のビット単位の論理積は <code>00001010</code> なります。
 したがって、<code>a &amp; b</code> の結果は、 16 進数表示で表すと <code>0x0A</code> となります。</p>
-<p>なお、演算結果を表示している <code>printf(&quot;a &amp; b = %02X\n&quot;, a_and_b);</code> の
+<p>なお、演算結果を表示している <code>printf("a &amp; b = %02X\n", a_and_b);</code> の
 書式文字列にある出力変換指定 <code>%02X</code> は、<code>a_and_b</code> の値を 16 進数で 2 桁表示することを表します。
 <code>%02X</code> の <code>02</code> は 2 桁表示(先頭0埋め)を表し、<code>X</code> は 16 進数表示を表します。</p>
 <p><code>a | b</code> は <code>a</code> と <code>b</code> のビット単位の論理和( OR )を表します。
@@ -303,12 +310,12 @@ a ^ b = 35
 int main(void) {
   int three = 3;
 
-  printf(&quot;three == 3 : %d\n&quot;, three == 3); // -&gt; 1 (true)
-  printf(&quot;three != 3 : %d\n&quot;, three != 3); // -&gt; 0 (false)
-  printf(&quot;three &gt; 3  : %d\n&quot;, three &gt; 3);  // -&gt; 0 (false)
-  printf(&quot;three &gt;= 3 : %d\n&quot;, three &gt;= 3); // -&gt; 1 (true)
-  printf(&quot;three &lt; 3  : %d\n&quot;, three &lt; 3);  // -&gt; 0 (false)
-  printf(&quot;three &lt;= 3 : %d\n&quot;, three &lt;= 3); // -&gt; 1 (true)
+  printf("three == 3 : %d\n", three == 3); // -&gt; 1 (true)
+  printf("three != 3 : %d\n", three != 3); // -&gt; 0 (false)
+  printf("three &gt; 3  : %d\n", three &gt; 3);  // -&gt; 0 (false)
+  printf("three &gt;= 3 : %d\n", three &gt;= 3); // -&gt; 1 (true)
+  printf("three &lt; 3  : %d\n", three &lt; 3);  // -&gt; 0 (false)
+  printf("three &lt;= 3 : %d\n", three &lt;= 3); // -&gt; 1 (true)
 
   return 0;
 }
@@ -352,12 +359,12 @@ three &lt;= 3 : 1
 int main(void) {
   int three = 3;
 
-  printf(&quot; three == 3 : %d\n&quot;, three == 3); // -&gt; 1 (true)
-  printf(&quot; three &gt; 3  : %d\n&quot;, three &gt; 3);  // -&gt; 0 (false)
+  printf(" three == 3 : %d\n", three == 3); // -&gt; 1 (true)
+  printf(" three &gt; 3  : %d\n", three &gt; 3);  // -&gt; 0 (false)
 
-  printf(&quot; (three == 3) &amp;&amp; (three &gt; 3) : %d\n&quot;, (three == 3) &amp;&amp; (three &gt; 3)); // -&gt; 0 (false)
-  printf(&quot; (three == 3) || (three &gt; 3) : %d\n&quot;, (three == 3) || (three &gt; 3)); // -&gt; 1 (true)
-  printf(&quot; !(three == 3)               : %d\n&quot;, !(three == 3));               // -&gt; 0 (false)
+  printf(" (three == 3) &amp;&amp; (three &gt; 3) : %d\n", (three == 3) &amp;&amp; (three &gt; 3)); // -&gt; 0 (false)
+  printf(" (three == 3) || (three &gt; 3) : %d\n", (three == 3) || (three &gt; 3)); // -&gt; 1 (true)
+  printf(" !(three == 3)               : %d\n", !(three == 3));               // -&gt; 0 (false)
 
   return 0;
 }
@@ -389,12 +396,12 @@ int main(void) {
 int main(void) {
   int a = 57;
 
-  printf(&quot;a = %d\n&quot;, a); // -&gt; 57
+  printf("a = %d\n", a); // -&gt; 57
   a++; // a = a + 1 と同等　(++a も可)
-  printf(&quot;a = %d\n&quot;, a); // -&gt; 58
+  printf("a = %d\n", a); // -&gt; 58
   a--; // a = a - 1 と同等　(--a も可)
   a--;
-  printf(&quot;a = %d\n&quot;, a); // -&gt; 56
+  printf("a = %d\n", a); // -&gt; 56
 
   return 0;
 }
@@ -421,14 +428,14 @@ int main(void) {
   int n, m;
 
   n = 42;
-  printf(&quot;n = %d\n&quot;, n);
+  printf("n = %d\n", n);
   m = n++; // m = n; n = n + 1; と同等 -&gt; m = 42, n = 43
-  printf(&quot;m = %d, n = %d\n&quot;, m, n);
+  printf("m = %d, n = %d\n", m, n);
 
   n = 42;
-  printf(&quot;n = %d\n&quot;, n); // -&gt; 42
+  printf("n = %d\n", n); // -&gt; 42
   m = ++n;  // n = n + 1; m = n; と同等 -&gt; m = 43, n = 43
-  printf(&quot;m = %d, n = %d\n&quot;, m, n);
+  printf("m = %d, n = %d\n", m, n);
 
   return 0;
 
@@ -463,9 +470,9 @@ int main(void) {
   unsigned char a_shifted_left  = a &lt;&lt; 2; // -&gt; 10111100 = BC
   unsigned char a_shifted_right = a &gt;&gt; 2; // -&gt; 00101011 = 2B
 
-  printf(&quot;a      = %02X\n&quot;, a);
-  printf(&quot;a &lt;&lt; 2 = %02X\n&quot;, a_shifted_left);
-  printf(&quot;a &gt;&gt; 2 = %02X\n&quot;, a_shifted_right);
+  printf("a      = %02X\n", a);
+  printf("a &lt;&lt; 2 = %02X\n", a_shifted_left);
+  printf("a &gt;&gt; 2 = %02X\n", a_shifted_right);
 
   return 0;
 }
@@ -492,13 +499,13 @@ a &gt;&gt; 2 = 2B
 
 int main(void) {
   int num = 57;
-  printf(&quot;num = %d\n&quot;, num); // -&gt; 57
+  printf("num = %d\n", num); // -&gt; 57
 
   num += 3; // num = num + 3 と同じ
-  printf(&quot;num = %d\n&quot;, num); // -&gt; 60
+  printf("num = %d\n", num); // -&gt; 60
 
   num *= 2; // num = num * 2 と同じ
-  printf(&quot;num = %d\n&quot;, num); // -&gt; 120
+  printf("num = %d\n", num); // -&gt; 120
 
   return 0;
 }
@@ -530,9 +537,9 @@ num = 120
 int main(void) {
   double val_input, val_output;
 
-  scanf(&quot;%lf&quot;, &amp;val_input);
+  scanf("%lf", &amp;val_input);
   val_output = (val_input &gt; 0) ? val_input : 0;
-  printf(&quot;val_output = %f\n&quot;, val_output);
+  printf("val_output = %f\n", val_output);
   
   return 0;
 }
@@ -582,7 +589,7 @@ Average age : 12.5
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="chapter_6.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="chapter_6.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -596,7 +603,7 @@ Average age : 12.5
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="chapter_6.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="chapter_6.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

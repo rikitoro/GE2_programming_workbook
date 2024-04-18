@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="jp" class="sidebar-visible no-js light">
+<html lang="jp" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -33,7 +33,7 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -63,31 +63,38 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 序論</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> C 言語の基礎</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 変数とデータ型</a></li><li class="chapter-item expanded "><a href="chapter_4.html" class="active"><strong aria-hidden="true">4.</strong> 標準入出力</a></li><li class="chapter-item expanded "><a href="chapter_5.html"><strong aria-hidden="true">5.</strong> 演算子</a></li><li class="chapter-item expanded "><a href="chapter_6.html"><strong aria-hidden="true">6.</strong> 分岐処理</a></li><li class="chapter-item expanded "><a href="chapter_7.html"><strong aria-hidden="true">7.</strong> 繰り返し処理</a></li><li class="chapter-item expanded "><a href="exercises.html"><strong aria-hidden="true">8.</strong> 課題</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -118,9 +125,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -178,11 +185,11 @@
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  printf(&quot;Hello, World!\n&quot;);
-  printf(&quot;THE ANSWER is %d!!!\n&quot;, 42);
-  printf(&quot;%d plus %d equals %d\n&quot;, -2, 10, -2 + 10);
-  printf(&quot;PI = %f\n&quot;, 3.141);
-  printf(&quot;%c is my favorite character.\n&quot;, 'G');
+  printf("Hello, World!\n");
+  printf("THE ANSWER is %d!!!\n", 42);
+  printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
+  printf("PI = %f\n", 3.141);
+  printf("%c is my favorite character.\n", 'G');
   
   return 0;
 }
@@ -199,26 +206,26 @@ G is my favolite character.
 </code></pre>
 <p>プログラムの説明を行います。
 次のように記述すると、<code>printf</code> の第 1 引数で指定された文字列(書式文字列)
-<code>&quot;THE ANSWER is %d!!!\n&quot;</code> の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
+<code>"THE ANSWER is %d!!!\n"</code> の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
 埋め込まれて、ターミナルに表示されます。
 <code>%d</code> は出力変換指定子と呼ばれるもののひとつで、
 符号付き整数値を 10 進表示で表示したいときに <code>%d</code> を用います。</p>
-<pre><code class="language-c">  printf(&quot;THE ANSWER is %d!!!\n&quot;, 42);
+<pre><code class="language-c">  printf("THE ANSWER is %d!!!\n", 42);
 </code></pre>
 <p>次のように複数の値を指定して表示することもできます。</p>
-<pre><code class="language-c">  printf(&quot;%d plus %d equals %d\n&quot;, -2, 10, -2 + 10);
+<pre><code class="language-c">  printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
 </code></pre>
-<p>書式文字列 <code>&quot;%d plus %d equals %d\n&quot;</code> 中には 3 個の <code>%d</code> がありますが、
+<p>書式文字列 <code>"%d plus %d equals %d\n"</code> 中には 3 個の <code>%d</code> がありますが、
 左から 1 番目と 2 番目の <code>%d</code> のところにはそれぞれ、第 2 引数の <code>-2</code>、
 第 3 引数の <code>10</code> が埋め込まれます。
 また、3 番目の <code>%d</code> のところには、
 第 4 引数に指定した <code>-2 + 10</code> が計算された結果の <code>8</code> が埋め込まれます。</p>
 <p><code>Double</code> 型や <code>float</code> 型などの実数値(浮動小数点数)を表示するときは、
 出力変換子として <code>%f</code> を用います。</p>
-<pre><code class="language-c">  printf(&quot;PI = %f\n&quot;, 3.141);
+<pre><code class="language-c">  printf("PI = %f\n", 3.141);
 </code></pre>
 <p>また、文字(1バイト文字)を表示するときは、出力変換子として <code>%c</code> を用います。</p>
-<pre><code class="language-c">  printf(&quot;%c is my favorite character.\n&quot;, 'G');
+<pre><code class="language-c">  printf("%c is my favorite character.\n", 'G');
 </code></pre>
 <p>書式文字列の <code>%c</code> のところに文字 <code>'G'</code> が埋め込まれて、
 <code>G is my favorite character.</code> と表示されます。
@@ -235,9 +242,9 @@ int main(void) {
   int score = 42;
   double temperature = 12.34;
 
-  printf(&quot;%c is my favorite character.\n&quot;, atmark);
-  printf(&quot;Your socre : %d\n&quot;, score);
-  printf(&quot;Todays temperature : %f\n&quot;, temperature);
+  printf("%c is my favorite character.\n", atmark);
+  printf("Your socre : %d\n", score);
+  printf("Todays temperature : %f\n", temperature);
 
   return 0;
 }
@@ -262,11 +269,11 @@ int main(void) {
   int score = 91;
   double value = 123.45678;
 
-  printf(&quot;12345678901234567890\n&quot;);
-  printf(&quot;%4d\n&quot;, score);   // 整数 4 桁で表示
-  printf(&quot;%6.2f\n&quot;, value); // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
-  printf(&quot;%x\n&quot;, score);    // 整数 16進法で表示
-  printf(&quot;%e\n&quot;, value);    // 実数 指数形式で表示
+  printf("12345678901234567890\n");
+  printf("%4d\n", score);   // 整数 4 桁で表示
+  printf("%6.2f\n", value); // 実数 全体 6 桁(小数点含む)，小数点以下 2 桁で表示
+  printf("%x\n", score);    // 整数 16進法で表示
+  printf("%e\n", value);    // 実数 指数形式で表示
 
   return 0;
 }
@@ -290,7 +297,7 @@ int main(void) {
 <p>コンソールなどの標準入力から入力された値を受け取り、
 変数に格納したい場合、 <code>scanf</code> 関数を用います。</p>
 <p>次のプログラムは、標準入力から入力された 1 文字(1バイト文字)を
-受け取り、その文字を <code>&quot;The character you entered : &quot;</code> に続けて
+受け取り、その文字を <code>"The character you entered : "</code> に続けて
 表示するものです。</p>
 <p><em><strong><code>scan01.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
@@ -298,9 +305,9 @@ int main(void) {
 int main(void) {
   char character;
   
-  scanf(&quot;%c&quot;, &amp;character);
+  scanf("%c", &amp;character);
 
-  printf(&quot;The character you entered : %c\n&quot;, character);
+  printf("The character you entered : %c\n", character);
 
   return 0;
 }
@@ -314,7 +321,7 @@ The character you entered : Q
 <p><code>scanf</code> は次のように書式文字列と変数のポインタを渡して用います。
 この文が実行されると、入力された文字が <code>char</code> 型の変数 <code>character</code> に格納されます。
 (変数 <code>character</code> は事前に <code>char character;</code> と宣言されていることに注意してください。)</p>
-<pre><code class="language-c">  scanf(&quot;%c&quot;, &amp;character);
+<pre><code class="language-c">  scanf("%c", &amp;character);
 </code></pre>
 <p>第 1 引数の書式文字列には入力する値の形式を入力変換指定子で指定します。
 文字(1バイト文字)の場合、入力変換指定子は <code>%c</code> となります。
@@ -340,18 +347,18 @@ int main(void) {
   double width, height;
   double area;
 
-  printf(&quot;Enter width height : \n&quot;);
+  printf("Enter width height : \n");
 
-  scanf(&quot;%lf %lf&quot;, &amp;width, &amp;height);
+  scanf("%lf %lf", &amp;width, &amp;height);
 
   area = width * height;
-  printf(&quot;Area of the rectagle : %f\n&quot;, area);
+  printf("Area of the rectagle : %f\n", area);
 
   return 0;
 }
 </code></pre>
 <p><code>scanf</code> では入力を複数受け取って、それぞれを別の変数に格納することもできます。</p>
-<pre><code class="language-c">  scanf(&quot;%lf %lf&quot;, &amp;width, &amp;height);
+<pre><code class="language-c">  scanf("%lf %lf", &amp;width, &amp;height);
 </code></pre>
 <p>この <code>scanf</code> の文が実行されると、標準入力からの入力待ちとなり、
 ユーザーから 2 つの値が順に入力されると、
@@ -409,9 +416,9 @@ cba
 int main(void) {
   for (int i = 1; i &lt;= 9; i++) {
     for (int j = 1; j &lt;= 9; j++) {
-      printf(&quot;%3d&quot;, i * j);
+      printf("%3d", i * j);
     }
-    printf(&quot;\n&quot;);
+    printf("\n");
   }
 
   return 0;
@@ -426,7 +433,7 @@ int main(void) {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="chapter_5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="chapter_5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -440,7 +447,7 @@ int main(void) {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="chapter_5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="chapter_5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
