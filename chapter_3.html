@@ -224,18 +224,19 @@ int main(void) {
 <p><code>character = 'z';</code> が実行されると、<code>char</code> 型の変数 <code>character</code> に 1 文字の値 <code>'z'</code> が代入されます。
 同様に <code>i = 42;</code> が実行されると、<code>int</code> 型の変数 <code>i</code> に整数 <code>42</code> が代入されます。</p>
 <p>代入演算子の右辺に式を持ってくることもできます。
-<code>num = i + 10;</code> が実行されると右辺が計算され、その計算結果である <code>52</code> が <code>int</code> 型の変数 <code>num</code> に代入されます。
-(今、 <code>i</code> の値が <code>42</code> であったことに注意)</p>
+<code>num = i + 10;</code> を実行すると、まず右辺の足し算が計算されます。
+いま、変数 <code>i</code> には <code>42</code> が代入されているので、<code>i + 10</code> の計算結果は<code>52</code> となります。この計算結果の値が、変数 <code>num</code> に代入されます。</p>
 <p>変数の値を表示するには <code>printf</code> を用いるとよいです。
 <code>printf</code> 関数の詳しい使い方については 4 章で説明します。</p>
 <pre><code class="language-c">  // (3) 変数の値の表示
-  printf("%c\n", character);  
-  printf("%d\n", i);
-  printf("%d\n", num);
-  printf("%f\n", temperature);
+  printf("%c\n", character); // %c のところに character の値が文字として表示される
+  printf("%d\n", i);         // %d のところに i の値が整数値の10進数表記で表示される
+  printf("%d\n", num);       // %d のところに num の値が整数値の10進数表記で表示される
+  printf("%f\n", temperature);  //%f のところに temperature の値が浮動小数点数として表示される
 </code></pre>
-<p>プログラムの実行結果を示します。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p>プログラムの実行結果を示します。
+上から順に char 型の変数 <code>character</code>、int 型の変数 <code>i</code>、<code>num</code>、double 型の変数 <code>temperature</code> の値が表示されます。</p>
+<p><em><strong><code>端末(実行結果)</code></strong></em></p>
 <pre><code>z
 42
 52
@@ -360,15 +361,17 @@ int main(void) {
   return 0;
 }
 </code></pre>
-<p>実行例を示します。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p>(1) の <code>d_i = (double)i</code> での代入では、
+int 型の変数 <code>i</code> の値を double 型に変換して <code>d_i</code> に代入しています。</p>
+<p>一方、(2) の <code>i_x = (int)x</code> での代入では、double 型の変数 <code>x</code> の値 <code>-12.34</code>を int 型に変換して <code>i_x</code> に代入しています。
+この時、小数点以下は切り捨てられ、整数値 <code>-12</code> が <code>i_x</code> に代入されます。</p>
+<p>プログラムの実行結果を示します。</p>
+<p><em><strong><code>端末(実行例)</code></strong></em></p>
 <pre><code>i   = 256
 d_i = 256.000000
 x   = -12.340000
 i_x = -12
 </code></pre>
-<p><code>double</code> 型の値をキャストによって <code>int</code> 型に変換したときは、
-小数点以下が切り捨てとなります。</p>
 <hr />
 <h2 id="演習"><a class="header" href="#演習">演習</a></h2>
 <h3 id="演習-3-1"><a class="header" href="#演習-3-1">演習 3-1</a></h3>
@@ -376,7 +379,7 @@ i_x = -12
 表示するプログラムです。
 このプログラムは次のフローチャートをもとに作成しました。</p>
 <p><img src="./assets/flowchart_chap03_semicircle.drawio.png" alt="flowchart" /></p>
-<p>プログラム中、変数 <code>radius</code> の値を変更して、プログラムを実行し、動作結果を確認してください。</p>
+<p>プログラム中、変数 <code>radius</code> の値を自分が好きな実数値に変更して、プログラムを実行し、動作結果を確認してください。</p>
 <p><em><strong><code>semicircle.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
