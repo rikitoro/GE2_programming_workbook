@@ -38,17 +38,21 @@ G is my favolite character.
 
 プログラムの説明を行います。
 次のように記述すると、`printf` の第 1 引数で指定された文字列(書式文字列)
- `"THE ANSWER is %d!!!\n"` 中の `%d` のところに、第 2 引数で指定された整数値 `42` が
- 埋め込まれて出力されます。
- `%d` は出力変換指定子と呼ばれるもののひとつで、
- int 型のデータなどの符号付き整数値を 10 進表示で表示したいときに `%d` を用います。
+`"THE ANSWER is %d!!!\n"` 中の `%d` のところに、第 2 引数で指定された整数値 `42` が
+埋め込まれ、`THE ANSWER is 42!!!` と表示されます。
+
+
+`%d` は出力変換指定子と呼ばれるもののひとつで、
+int 型のデータなどの符号付き整数値を 10 進表示で表示したいときに `%d` を用います。
 ```c
   printf("THE ANSWER is %d!!!\n", 42);
+  // THE ANSWER is 42!!! と出力される
 ```
 
 次のように複数の値を指定して表示することもできます。
 ```c
   printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
+  // -2 plus 10 equals 8 と出力される
 ```
 書式文字列 `"%d plus %d equals %d\n"` 中には 3 個の `%d` がありますが、
 左から 1 番目と 2 番目の `%d` のところにはそれぞれ、第 2 引数の `-2`、
@@ -60,11 +64,13 @@ G is my favolite character.
 出力変換子として `%f` を用います。
 ```c
   printf("PI = %f\n", 3.141);
+  // PI = 3.141000 と出力される
 ```
 
 また、文字(1バイト文字)を表示するときは、出力変換子として `%c` を用います。
 ```c
   printf("%c is my favorite character.\n", 'G');
+  // G is my favorite character. と出力される
 ```
 書式文字列の `%c` のところに文字 `'G'` が埋め込まれて、
 `G is my favorite character.` と表示されます。
@@ -97,7 +103,7 @@ int main(void) {
 変数 `atmark` や `score`、`temperature` に代入された値(文字、数値)が
 表示されていることがわかります。
 
-***`terminal`***
+***`端末(プログラムの実行結果)`***
 ```
 @ is my favorite character.
 Your socre : 42
@@ -130,7 +136,7 @@ int main(void) {
 }
 ```
 
-***`terminal`***
+***`端末(実行結果)`***
 ```
 12345678901234567890
   91
@@ -163,9 +169,9 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-  char character;
+  char character; // 1 文字を格納する変数 character を宣言
   
-  scanf("%c", &character);
+  scanf("%c", &character); // 変数 character に入力された文字を格納
 
   printf("The character you entered : %c\n", character);
 
@@ -176,7 +182,7 @@ int main(void) {
 プログラムの実行結果です。
 1 行目はユーザーからの入力です。
 
-***`terminal`***
+***`端末(プログラムの実行結果例)`***
 ```
 Q
 The character you entered : Q
@@ -186,7 +192,7 @@ The character you entered : Q
 この文が実行されると、入力された文字が `char` 型の変数 `character` に格納されます。
 (変数 `character` は事前に `char character;` と宣言されていることに注意してください。)
 ```c
-  scanf("%c", &character);
+  scanf("%c", &character) // 変数 character に入力された文字を格納
 ```
 第 1 引数の書式文字列には入力する値の形式を入力変換指定子で指定します。
 文字(1バイト文字)の場合、入力変換指定子は `%c` となります。
@@ -246,7 +252,7 @@ int main(void) {
 2 行目の `2.3` と 3 行目の `10.0` がユーザーからの入力です。
 `scanf` により、それぞれの値が `double` 型の変数 `width` と `height` に格納されます。
 
-***`terminal`***
+***`端末(プログラムの実行例)`***
 ```
 Enter width height : 
 2.3
@@ -296,7 +302,7 @@ Area of the rectagle : 23.000000
 実行例を以下に示します。
 1 ~ 3 行目はユーザーからの入力で、4 行目はプログラムの出力です。
 
-***`terminal`***
+***`端末(実行例)`***
 ```
 a
 b
