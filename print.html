@@ -697,13 +697,15 @@ G is my favolite character.
 <p>プログラムの説明を行います。
 次のように記述すると、<code>printf</code> の第 1 引数で指定された文字列(書式文字列)
 <code>"THE ANSWER is %d!!!\n"</code> 中の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
-埋め込まれて出力されます。
-<code>%d</code> は出力変換指定子と呼ばれるもののひとつで、
+埋め込まれ、<code>THE ANSWER is 42!!!</code> と表示されます。</p>
+<p><code>%d</code> は出力変換指定子と呼ばれるもののひとつで、
 int 型のデータなどの符号付き整数値を 10 進表示で表示したいときに <code>%d</code> を用います。</p>
 <pre><code class="language-c">  printf("THE ANSWER is %d!!!\n", 42);
+  // THE ANSWER is 42!!! と出力される
 </code></pre>
 <p>次のように複数の値を指定して表示することもできます。</p>
 <pre><code class="language-c">  printf("%d plus %d equals %d\n", -2, 10, -2 + 10);
+  // -2 plus 10 equals 8 と出力される
 </code></pre>
 <p>書式文字列 <code>"%d plus %d equals %d\n"</code> 中には 3 個の <code>%d</code> がありますが、
 左から 1 番目と 2 番目の <code>%d</code> のところにはそれぞれ、第 2 引数の <code>-2</code>、
@@ -713,9 +715,11 @@ int 型のデータなどの符号付き整数値を 10 進表示で表示した
 <p><code>Double</code> 型や <code>float</code> 型などの実数値(浮動小数点数)を表示するときは、
 出力変換子として <code>%f</code> を用います。</p>
 <pre><code class="language-c">  printf("PI = %f\n", 3.141);
+  // PI = 3.141000 と出力される
 </code></pre>
 <p>また、文字(1バイト文字)を表示するときは、出力変換子として <code>%c</code> を用います。</p>
 <pre><code class="language-c">  printf("%c is my favorite character.\n", 'G');
+  // G is my favorite character. と出力される
 </code></pre>
 <p>書式文字列の <code>%c</code> のところに文字 <code>'G'</code> が埋め込まれて、
 <code>G is my favorite character.</code> と表示されます。
@@ -742,7 +746,7 @@ int main(void) {
 <p>プログラムの実行結果です。
 変数 <code>atmark</code> や <code>score</code>、<code>temperature</code> に代入された値(文字、数値)が
 表示されていることがわかります。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(プログラムの実行結果)</code></strong></em></p>
 <pre><code>@ is my favorite character.
 Your socre : 42
 Todays temperature : 12.340000
@@ -768,7 +772,7 @@ int main(void) {
   return 0;
 }
 </code></pre>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(実行結果)</code></strong></em></p>
 <pre><code>12345678901234567890
   91
 123.46
@@ -793,9 +797,9 @@ int main(void) {
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 
 int main(void) {
-  char character;
+  char character; // 1 文字を格納する変数 character を宣言
   
-  scanf("%c", &amp;character);
+  scanf("%c", &amp;character); // 変数 character に入力された文字を格納
 
   printf("The character you entered : %c\n", character);
 
@@ -804,14 +808,14 @@ int main(void) {
 </code></pre>
 <p>プログラムの実行結果です。
 1 行目はユーザーからの入力です。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(プログラムの実行結果例)</code></strong></em></p>
 <pre><code>Q
 The character you entered : Q
 </code></pre>
 <p><code>scanf</code> は次のように書式文字列と変数のポインタを渡して用います。
 この文が実行されると、入力された文字が <code>char</code> 型の変数 <code>character</code> に格納されます。
 (変数 <code>character</code> は事前に <code>char character;</code> と宣言されていることに注意してください。)</p>
-<pre><code class="language-c">  scanf("%c", &amp;character);
+<pre><code class="language-c">  scanf("%c", &amp;character) // 変数 character に入力された文字を格納
 </code></pre>
 <p>第 1 引数の書式文字列には入力する値の形式を入力変換指定子で指定します。
 文字(1バイト文字)の場合、入力変換指定子は <code>%c</code> となります。
@@ -857,7 +861,7 @@ int main(void) {
 <p>実行結果の例は次の通りです。
 2 行目の <code>2.3</code> と 3 行目の <code>10.0</code> がユーザーからの入力です。
 <code>scanf</code> により、それぞれの値が <code>double</code> 型の変数 <code>width</code> と <code>height</code> に格納されます。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(プログラムの実行例)</code></strong></em></p>
 <pre><code>Enter width height : 
 2.3
 10.0
@@ -891,7 +895,7 @@ Area of the rectagle : 23.000000
 動作を確認してください。</p>
 <p>実行例を以下に示します。
 1 ~ 3 行目はユーザーからの入力で、4 行目はプログラムの出力です。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(実行例)</code></strong></em></p>
 <pre><code>a
 b
 c
