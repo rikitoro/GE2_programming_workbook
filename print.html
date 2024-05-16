@@ -669,8 +669,7 @@ int main(void) {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第-4-章--標準入出力"><a class="header" href="#第-4-章--標準入出力">第 4 章 : 標準入出力</a></h1>
 <h2 id="41--標準出力"><a class="header" href="#41--標準出力">4.1 : 標準出力</a></h2>
 <h3 id="例題-4-1--printf-の使い方"><a class="header" href="#例題-4-1--printf-の使い方">例題 4-1 : <code>printf</code> の使い方</a></h3>
-<p>コンソールなどの標準出力へ文字列を出力するときは <code>printf</code> 関数を使います。
-また文字列の中に書式を指定して、数値や文字を表示することもできます。</p>
+<p>コンソールなどの標準出力へ文字列を出力するときは <code>printf</code> 関数を使います。文字列の中に書式を指定して、数値や文字を表示することができます。</p>
 <p>次のプログラムは <code>printf</code> を用いたデモプログラムです。</p>
 <p><em><strong><code>print01.c</code></strong></em></p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
@@ -688,7 +687,7 @@ int main(void) {
 <p>実行結果は次の通りです。
 プログラム中の <code>printf</code> を用いているところと
 表示された内容との対応を確認してしてください。</p>
-<p><em><strong><code>terminal</code></strong></em></p>
+<p><em><strong><code>端末(プログラムの実行結果)</code></strong></em></p>
 <pre><code>Hello, World!
 THE ANSWER is 42!!!
 -2 plus 10 equals 8
@@ -697,10 +696,10 @@ G is my favolite character.
 </code></pre>
 <p>プログラムの説明を行います。
 次のように記述すると、<code>printf</code> の第 1 引数で指定された文字列(書式文字列)
-<code>"THE ANSWER is %d!!!\n"</code> の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
-埋め込まれて、ターミナルに表示されます。
+<code>"THE ANSWER is %d!!!\n"</code> 中の <code>%d</code> のところに、第 2 引数で指定された整数値 <code>42</code> が
+埋め込まれて出力されます。
 <code>%d</code> は出力変換指定子と呼ばれるもののひとつで、
-符号付き整数値を 10 進表示で表示したいときに <code>%d</code> を用います。</p>
+int 型のデータなどの符号付き整数値を 10 進表示で表示したいときに <code>%d</code> を用います。</p>
 <pre><code class="language-c">  printf("THE ANSWER is %d!!!\n", 42);
 </code></pre>
 <p>次のように複数の値を指定して表示することもできます。</p>
