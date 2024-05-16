@@ -230,7 +230,7 @@ int main(void) {
 
   printf("Enter width height : \n");
 
-  scanf("%lf %lf", &width, &height);
+  scanf("%lf %lf", &width, &height);　// 2 つの実数値を入力
 
   area = width * height;
   printf("Area of the rectagle : %f\n", area);
@@ -286,7 +286,7 @@ Area of the rectagle : 23.000000
 実行例を示します。
 1 行目はユーザーからの入力で、2 行目がプログラムからの出力です。
 
-***`terminal`***
+***`端末(プログラムの実行例)`***
 ```
 5.0
 78.500000
@@ -302,7 +302,7 @@ Area of the rectagle : 23.000000
 実行例を以下に示します。
 1 ~ 3 行目はユーザーからの入力で、4 行目はプログラムの出力です。
 
-***`端末(実行例)`***
+***`端末(プログラムの実行例)`***
 ```
 a
 b
